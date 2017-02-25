@@ -12,8 +12,7 @@
           <a-asset-item id='material' src='models/aztec-temple.mtl'></a-asset-item>
           <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
           <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
-          <a-asset-item id='gem-obj' src='models/gem/gem.obj'></a-asset-item>
-          <a-asset-item id='gem-mtl' src='models/gem/gem.mtl'></a-asset-item>
+          <a-asset-item id='orange-texture' src='models/orange.jpeg'></a-asset-item>
         </a-assets>
 
         <a-sky src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Helvellyn_Striding_Edge_360_Panorama,_Lake_District_-_June_09.jpg"></a-sky>
@@ -58,11 +57,11 @@
 
         <a-obj-model src='#object' mtl='#material'></a-obj-model>
         <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 -5"></a-obj-model>
-        <a-obj-model id='gem' visible='false' src="#gem-obj" mtl="#gem-mtl" position="2 1.5 -1.2"></a-obj-model>
+        <a-sphere id='orange' visible='false' src="#orange-texture" radius="0.1" position="2 1.5 -1.2" scale="0.3 0.3 0.3"></a-sphere>
 
         <a-camera position='0 0 0'>
           <a-cursor color='red'></a-cursor>
-          <a-obj-model id='key' visible='false' src="#gem-obj" mtl="#gem-mtl" position="0.15 -0.1 -0.2"></a-obj-model>
+          <a-sphere id='key' visible='false' src="#orange-texture" radius="0.1" position="0.25 -0.15 -0.3" rotation="180 90 180"></a-sphere>
         </a-camera>
 
       </a-scene>
@@ -78,26 +77,28 @@
         element.addEventListener( 'mouseenter', function() {
           document.querySelector('#text').setAttribute("visible", true)
           document.querySelector('#text').emit('text_expand')
-          document.querySelector('#gem').setAttribute("visible", true)
+          document.querySelector('#orange').setAttribute("visible", true)
         })
       })
       // debugger
-      // Grabbing gem action
+      // Grabbing orange action
       if (haveGem === false) {
-        document.querySelector('#gem').addEventListener( 'mouseenter', function() {
+        document.querySelector('#orange').addEventListener( 'mouseenter', function() {
           document.querySelector('#key').setAttribute("visible", true)
-          document.querySelector('#gem').setAttribute("visible", false)
+          document.querySelector('#orange').setAttribute("visible", false)
           haveGem = true
           document.querySelector('#lion').addEventListener( 'mouseenter', function() {
-            document.querySelector('#gem').setAttribute("position", "-1.4 1 -4.5")
+            document.querySelector('#orange').setAttribute("position", "-1 1.45 -4.75")
+            document.querySelector('#orange').setAttribute("scale", "1 1 1")
+            document.querySelector('#orange').setAttribute("visible", true)
             document.querySelector('#key').setAttribute("visible", false)
             document.querySelector('#text').setAttribute("text", "value: Thanks!!! Let's get outta here!; align: center; width: 2; wrap-count: 20; color: #333333")
             document.querySelector('#portal').setAttribute('visible', true)
             document.querySelector('#portal').emit('expand')
 
             setTimeout(function(){
-              document.querySelector('#gem').setAttribute("visible", false)
-            }.bind(this), 500)
+              document.querySelector('#orange').setAttribute("visible", false)
+            }.bind(this), 1000)
           })
         })
       }
