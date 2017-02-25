@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    </head>
+    <body>
+        <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+          <a-plane position="0 2 3" color="#000000" scale="10 10 10"><a-animation attribute="scale" to="0 0 0" dur="5000"></a-animation></a-plane>
+
+          <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
+           <a-cursor color="white"></a-cursor>
+          </a-entity>
+
+            <a-sky src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Helvellyn_Striding_Edge_360_Panorama,_Lake_District_-_June_09.jpg"></a-sky>
+
+        </a-scene>
+    </body>
+</html>
