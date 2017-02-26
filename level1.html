@@ -74,7 +74,20 @@
           <a-box id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
 
           // text box
-          <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8"></a-box>
+          <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+
+          <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+
+          <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+            <!-- <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="expand">
+           </a-animation> -->
+          </a-box>
 
           <!-- <a-entity id='text' geometry="primitive: plane;  width: auto; height: 2;" visible='false' text="value: Oh...  hello! Can you help me? Do you see a pattern here...; align: center; width: 4; wrap-count: 20; color: #333333" position="0 4 -5.73" rotation='0 15 0' material="color: white" >
             <a-animation
@@ -88,12 +101,29 @@
           </a-entity> -->
         </a-scene>
 
-        <!-- <script>
+        <script>
+          // document.querySelector('#lion').addEventListener('mouseenter', function() {
+          // document.querySelector('#text').setAttribute("visible", true)
+          // document.querySelector('#text').emit('text_expand')
+          // })
           document.querySelector('#lion').addEventListener('mouseenter', function() {
-          document.querySelector('#text').setAttribute("visible", true)
-          document.querySelector('#text').emit('text_expand')
+              document.querySelector('#text-1').setAttribute("visible", true)
           })
-        </script> -->
+
+          document.querySelector('#text-1').addEventListener('mouseenter', function() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-1').setAttribute("visible", false)
+              document.querySelector('#text-2').setAttribute("visible", true)
+            }, 4000));
+          })
+
+          document.querySelector('#text-2').addEventListener('mouseenter', function() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-2').setAttribute("visible", false)
+              document.querySelector('#text-3').setAttribute("visible", true)
+            }, 5000));
+          })
+        </script>
 
     </body>
 </html>
