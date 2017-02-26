@@ -76,10 +76,28 @@
 
           // instruction boxes
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
-
           <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
-
           <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+
+          // portal to win/final page
+          <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
+            <a-animation
+                attribute="rotation"
+                 dur="500"
+                 from="0 0 0"
+                 to="0 360 0"
+                 repeat="indefinite"
+                 easing="linear"></a-animation>
+             <a-animation
+              attribute="scale"
+              dur="2000"
+              from="0.1 0.1 0.1"
+              to="1 2 1"
+              easing="linear"
+              begin="expand">
+            </a-animation>
+          </a-sphere>
+
         </a-scene>
 
         <script>
@@ -100,22 +118,28 @@
             }, 5000));
           })
 
-// index code starts
-var correctCube = false
+          // index code starts
+          var correctCube = false
 
-if (correctCube === false) {
-  document.querySelector('#eight').addEventListener( 'mouseenter', function() {
-    document.querySelector('#hold').setAttribute("visible", true)
-    document.querySelector('#eight').setAttribute("visible", false)
-    correctCube = true
-    document.querySelector('#lion').addEventListener( 'mouseenter', function() {
-      document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
-      document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
-      document.querySelector('#eight').setAttribute("visible", true)
-      document.querySelector('#hold').setAttribute("visible", false)
-    })
-  })
-}
+          if (correctCube === false) {
+            document.querySelector('#eight').addEventListener( 'mouseenter', function() {
+              document.querySelector('#hold').setAttribute("visible", true)
+              document.querySelector('#eight').setAttribute("visible", false)
+              correctCube = true
+              document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+                document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
+                document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
+                document.querySelector('#eight').setAttribute("visible", true)
+                document.querySelector('#hold').setAttribute("visible", false)
+                document.querySelector('#portal').setAttribute('visible', true)
+                document.querySelector('#portal').emit('expand')
+              })
+            })
+          }
+          // Next level action
+            document.getElementById('portal').addEventListener('mouseenter', function(event){
+              window.open("win.html", "_self")
+            });
         </script>
 
     </body>
