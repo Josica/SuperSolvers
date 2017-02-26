@@ -17,6 +17,7 @@
 
     <a-scene id="scene" inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
       <a-sky src="textures/milky_way.jpeg"></a-sky>
+      <!-- <a-sky src="https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg"></a-sky> -->
 
       <a-camera id="camera">
         <a-cursor
@@ -59,12 +60,12 @@
       <a-sphere id="sun" class="planet" position="0 -4 0" radius=4 src="textures/sun.jpeg" animation__rotate="property: rotation; dur: 10000; easing: linear; loop: true; to: 0 360 0">
       </a-sphere>
 
-      <a-entity position="0 -25 0" animation__rotate="property: rotation; dur: 9000; easing: linear; loop: true; to: 0 360 0">
+      <a-entity position="0 -20 0" animation__rotate="property: rotation; dur: 9000; easing: linear; loop: true; to: 0 360 0">
         <a-sphere id="mercury" class="planet" radius="1.2" src="textures/mercury.jpeg" position="70 0 0" animation__rotate="property: rotation; dur: 500; easing: linear; loop: true; to: 0 360 0">
         </a-sphere>
       </a-entity>
 
-      <a-entity position="0 60 0" animation__rotate="property: rotation; dur: 11000; easing: linear; loop: true; to: 0 360 0">
+      <a-entity position="0 35 0" animation__rotate="property: rotation; dur: 11000; easing: linear; loop: true; to: 0 360 0">
         <a-sphere id="venus" class="planet" radius="1.5" src="textures/venus.jpeg" position="80 0 0" animation__rotate="property: rotation; dur: 600; easing: linear; loop: true; to: 0 360 0">
         </a-sphere>
       </a-entity>
@@ -106,7 +107,7 @@
       </a-entity>
 
       <a-sphere color="black" scale="2 2 2 " radius="0.5" position="100 100 100" rotation="40 -135 -50" material="shader: flat">
-        <a-ring opacity="0.7" src="textures/blackhole.jpeg" radius-inner="1" radius-outer="5" animation__rotate="property: rotation; dur: 10000; easing: linear; loop: true; to: 0 0 360; dir: reverse" ></a-ring>
+        <a-ring opacity="0.7" src="textures/blackhole.jpeg" radius-inner="0.5" radius-outer="3" animation__rotate="property: rotation; dur: 10000; easing: linear; loop: true; to: 0 0 360; dir: reverse" ></a-ring>
       </a-sphere>
     </a-scene>
 
