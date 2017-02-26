@@ -1,0 +1,23 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Body
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 0.840491 0.434000
+Ks 0.018000 0.018000 0.018000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump lionfox.jpg
+map_Kd lionfox.jpg
+
+newmtl Eye_Material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.100000 0.100000 0.100000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd fan1 - Kopi.jpg
