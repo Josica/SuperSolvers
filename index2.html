@@ -5,6 +5,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js"></script>
+        <script src="./aframe-particle-system-component.js"></script>
     </head>
     <body>
       <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
@@ -14,6 +15,9 @@
           <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
           <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
         </a-assets>
+
+        <!-- ========= Snow ========= -->
+        <a-entity position="0 2.25 -15" particle-system="preset: snow"></a-entity>
 
         <!-- ========= Objects ========= -->
         <a-obj-model src='#object' mtl='#material' position='-77 20 -140' rotation='0 120 0'></a-obj-model>
@@ -27,7 +31,7 @@
         <a-plane color='white' src='models/grass2.jpeg' height='300' width='400' rotation='-90 0 0' position='54 0 0'></a-plane>
 
         <!-- ========= Lion text ========= -->
-        <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 5 0' material="color: white" >
+        <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 -5 0' material="color: white" >
           <a-animation
            attribute="scale"
            dur="500"
@@ -38,9 +42,16 @@
          </a-animation>
         </a-entity>
 
+      <!-- ========= Ice ice baby ========= -->
+      <a-box height='15' src='models/ice.jpg' width='10' depth='3' position='25 0 -57' rotation='0 0 0'></a-box>
+        <a-text width='55' value='Height: 15in, Width: 10in' position='12 12 -57'></a-text>
+      <a-box height='30' src='models/ice.jpg' width='30' depth='3' position='-15 1 71' rotation='0 0 0'></a-box>
+        <a-text width='55' value='Height: 17in, Width: 30in' rotation='0 180 0' position='-3 21 71'></a-text>
+      <a-box height='9' src='models/ice.jpg' width='10' depth='3' position='0 0 -20' rotation='0 0 0'></a-box>
+
 
       <!-- ========= Math equation ========= -->
-      <a-entity id='equation' scale='30 30 30'geometry="primitive: plane; width: 1; height: .5" visible='false' text="value: What is 2 + 2; align: center; width: 1.6; wrap-count: 20; color: #white" position="65 20 9.3" rotation='0 -90 0' material="color: #7AB800" >
+      <a-entity id='equation' scale='30 30 30'geometry="primitive: plane; width: 1.1; height: .5" visible='false' text="value: What is the combined perimeter of the 3 ice blocks; align: center; width: 1.1; wrap-count: 20; color: #333333" position="65 20 9.3" rotation='0 -90 0' material="color: white" >
         <a-animation
          attribute="scale"
          dur="1000"
@@ -53,7 +64,8 @@
 
       <!-- ========= Answers ========= -->
       <a-entity id="answers" layout="type: line; margin: 12" visible= 'false'  rotation='0 90 0'>
-        <a-sphere id='answer1' radius='4' text='hi' color="white">
+      <!-- Correct answer -->
+        <a-sphere id='answer1' radius='4' text='value: hi' color="white">
           <a-animation
              attribute="radius"
              dur="2000"
@@ -73,8 +85,49 @@
           </a-animation>
         </a-sphere>
 
-        <a-sphere id='answer2' radius=4 color="white"></a-sphere>
-        <a-sphere id='answer3' radius=4 color="white"></a-sphere>
+        <!-- Incorrect answer -->
+        <a-sphere id='answer2' radius=4 color="white">
+          <a-animation
+             attribute="radius"
+             dur="2000"
+             from="4 "
+             to="6"
+             easing="linear"
+             begin="select">
+          </a-animation>
+
+          <a-animation
+             attribute="radius"
+             dur="2000"
+             from="4"
+             to="4"
+             easing="linear"
+             begin="deselect">
+          </a-animation>
+        </a-sphere>
+
+        <!-- Incorrect answer -->
+        <a-sphere id='answer3' radius=4 color="white">
+          <a-animation
+             attribute="radius"
+             dur="2000"
+             from="4 "
+             to="6"
+             easing="linear"
+             begin="select">
+          </a-animation>
+
+          <a-animation
+             attribute="radius"
+             dur="2000"
+             from="4"
+             to="4"
+             easing="linear"
+             begin="deselect">
+          </a-animation>
+        </a-sphere>
+
+        <!-- spheres appear animation -->
         <a-animation
          attribute="scale"
          dur="2000"
@@ -131,23 +184,74 @@
         })
 
         // Correct answer action
-        answer1.addEventListener( 'mouseenter', function() {
-          answer1.emit('select')
-          $(this).data('timeout', setTimeout(function(){
-            answer1.setAttribute('color', '#7AB800')
-            answer2.setAttribute('visible', false)
-            answer3.setAttribute('visible', false)
-            eq.setAttribute('text', 'value', 'Correct!')
-          }, 2000));
-        })
+        function correctAnswer() {
+            answer1.emit('select')
+            $(this).data('timeout', setTimeout(function(){
+              answer1.setAttribute('color', '#7AB800')
+              answer2.setAttribute('visible', false)
+              answer3.setAttribute('visible', false)
+              eq.setAttribute('text', 'value', 'Correct!')
+              eq.setAttribute('text', 'color', 'white')
+              eq.setAttribute('material', 'color', '#7AB800')
+              answer1.removeEventListener('mouseenter', correctAnswer);
+            }, 2000));
+        }
 
-        answer1.addEventListener( 'mouseleave', function() {
+        function correctAnswerLeave() {
           answer1.emit('deselect')
           clearTimeout($(this).data('timeout'));
-            console.log('off')
-        });
+        }
+
+        answer1.addEventListener('mouseenter', correctAnswer);
+        answer1.addEventListener('mouseleave', correctAnswerLeave);
 
 
+        // Bad answer
+        function BadAnswerOne(e) {
+            answer2.emit('select')
+            $(this).data('timeout', setTimeout(function(){
+              answer2.setAttribute('color', 'red')
+              answer3.setAttribute('color', 'red')
+              answer1.setAttribute('color', '#7AB800')
+              eq.setAttribute('text', 'color', 'white')
+              eq.setAttribute('text', 'value', 'Ohh sorry!')
+              eq.setAttribute('material', 'color', '#F23127')
+              answer1.removeEventListener('mouseenter', correctAnswer);
+              answer2.removeEventListener('mouseenter', BadAnswerOne);
+              answer3.removeEventListener('mouseenter', BadAnswerTwo);
+            }, 2000));
+        }
+
+        function BadAnswerOneLeave() {
+          answer2.emit('deselect')
+          clearTimeout($(this).data('timeout'));
+        }
+
+        function BadAnswerTwo(e) {
+            answer3.emit('select')
+            $(this).data('timeout', setTimeout(function(){
+              answer2.setAttribute('color', 'red')
+              answer3.setAttribute('color', 'red')
+              answer1.setAttribute('color', '#7AB800')
+              eq.setAttribute('text', 'value', 'Ohh sorry!')
+              eq.setAttribute('text', 'color', 'white')
+              eq.setAttribute('material', 'color', '#F23127')
+              answer1.removeEventListener('mouseenter', correctAnswer);
+              answer2.removeEventListener('mouseenter', BadAnswerOne);
+              answer3.removeEventListener('mouseenter', BadAnswerTwo);
+            }, 2000));
+        }
+
+        function BadAnswerTwoLeave() {
+          answer3.emit('deselect')
+          clearTimeout($(this).data('timeout'));
+        }
+
+        answer2.addEventListener('mouseenter', BadAnswerOne);
+        answer3.addEventListener('mouseenter', BadAnswerTwo);
+
+        answer2.addEventListener('mouseleave', BadAnswerOneLeave);
+        answer3.addEventListener('mouseleave', BadAnswerTwoLeave);
 
 
 
