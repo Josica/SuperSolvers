@@ -12,19 +12,21 @@
           <a-asset-item id='object' src='models/mnts/mountains.obj'></a-asset-item>
           <a-asset-item id='material' src='models/mnts/mountains.mtl'></a-asset-item>
           <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
-          <a-asset-item id='lion-mtl'w src='models/lion/lion-cub.mtl'></a-asset-item>
+          <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
         </a-assets>
 
+        <!-- ========= Objects ========= -->
         <a-obj-model src='#object' mtl='#material' position='-77 20 -140' rotation='0 120 0'></a-obj-model>
         <a-obj-model src='#object' mtl='#material' position='150 20 -122' rotation='0 50 0'></a-obj-model>
         <a-obj-model id='move' src='#object' mtl='#material' position='-132 20 -12' rotation='0 220 0'></a-obj-model>
         <a-obj-model src='#object' mtl='#material' position='250 20 35.94' rotation='0 190 0'></a-obj-model>
         <a-obj-model src='#object' mtl='#material' position='98.20 20 134.31' rotation='0 270 0'></a-obj-model>
-
         <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 10 180" position="-2 3.4 -35"></a-obj-model>
 
+        <!-- ========= Floor ========= -->
         <a-plane color='white' src='models/grass2.jpeg' height='300' width='400' rotation='-90 0 0' position='54 0 0'></a-plane>
 
+        <!-- ========= Lion text ========= -->
         <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 5 0' material="color: white" >
           <a-animation
            attribute="scale"
@@ -41,29 +43,55 @@
       <a-entity id='equation' scale='30 30 30'geometry="primitive: plane; width: 1; height: .5" visible='false' text="value: What is 2 + 2; align: center; width: 1.6; wrap-count: 20; color: #white" position="65 20 9.3" rotation='0 -90 0' material="color: #7AB800" >
         <a-animation
          attribute="scale"
-         dur="500"
+         dur="1000"
          from="0.1 0.1 0.1"
          to="8 8 8"
          easing="linear"
-         attribute=''
          begin="text_expand">
        </a-animation>
       </a-entity>
 
-      <a-entity id="answers" layout="type: line; margin: 8" visible= 'false' position="70 35 25" rotation='0 90 0'>
-        <a-sphere radius=3 text='hi' color="white"></a-sphere>
-        <a-sphere radius=3 color="white"></a-sphere>
-        <a-sphere radius=3 color="white"></a-sphere>
-        <a-sphere radius=3 color="white"></a-sphere>
-        <a-sphere radius=3 color="white"></a-sphere>
+      <!-- ========= Answers ========= -->
+      <a-entity id="answers" layout="type: line; margin: 12" visible= 'false'  rotation='0 90 0'>
+        <a-sphere id='answer1' radius='4' text='hi' color="white">
+          <a-animation
+             attribute="radius"
+             dur="2000"
+             from="4 "
+             to="6"
+             easing="linear"
+             begin="select">
+          </a-animation>
+
+          <a-animation
+             attribute="radius"
+             dur="2000"
+             from="4"
+             to="4"
+             easing="linear"
+             begin="deselect">
+          </a-animation>
+        </a-sphere>
+
+        <a-sphere id='answer2' radius=4 color="white"></a-sphere>
+        <a-sphere id='answer3' radius=4 color="white"></a-sphere>
         <a-animation
          attribute="scale"
-         dur="500"
+         dur="2000"
          from="0.1 0.1 0.1"
          to="1 1 1"
          easing="linear"
-         begin="solve">
-       </a-animation>
+         begin="solve1">
+        </a-animation>
+
+        <a-animation
+           attribute="position"
+           dur="2000"
+           from="80 15 20"
+           to="80 45 25"
+           easing="linear"
+           begin="solve2">
+        </a-animation>
       </a-entity>
 
         <a-sky src="models/sky.jpg"></a-sky>
@@ -81,6 +109,11 @@
       var lion = document.querySelector('#lion')
       var text = document.querySelector('#text')
       var eq = document.querySelector('#equation')
+      var answer1 = document.querySelector('#answer1')
+      var answer2 = document.querySelector('#answer2')
+      var answer3 = document.querySelector('#answer3')
+      var wrongAnswers = [answer2, answer3]
+
         lion.addEventListener( 'mouseenter', function() {
           text.setAttribute("visible", true)
           text.emit('text_expand')
@@ -92,19 +125,29 @@
 
         eq.addEventListener( 'mouseenter', function(){
             answers.setAttribute('visible', true)
-            answers.emit('solve')
+            answers.emit('solve1')
+            answers.emit('solve2')
+            answers.setAttribute('text', { value: "Correct!"})
         })
 
-        // lion.addEventListener( 'mouseenter', function() {
-        //   $(this).data('timeout', setTimeout(function(){
-        //     console.log('on')
-        //   }, 2000));
-        // })
-        //
-        // lion.addEventListener( 'mouseleave', function() {
-        //   clearTimeout($(this).data('timeout'));
-        //     console.log('off')
-        // });
+        // Correct answer action
+        answer1.addEventListener( 'mouseenter', function() {
+          answer1.emit('select')
+          $(this).data('timeout', setTimeout(function(){
+            answer1.setAttribute('color', '#7AB800')
+            answer2.setAttribute('visible', false)
+            answer3.setAttribute('visible', false)
+            eq.setAttribute('text', 'value', 'Correct!')
+          }, 2000));
+        })
+
+        answer1.addEventListener( 'mouseleave', function() {
+          answer1.emit('deselect')
+          clearTimeout($(this).data('timeout'));
+            console.log('off')
+        });
+
+
 
 
 
