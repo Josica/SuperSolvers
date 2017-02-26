@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-text-component@^0.4.1/dist/aframe-text-component.min.js"></script> -->
+    <!-- <script src="myfont.typeface.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/AdaRoseEdwards/facetype-fonts-for-a-frame/master/Exo%202_Bold%20Italic.js"></script>
+</head>
+<body>
+
+  <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+      <!-- <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js" fog="type: linear; color: #AAB; far: 50; near: 30"> -->
+    <a-assets>
+      <video id="testvideo" autoplay='' loop="true" src="background/videosphere.mp4" webkit-playsinline />
+      <!-- <a-asset-item id="wolf-obj" src="models/wolf-obj.obj"></a-asset-item>
+      <a-asset-item id="wolf-mtl" src="models/wolf-obj.mtl"></a-asset-item> -->
+      <a-asset-item id="tiger-obj" src="models/tiger.obj"></a-asset-item>
+      <a-asset-item id="tiger-mtl" src="models/tiger.mtl"></a-asset-item>
+      <a-asset-item id="dragon-obj" src="models/dragon.obj"></a-asset-item>
+      <a-asset-item id="dragon-mtl" src="models/dragon.mtl"></a-asset-item>
+
+      <a-mixin id="leaf-block"
+         geometry="primitive: box; depth: 2.5; height: 2.5; width: 2.5"
+         material="color: #69C181; side: double">
+      </a-mixin>
+
+      <a-mixin id="pine-block"
+         geometry="primitive: cone; radiusBottom: 2; radiusTop: 0.1; height:4"
+         material="color: #69C181; side: double">
+      </a-mixin>
+    </a-assets>
+
+    <!-- <a-entity position="5 0 -5">
+      <a-entity id="tree-trunk" geometry="primitive: cylinder; height: 4; radius: 0.75"
+                material="color:brown; shader: flat; side: double"></a-entity>
+      <a-entity mixin="leaf-block" position="-1 3 0" rotation="-45 0 10"></a-entity>
+      <a-entity mixin="leaf-block" position="0 4 0"></a-entity>
+      <a-entity mixin="leaf-block" position="1 3 0" rotation="45 0 10"></a-entity>
+    </a-entity> -->
+
+    <a-entity template="src: tree.template; type: handlebars"
+                            data-position="-5 5 2"
+    data-trunkcolor="#623B1C"></a-entity>
+
+    <a-entity class="pine" position="10 0 -5">
+      <a-entity id="tree-trunk" geometry="primitive: cylinder; height: 4; radius: 0.75"
+                material="color:brown; shader: flat; side: double"></a-entity>
+      <a-entity mixin="pine-block" position="0 3 0"></a-entity>
+      <a-entity mixin="pine-block" position="0 4 0"></a-entity>
+    </a-entity>
+
+    <!-- tiger and dragon -->
+    <a-obj-model src="#dragon-obj" mtl="#dragon-mtl" position="-6.2 .2 -5" scale="0.5 0.5 0.5" color="black"></a-obj-model>
+
+    <a-obj-model src="#tiger-obj" mtl="#tiger-mtl" position="-2 1 -6" scale="0.005 0.005 0.005"></a-obj-model>
+
+    <!-- <a-entity id='tiger' obj-model="obj: models/tiger.obj"  mtl="#tiger-mtl" scale="0.05 0.05 0.05" position="-5 0 -5"> </a-entity> -->
+    <!-- random purple sphere -->
+    <a-sphere opacity="1" radius="2.5" color="purple" position="25 50 25"></a-sphere>
+
+    <!-- this orange can expand -->
+      <a-sphere opacity="1" radius="0.5" src="img/orange.jpeg" position="-20 10 -30">
+        <a-animation attribute="scale" dur="1000000" from="0.1 0.1 0.1" to="100 100 100" easing="linear"></a-animation>
+      </a-sphere>
+
+    <!-- spinning blue torus knot -->
+    <a-torus-knot id='blue' color="blue" opacity="0.5" height="2" width="2" depth="3" position="-2 2 2">
+      <a-animation attribute="position" dur="20000" from="2 4 1" to="2 4 -20"></a-animation>
+      <a-animation attribute="rotation" dur="1000" from="0 0 0" to="360 360 360" repeat="indefinite"></a-animation>
+      <a-entity text="value: Doge?" position="0 2 0" scale=".005 .005 .005"></a-entity>
+    </a-torus-knot>
+
+    <!-- random text -->
+    <a-entity position="0.5 0.7 -4"
+      text="value: TESTING; width: 1.5">
+    </a-entity>
+
+    <!-- this text has a background -->
+    <a-entity text="value: TESTING ASDFADfgsASKHD" position="0 1 -2.5" geometry="primitive: plane; width: 4; height: auto" material="color: black" ></a-entity>
+
+    <a-camera>
+      <!-- you can attach stuff to your camera too -->
+      <a-box id="key" color="blue" opacity="1" height="0.05" width="0.05" depth="0.05" position="0.15 -0.1 -0.2" visible="true">
+        <!-- you can also attach stuff to stuff that is inside stuff -->
+        <!-- <a-entity text="value: sup?" position="0.4 0.05 0"></a-entity> -->
+      </a-box>
+    </a-camera>
+
+    <!-- rotating textured box -->
+    <a-box src="https://i.imgur.com/mYmmbrp.jpg" opacity="0.7" height="2" width="2" depth="2" position="2 2 2">
+      <a-animation attribute="rotation"
+         dur="10000"
+         fill="forwards"
+         to="0 360 0"
+         repeat="indefinite">
+      </a-animation>
+    </a-box>
+
+
+    <a-plane id='plane' opacity="0.5" position="0 0 -4" rotation="-90 0 0" width="8" height="8" color="#7BC8A4"></a-plane>
+
+    <a-sky id='sky' src="img/sky6.jpg"></a-sky>
+
+    <!-- this dog has no texture and his model isnt centered -->
+    <a-entity id='dog' obj-model="obj: models/wolf-obj.obj">
+      <a-entity text="value: Doge?" position="0 2 0"></a-entity>
+      <a-animation attribute="rotation"
+         dur="2000"
+         fill="forwards"
+         to="0 360 0"
+         repeat="indefinite"
+         easing="linear">
+      </a-animation>
+    </a-entity>
+<!-- minotaur  -->
+        <!-- <a-entity id='minotaur' obj-model="obj: models/Minotaur.obj" color='black' scale="0.05 0.05 0.05" position="-5 0 -5"> </a-entity> -->
+
+    <!-- <a-entity class="link"
+      geometry="primitive: plane; height: 1; width: 1"
+      material="shader: flat; src: #cubes-thumb"
+      sound="on: click; src: #click-sound">
+
+    </a-entity> -->
+
+    <!-- <a-entity id='portal' light="color: purple; intensity: 1" position="-1 1 0">
+      <a-sphere opacity="0.1" radius="1" color="purple">
+        <a-sphere opacity="1" radius="0.3" color="black"></a-sphere>
+      </a-sphere>
+     </a-entity> -->
+
+       <a-image src="img/kane.jpeg" position="80 30 -120"  opacity="0.1" height="80" width="80" rotation="0 -50 0">
+           <a-entity text="value: You can do it - I believe in you" position="0 -40 0" rotation="0 30 0" geometry="primitive: plane; width: 60; height: 10" material="color: black" ></a-entity>
+       </a-image>
+
+       <!-- stylized text -->
+    <a-entity position="1 0 0.3" text="text: Aesthetic; font: exo 2;  style: italic; size: 0.8; weight: bold; height: 0;" material="shader: flat; color:white;"></a-entity>
+    <a-entity position="1 0 0.3" text="text: Aesthetic; font: exo 2;  style: italic; size: 0.8; weight: bold; height: 0; bevelEnabled: true; bevelSize: 0.04; bevelThickness: 0.04; curveSegments: 1;" material="shader: flat; color:white;transparent: true; opacity: 0.4;"></a-entity>
+
+    <!-- <a-light type="ambient" color="#FFFFFF"></a-light> -->
+    <!-- <a-light type="point" intensity="1.5" position="2 4 4"></a-light> -->
+    <!-- <a-video src="#video" width="16" height="9" position="0 1 -1"></a-video> -->
+    <!-- <a-videosphere src="#testvideo" ></a-videosphere> -->
+    <!-- <a-curvedimage src="#my-image" height="15" radius="6" theta-length="361" rotation="0 150 0" position="0 2 5"</a-curvedimage> -->
+  </a-scene>
+</body>
+</html>

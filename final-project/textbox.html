@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+  <a-assets>
+    <audio id="click-sound" src="audio/click.ogg"></audio>
+    <!-- Images. -->
+    <img id="city" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+    <img id="city-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+    <img id="cubes" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+    <!-- <img id="cubes-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.png"> -->
+    <img id="cubes-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+    <img id="sechelt" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+    <img id="sechelt-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+
+    <script id="plane" type="text/html">
+      <a-entity class="link"
+        geometry="primitive: plane; height: 1; width: 1"
+        material="shader: flat; src: ${thumb}"
+        sound="on: click; src: #click-sound"
+        event-set__1="_event: mousedown; scale: 1 1 1"
+        event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+        event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+        event-set__4="_event: mouseleave; scale: 1 1 1"></a-entity>
+    </script>
+  </a-assets>
+  <!-- 360-degree image. -->
+  <a-sky id="image-360" radius="10" src="#city"></a-sky>
+  <!-- Link we will build. -->
+  <a-entity id="links" layout="layout: line; margin: 1.5" position="-3 -1 -4">
+    <a-entity template="src: #plane" data-thumb="#city-thumb"></a-entity>
+    <a-entity template="src: #plane" data-thumb="#cubes-thumb"></a-entity>
+    <a-entity template="src: #plane" data-thumb="#sechelt-thumb"></a-entity>
+  </a-entity>
+  <!-- Camera + Cursor. -->
+  <a-camera>
+    <a-cursor id="cursor">
+      <a-animation begin="click" easing="ease-in" attribute="scale"
+                   fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+      <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                   from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+    </a-cursor>
+  </a-camera>
+</a-scene>
+  </body>
+</html>

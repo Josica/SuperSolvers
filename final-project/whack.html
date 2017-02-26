@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <script id="hole" type="text/html">
+          <a-entity class="hole"
+            geometry="primitive: torus; height: 1; width: 1">
+            <a-entity class="mole"
+              geometry="primitive: cylinder; height: 2; radius: 0.3"
+              rotation="-90 0 0" visible="true">
+                <a-animation attribute="position" from="0 0 0" to="0 0 2" begin="hide"></a-animation>
+                <a-animation attribute="position" from="0 0 2" to="0 0 0" begin="pop"></a-animation>
+            </a-entity>
+          </a-entity>
+        </script>
+      </a-assets>
+
+      <a-plane color=black height="15" width="15" rotation="-90 0 0" position="0 -1 -10"> </a-plane>
+
+      <a-entity id="links" layout="type: box; columns: 4; margin: 3" position="-4 -1 -12" rotation="90 0 0">
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+        <a-entity template="src: #hole"></a-entity>
+      </a-entity>
+
+      <a-camera>
+        <a-cursor id="cursor">
+          <a-animation begin="click" easing="ease-in" attribute="scale"
+                       fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+          <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                       from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+        </a-cursor>
+      </a-camera>
+    </a-scene>
+
+    <script> //this script doesnt load
+      // var moles = document.querySelectorAll('.mole')
+      // moles.forEach(function(mole){
+      //   mole.addEventListener('mousedown', function(){
+      //     mole.emit('hide')
+      //   })
+      // })
+
+      //jquery works but even with document ready it doesnt assign
+      // $document.ready(function(){
+        $('.mole').on('click', function(event){
+          console.log(event.target)
+          // var target = event.target
+          event.target.emit('hide')
+        })
+      // })
+
+
+    </script>
+  </body>
+
+
+</html>
