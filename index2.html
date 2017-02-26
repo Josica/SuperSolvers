@@ -4,6 +4,7 @@
         <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js"></script>
     </head>
     <body>
       <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
@@ -37,7 +38,7 @@
 
 
       <!-- ========= Math equation ========= -->
-      <a-entity id='equation' scale='20 20 20'geometry="primitive: plane; width: 1; height: .5" visible='false' text="value: What is 2 + 2; align: center; width: 1.6; wrap-count: 20; color: #white" position="50 20 -33" rotation='0 -35 0' material="color: #7AB800" >
+      <a-entity id='equation' scale='25 25 25'geometry="primitive: plane; width: 1; height: .5" visible='false' text="value: What is 2 + 2; align: center; width: 1.6; wrap-count: 20; color: #white" position="50 20 -33" rotation='0 -35 0' material="color: #7AB800" >
         <a-animation
          attribute="scale"
          dur="500"
@@ -48,6 +49,13 @@
        </a-animation>
       </a-entity>
 
+      <a-entity id="answers" layout="type: line; margin: 5" position="80 13.86 0" rotation='0 0 0'>
+        <a-sphere radius=2 text='hi' color="white"></a-sphere>
+        <a-sphere radius=2 color="white"></a-sphere>
+        <a-sphere radius=2 color="white"></a-sphere>
+        <a-sphere radius=2 color="white"></a-sphere>
+        <a-sphere radius=2 color="white"></a-sphere>
+      </a-entity>
 
         <a-sky src="models/sky.jpg"></a-sky>
 
@@ -65,25 +73,24 @@
       var text = document.querySelector('#text')
       var eq = document.querySelector('#equation')
         lion.addEventListener( 'mouseenter', function() {
-          // text.setAttribute("visible", true)
-          // text.emit('text_expand')
-          // eq.setAttribute("visible", true)
-          $(this).data('timeout', setTimeout(function(){
-            console.log('on')
-          }, 5000));
+          text.setAttribute("visible", true)
+          text.emit('text_expand')
+          eq.setAttribute("visible", true)
         })
-
         lion.addEventListener( 'mouseleave', function() {
-          // text.setAttribute("visible", true)
-          // text.emit('text_expand')
-          // eq.setAttribute("visible", true)
-          clearTimeout($(this).data('timeout'));
-            console.log('off')
+          text.setAttribute("visible", false)
         });
-        // lion.addEventListener('mouseleave', function(){
-        //   text.setAttribute("visible", false)
-        // })
 
+        // lion.addEventListener( 'mouseenter', function() {
+        //   $(this).data('timeout', setTimeout(function(){
+        //     console.log('on')
+        //   }, 2000));
+        // })
+        //
+        // lion.addEventListener( 'mouseleave', function() {
+        //   clearTimeout($(this).data('timeout'));
+        //     console.log('off')
+        // });
 
 
 
