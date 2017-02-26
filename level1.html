@@ -11,6 +11,7 @@
 
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
             <a-cursor color="white"></a-cursor>
+            <a-box id='hold' visible='false' color='#e600e6' height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
           </a-entity>
 
           <a-assets>
@@ -73,56 +74,48 @@
           <a-box id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
           <a-box id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
 
-          // text box
+          // instruction boxes
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
 
           <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
 
           <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
-            <!-- <a-animation
-             attribute="scale"
-             dur="500"
-             from="0.1 0.1 0.1"
-             to="1 1 1"
-             easing="linear"
-             begin="expand">
-           </a-animation> -->
-          </a-box>
-
-          <!-- <a-entity id='text' geometry="primitive: plane;  width: auto; height: 2;" visible='false' text="value: Oh...  hello! Can you help me? Do you see a pattern here...; align: center; width: 4; wrap-count: 20; color: #333333" position="0 4 -5.73" rotation='0 15 0' material="color: white" >
-            <a-animation
-             attribute="scale"
-             dur="500"
-             from="0.1 0.1 0.1"
-             to="1 1 1"
-             easing="linear"
-             begin="text_expand">
-           </a-animation>
-          </a-entity> -->
         </a-scene>
 
         <script>
-          // document.querySelector('#lion').addEventListener('mouseenter', function() {
-          // document.querySelector('#text').setAttribute("visible", true)
-          // document.querySelector('#text').emit('text_expand')
-          // })
+          // get instructions from lion
           document.querySelector('#lion').addEventListener('mouseenter', function() {
               document.querySelector('#text-1').setAttribute("visible", true)
           })
-
           document.querySelector('#text-1').addEventListener('mouseenter', function() {
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-1').setAttribute("visible", false)
               document.querySelector('#text-2').setAttribute("visible", true)
             }, 4000));
           })
-
           document.querySelector('#text-2').addEventListener('mouseenter', function() {
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-2').setAttribute("visible", false)
               document.querySelector('#text-3').setAttribute("visible", true)
             }, 5000));
           })
+
+// index code starts
+var correctCube = false
+
+if (correctCube === false) {
+  document.querySelector('#eight').addEventListener( 'mouseenter', function() {
+    document.querySelector('#hold').setAttribute("visible", true)
+    document.querySelector('#eight').setAttribute("visible", false)
+    correctCube = true
+    document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+      document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
+      document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
+      document.querySelector('#eight').setAttribute("visible", true)
+      document.querySelector('#hold').setAttribute("visible", false)
+    })
+  })
+}
         </script>
 
     </body>
