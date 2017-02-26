@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
+        <script src="js/aframe.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     </head>
     <body>
         <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
-          <!-- <a-plane position="0 0 0" rotation="-90 0 0" color="#4169E1" scale="10 10 10"></a-plane> -->
 
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
            <a-cursor color="white"></a-cursor>
@@ -31,8 +30,11 @@
             <a-asset-item id='p-obj' src='models/rock/pyramid-simple-design.obj'></a-asset-item>
 
             <a-asset-item id='p-mtl' src='models/rock/pyramid-simple-design.mtl'></a-asset-item>
-            
-            <!-- <a-asset-item id='wave-mtl' src='models/wave/wave-1.mtl'></a-asset-item> -->
+
+            <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
+
+            <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
+
           </a-assets>
 
           <a-sky src="img/desert-sky.png"></a-sky>
@@ -62,6 +64,8 @@
           <a-obj-model src='#p-obj' color='#000000' position="323 -3 -38.25" rotation="0 -90 0" scale="4 4 4" mtl="#p-mtl"></a-obj-model>
 
           <a-obj-model src='#p-obj' color='#000000' position="600 -3 -38.25" rotation="0 -90 0" scale="5 5 5" mtl="#p-mtl"></a-obj-model>
+
+          <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 1"></a-obj-model>
 
         </a-scene>
     </body>
