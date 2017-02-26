@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+      <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+        <a-assets>
+          <img id="ground" src="models/clouds.jpeg">
+          <a-asset-item id='object' src='models/aztec-temple.obj'></a-asset-item>
+          <a-asset-item id='material' src='models/aztec-temple.mtl'></a-asset-item>
+          <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
+          <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
+        </a-assets>
+
+        <a-obj-model src='#object' mtl='#material'></a-obj-model>
+        <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 -5"></a-obj-model>
+
+        <a-entity id='text' scale=.1 geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: We did it Motha Fuckas!!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 2.76 -5.73" rotation='0 30 0' material="color: white" >
+          <a-animation
+           attribute="scale"
+           dur="500"
+           from="0.1 0.1 0.1"
+           to="1 1 1"
+           easing="linear"
+           begin="text_expand">
+         </a-animation>
+        </a-entity>
+
+        <a-camera position='0 0 0'>
+          <a-cursor color='red'></a-cursor>
+          <a-sphere id='key' visible='false' src="#orange-texture" radius="0.1" position="0.25 -0.15 -0.3" rotation="180 90 180"></a-sphere>
+        </a-camera>
+
+        <a-sky id='fireworks' autoplay loop='true' rotation='0 280 0' src="models/fireworks.mp4"></a-sky>
+        <!-- <a-image src="models/kane.jpeg" position="80 30 -120"  opacity="0.1" height="80" width="80" rotation="0 -50 0" visible="true"> -->
+          <!-- <a-entity text="value: I knew you could do it." position="0 -40 0" rotation="0 30 0" geometry="primitive: plane; width: 60; height: 10" material="color: black" >
+          </a-entity> -->
+          <!-- <a-animation
+            attribute="opacity"
+            dur="100000"
+            from="0"
+            to="0.1"
+            easing="linear"></a-animation> -->
+        <!-- </a-image> -->
+      </a-scene>
+
+      <script>
+
+      var lion = document.querySelectorAll('#lion')
+
+
+        // Squirrel action
+      lion.forEach(function(element){
+        element.addEventListener( 'mouseenter', function() {
+          document.querySelector('#text').setAttribute("visible", true)
+          document.querySelector('#text').emit('text_expand')
+        })
+      })
+
+      // Next level action
+
+      </script>
+
+  </body>
+</html>

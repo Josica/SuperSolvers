@@ -6,31 +6,59 @@
   </head>
   <body>
       <a-assets>
-        <a-asset-item id="dragon-obj" src="models/dragon.obj"></a-asset-item>
-        <a-asset-item id="dragon-mtl" src="models/dragon.mtl"></a-asset-item>
-        <img id="ground" src="img/floor.jpeg">
-        <img id="blackhole" src="img/blackhole.jpeg">
+        <a-asset-item id="dragon-obj" src="models/dragon/dragon.obj"></a-asset-item>
+        <a-asset-item id="dragon-mtl" src="models/dragon/dragon.mtl"></a-asset-item>
+        <img id="ground" src="models/final_floor.jpeg">
+        <img id="blackhole-texture" src="models/blackhole.jpeg">
       </a-assets>
 
       <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
-        <a-sky id='sky' src="img/sky8.jpg"></a-sky>
-        <a-obj-model id="dragon" src="#dragon-obj" mtl="#dragon-mtl" position="-3.5 -.7 -8.5" scale="1 1 1" color="black"></a-obj-model>
+        <a-camera position="0 0 3">
+        </a-camera>
+        <a-sky id='sky' src="models/sky8.jpg"></a-sky>
+        <a-obj-model id="dragon" src="#dragon-obj" mtl="#dragon-mtl" position="-6 -.7 -8.5" rotation='0 45 0'></a-obj-model>
 
         <a-plane src="#ground" height="20" width="20" rotation="-90 0 0"></a-plane>
 
-        <a-sphere src="#blackhole" radius="2" position="7.5 5.5 -12" rotation="-17 -115 -30">
-          <!-- <a-animation attribute="scale" dur="1000000" from="0.1 0.1 0.1" to="100 100 100" easing="linear"></a-animation> -->
-          <!-- <a-animation attribute="rotation"
-             dur="1000"
+        <a-sphere id="blackhole" src="#blackhole-texture" radius="2" position="7.5 5.5 -12" rotation="-17 -115 -30" visible="false">
+          <a-animation attribute="scale" dur="1000000" from="0.1 0.1 0.1" to="100 100 100" easing="linear" begin="expand"></a-animation>
+          <a-animation attribute="rotation"
+             dur="500"
              fill="forwards"
              from="-17 -115 -30"
-             to="-40 -115 150"
+             to="343 -115 -30"
              easing="linear"
-             repeat="indefinite"></a-animation> -->
+             repeat="indefinite"></a-animation>
         </a-sphere>
-      </a-scene>
-      <script>
 
+        <a-entity id='text' geometry="primitive: plane;  width: auto; height: 2;" visible='false' text="value: The world has been destroyed! Enter the black hole to go back in time.; align: center; width: 4; wrap-count: 20; color: #333333" position="0 4 -5.73" rotation='0 15 0' material="color: white" >
+          <a-animation
+           attribute="scale"
+           dur="500"
+           from="0.1 0.1 0.1"
+           to="1 1 1"
+           easing="linear"
+           begin="text_expand">
+         </a-animation>
+        </a-entity>
+
+        <a-camera position='0 0 1' rotation="0 0 0">
+          <a-cursor color='red'></a-cursor>
+        </a-camera>
+
+      </a-scene>
+
+      <script>
+        document.querySelector('#dragon').addEventListener('click', function() {
+          document.querySelector('#text').setAttribute("visible", true)
+          document.querySelector('#text').emit('text_expand')
+          document.querySelector('#blackhole').setAttribute("visible", true)
+          document.querySelector('#blackhole').emit('expand')
+        })
+
+        document.querySelector('#blackhole').addEventListener('mouseenter', function() {
+          window.open("index.html", "_self")
+        })
       </script>
   </body>
 </html>
