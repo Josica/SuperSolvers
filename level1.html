@@ -4,6 +4,7 @@
         <script src="js/aframe.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+          <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
     </head>
     <body>
         <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
@@ -61,10 +62,10 @@
           <a-obj-model id='tiger' src="#tiger-obj" mtl="#tiger-mtl" rotation="180 120 180" scale=".01 .01 .01" position="-.55 5 54.5"></a-obj-model>
 
           #balls
-          <!-- <a-sphere id='ball1' position="-4.43 -0.72 -17.88" color="#b30086" radius="0.5" scale="6 6 6"></a-sphere>
-          <a-sphere id='ball2' position="15.28 -1.72 42.56" color="#b30086" radius="0.5" scale="2.8 2.8 2.8"></a-sphere>
-          <a-sphere id='ball3' position="-4.43 -0.72 -17.88" color="#b30086" radius="0.5" scale="2.5 2 2.5"></a-sphere>
-          <a-sphere id='ball4' position="-4.43 -0.72 -17.88" color="#b30086" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
+          <a-sphere id='ball1' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2 2 2"></a-sphere>
+          <a-sphere id='ball2' src='img/rainbow1.jpg' position="-5.32 1.9 35.88" radius="0.5" scale="1.5 1.5 1.5"></a-sphere>
+          <!-- <a-sphere id='ball3' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 2 2.5"></a-sphere>
+          <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
 
           #number cubes
           <a-box id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
@@ -81,6 +82,24 @@
 
           <a-box id='twelve' src='img/numbers/12.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
 
+          <a-entity id='text' geometry="primitive: plane;  width: auto; height: 2;" visible='false' text="value: Oh...  hello! Can you help me? Do you see a pattern here...; align: center; width: 4; wrap-count: 20; color: #333333" position="0 4 -5.73" rotation='0 15 0' material="color: white" >
+            <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="text_expand">
+           </a-animation>
+          </a-entity>
         </a-scene>
+
+      <script>
+        document.querySelector('#lion').addEventListener('mouseenter', function() {
+        document.querySelector('#text').setAttribute("visible", true)
+        document.querySelector('#text').emit('text_expand')
+        })
+      </script>
+
     </body>
 </html>
