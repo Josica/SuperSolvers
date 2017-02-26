@@ -2,7 +2,7 @@
 <html>
     <head>
         <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     </head>
     <body>
@@ -10,23 +10,48 @@
         <a-assets>
           <a-asset-item id='object' src='models/mnts/mountains.obj'></a-asset-item>
           <a-asset-item id='material' src='models/mnts/mountains.mtl'></a-asset-item>
+          <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
+          <a-asset-item id='lion-mtl'w src='models/lion/lion-cub.mtl'></a-asset-item>
         </a-assets>
 
-        <a-obj-model src='#object' mtl='#material' position='-77 0 -140' rotation='0 120 0'></a-obj-model>
-        <a-obj-model src='#object' mtl='#material' position='150 0 -122' rotation='0 50 0'></a-obj-model>
-        <a-obj-model id='move' src='#object' mtl='#material' position='-132 0 -12' rotation='0 220 0'></a-obj-model>
-        <a-obj-model src='#object' mtl='#material' position='250 0 35.94' rotation='0 190 0'></a-obj-model>
-        <a-obj-model src='#object' mtl='#material' position='98.20 0 134.31' rotation='0 270 0'></a-obj-model>
+        <a-obj-model src='#object' mtl='#material' position='-77 20 -140' rotation='0 120 0'></a-obj-model>
+        <a-obj-model src='#object' mtl='#material' position='150 20 -122' rotation='0 50 0'></a-obj-model>
+        <a-obj-model id='move' src='#object' mtl='#material' position='-132 20 -12' rotation='0 220 0'></a-obj-model>
+        <a-obj-model src='#object' mtl='#material' position='250 20 35.94' rotation='0 190 0'></a-obj-model>
+        <a-obj-model src='#object' mtl='#material' position='98.20 20 134.31' rotation='0 270 0'></a-obj-model>
 
-        <a-plane color='white' src='models/grass2.jpeg' height='300' width='400' rotation='-90 0 0' position='54 -21 0'></a-plane>
+        <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 10 180" position="-2 3.4 -35"></a-obj-model>
+
+        <a-plane color='white' src='models/grass2.jpeg' height='300' width='400' rotation='-90 0 0' position='54 0 0'></a-plane>
+
+        <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 5 0' material="color: white" >
+          <a-animation
+           attribute="scale"
+           dur="500"
+           from="0.1 0.1 0.1"
+           to="8 8 8"
+           easing="linear"
+           begin="text_expand">
+         </a-animation>
+        </a-entity>
 
 
-        <!-- <a-obj-model src='#object' mtl='#material' position='50 0 -200'></a-obj-model> -->
+      <!-- ========= Math equation ========= -->
+      <a-entity id='equation' scale='20 20 20'geometry="primitive: plane; width: 1; height: .5" visible='false' text="value: What is 2 + 2; align: center; width: 1.6; wrap-count: 20; color: #white" position="50 20 -33" rotation='0 -35 0' material="color: #7AB800" >
+        <a-animation
+         attribute="scale"
+         dur="500"
+         from="0.1 0.1 0.1"
+         to="8 8 8"
+         easing="linear"
+         begin="text_expand">
+       </a-animation>
+      </a-entity>
 
 
         <a-sky src="models/sky.jpg"></a-sky>
 
-        <a-camera position='0 0 0'>
+        <a-camera position='0 9 0'>
           <a-cursor color='red'></a-cursor>
         </a-camera>
 
@@ -34,7 +59,33 @@
 
 
 
-      <script
+      <script>
+      // Start text pop-up
+      var lion = document.querySelector('#lion')
+      var text = document.querySelector('#text')
+      var eq = document.querySelector('#equation')
+        lion.addEventListener( 'mouseenter', function() {
+          // text.setAttribute("visible", true)
+          // text.emit('text_expand')
+          // eq.setAttribute("visible", true)
+          $(this).data('timeout', setTimeout(function(){
+            console.log('on')
+          }, 5000));
+        })
+
+        lion.addEventListener( 'mouseleave', function() {
+          // text.setAttribute("visible", true)
+          // text.emit('text_expand')
+          // eq.setAttribute("visible", true)
+          clearTimeout($(this).data('timeout'));
+            console.log('off')
+        });
+        // lion.addEventListener('mouseleave', function(){
+        //   text.setAttribute("visible", false)
+        // })
+
+
+
 
       </script>
     </body>
