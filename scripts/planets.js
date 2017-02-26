@@ -11,5 +11,6 @@ document.querySelectorAll('.planet').forEach(function(planet){
       text.setAttribute("visible", false)
     })
     document.querySelector(`#${planet.id}-text`).setAttribute("visible", true)
+    
   })
 })
