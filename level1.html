@@ -10,38 +10,35 @@
         <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
 
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
-           <a-cursor color="white"></a-cursor>
+            <a-cursor color="white"></a-cursor>
           </a-entity>
 
           <a-assets>
             <a-asset-item id='wave-obj' src='models/wave/wave-1.obj'></a-asset-item>
 
             <a-asset-item id='cactus-obj' src='models/cactus/cactus.obj'></a-asset-item>
-
             <a-asset-item id='cactus1-obj' src='models/cactus/cactus1.obj'></a-asset-item>
 
             <a-asset-item id='rock-obj' src='models/rock/rock.obj'></a-asset-item>
-
             <a-asset-item id='rock2-obj' src='models/rock/mountain-rock.obj'></a-asset-item>
-
             <a-asset-item id='rock3-obj' src='models/rock/rockbed-1.obj'></a-asset-item>
 
             <a-asset-item id='tree-obj' src='models/rock/low-poly-dead-tree.obj'></a-asset-item>
 
             <a-asset-item id='p-obj' src='models/rock/pyramid-simple-design.obj'></a-asset-item>
-
             <a-asset-item id='p-mtl' src='models/rock/pyramid-simple-design.mtl'></a-asset-item>
 
             <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
-
             <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
 
             <a-asset-item id='tiger-obj' src='models/tiger/tiger.obj'></a-asset-item>
-
             <a-asset-item id='tiger-mtl' src='models/tiger/tiger.mtl'></a-asset-item>
 
+            <a-asset-item id='board-obj' src='models/board/board.obj'></a-asset-item>
+            <a-asset-item id='board-mtl' src='models/board/board.mtl'></a-asset-item>
+
           </a-assets>
-          #desert environment
+          // desert environment
           <a-sky src="img/desert-sky.png"></a-sky>
           <a-obj-model src='#wave-obj' color='#F4A460' position="11.4 -25" scale="20 20 20"></a-obj-model>
           <a-obj-model src='#cactus-obj' color='#009900' position="22 -3 -38.25" rotation="0 -90 0" scale="3 3 3"></a-obj-model>
@@ -57,32 +54,29 @@
           <a-obj-model src='#p-obj' color='#000000' position="323 -3 -38.25" rotation="0 -90 0" scale="4 4 4" mtl="#p-mtl"></a-obj-model>
           <a-obj-model src='#p-obj' color='#000000' position="600 -3 -38.25" rotation="0 -90 0" scale="5 5 5" mtl="#p-mtl"></a-obj-model>
 
-          #animal object models
+          // animal object models
           <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 1"></a-obj-model>
           <a-obj-model id='tiger' src="#tiger-obj" mtl="#tiger-mtl" rotation="180 120 180" scale=".01 .01 .01" position="-.55 5 54.5"></a-obj-model>
 
-          #balls
+          // balls
           <a-sphere id='ball1' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2 2 2"></a-sphere>
           <a-sphere id='ball2' src='img/rainbow1.jpg' position="-5.32 1.9 35.88" radius="0.5" scale="1.5 1.5 1.5"></a-sphere>
           <!-- <a-sphere id='ball3' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 2 2.5"></a-sphere>
           <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
 
-          #number cubes
+          // number cubes
           <a-box id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
-
           <a-box id='seven' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-
-          <a-box id='eight' src='img/numbers/8.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-
+          <a-box id='eight' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
           <a-box id='nine' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5"></a-box>
-
           <a-box id='ten' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-
           <a-box id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
 
-          <a-box id='twelve' src='img/numbers/12.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          // text box
+          <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8"></a-box>
 
-          <a-entity id='text' geometry="primitive: plane;  width: auto; height: 2;" visible='false' text="value: Oh...  hello! Can you help me? Do you see a pattern here...; align: center; width: 4; wrap-count: 20; color: #333333" position="0 4 -5.73" rotation='0 15 0' material="color: white" >
+          <!-- <a-entity id='text' geometry="primitive: plane;  width: auto; height: 2;" visible='false' text="value: Oh...  hello! Can you help me? Do you see a pattern here...; align: center; width: 4; wrap-count: 20; color: #333333" position="0 4 -5.73" rotation='0 15 0' material="color: white" >
             <a-animation
              attribute="scale"
              dur="500"
@@ -91,15 +85,15 @@
              easing="linear"
              begin="text_expand">
            </a-animation>
-          </a-entity>
+          </a-entity> -->
         </a-scene>
 
-      <script>
-        document.querySelector('#lion').addEventListener('mouseenter', function() {
-        document.querySelector('#text').setAttribute("visible", true)
-        document.querySelector('#text').emit('text_expand')
-        })
-      </script>
+        <!-- <script>
+          document.querySelector('#lion').addEventListener('mouseenter', function() {
+          document.querySelector('#text').setAttribute("visible", true)
+          document.querySelector('#text').emit('text_expand')
+          })
+        </script> -->
 
     </body>
 </html>
