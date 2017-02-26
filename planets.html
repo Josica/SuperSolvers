@@ -6,9 +6,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
-    <script src="scripts/planets.js"></script>
   </head>
   <body>
+    <a-assets>
+      <script id="data" type="text/html">
+        <a-text value= color="#BBB"
+        position="0.9 0.4 -3" rotation="0 -15 0"></a-text>
+      </script>
+    </a-assets>
+
     <a-scene id="scene" inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
       <a-sky src="textures/milky_way.jpeg"></a-sky>
 
@@ -18,70 +24,89 @@
             geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02"
             material="color: white; shader: flat">
         </a-cursor>
+
+        <a-text id="sun-text" class="planet-data" width="3" value="Sun\n The star at the center of the Solar System. The energy from the Sun is what supports almost all life on Earth." color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="mercury-text" class="planet-data" width="3" value="Mercury\n The smallest and innermost Planet in the Solar System. It orbits around the sun once every 88 days." color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="venus-text" class="planet-data" width="3" value="Venus\n The hottest planet in the Solar System. It has more volcanoes than any other planet in the Solar System. The surface of this planet is surrounded by clouds of sulfuric acid. " color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="earth-text" class="planet-data" width="3" value="Earth\n The third planet from the Sun and the only planet in the Universe known to support life." color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="mars-text" class="planet-data" width="3" value="Mars\n It is known as the 'Red Planet' because the surface is covered with rust." color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="jupiter-text" class="planet-data" width="3" value="Jupiter\n The largest planet in the Solar System. It is composed mostly of gas. The 'Great Red Spot' on its surface is actually a storm that has existed for over 400 years. " color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="saturn-text" class="planet-data" width="3" value="Saturn\n The second largest planet in the Solar System. Like Jupiter, it is a 'Gas Giant'. The prominent ring around this planet is comprised mostly of rock and ice." color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="uranus-text" class="planet-data" width="3" value="Uranus\n The third largest planet in the Solar System in size. It is an 'ice giant' and has the coldest atmosphere in the Solar System. " color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="neptune-text" class="planet-data" width="3" value="Neptune\n It is the furthest planet from the Sun in the Solar System. Like Uranus, it is an 'ice giant.' It has the strongest winds of any planet in the Solar System and has a 'Great Dark Spot' that can be compared to the 'Great Red Spot' of Jupiter. " color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
+
+        <a-text id="pluto-text" class="planet-data" width="3" value="Pluto\n It is no longer officially a Planet in the Solar System. Instead, it is now considered a 'dwarf planet.' '" color="#BBB"
+        position="0.6 0.4 -3" rotation="0 -15 0" visible="false"> </a-text>
       </a-camera>
 
-      <a-sphere class="planet" position="0 -4 0" radius=4 src="textures/sun.jpeg" animation__rotate="property: rotation; dur: 10000; easing: linear; loop: true; to: 0 360 0">
+      <a-sphere id="sun" class="planet" position="0 -4 0" radius=4 src="textures/sun.jpeg" animation__rotate="property: rotation; dur: 10000; easing: linear; loop: true; to: 0 360 0">
       </a-sphere>
 
-      <a-entity class="planet" position="0 -25 0" animation__rotate="property: rotation; dur: 8000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="mercury" radius="1" src="textures/mercury.jpeg" position="60 0 0" animation__rotate="property: rotation; dur: 500; easing: linear; loop: true; to: 0 360 0">
-        </a-sphere>
-
-      </a-entity>
-
-      <a-entity class="planet" position="0 60 0" animation__rotate="property: rotation; dur: 9000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="venus" radius="1.5" src="textures/venus.jpeg" position="70 0 0" animation__rotate="property: rotation; dur: 600; easing: linear; loop: true; to: 0 360 0">
+      <a-entity position="0 -25 0" animation__rotate="property: rotation; dur: 6000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="mercury" class="planet" radius="1" src="textures/mercury.jpeg" position="60 0 0" animation__rotate="property: rotation; dur: 500; easing: linear; loop: true; to: 0 360 0">
         </a-sphere>
       </a-entity>
 
-      <a-entity class="planet" position="0 -5 0" animation__rotate="property: rotation; dur: 13000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="earth" radius="2.5" src="textures/earth.jpeg" position="90 0 0" animation__rotate="property: rotation; dur: 1000; easing: linear; loop: true; to: 0 360 0">
+      <a-entity position="0 60 0" animation__rotate="property: rotation; dur: 7000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="venus" class="planet" radius="1.5" src="textures/venus.jpeg" position="70 0 0" animation__rotate="property: rotation; dur: 600; easing: linear; loop: true; to: 0 360 0">
         </a-sphere>
       </a-entity>
 
-      <a-entity class="planet" position="0 15 0" animation__rotate="property: rotation; dur: 17000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="mars" radius="2" src="textures/mars.jpeg" position="100 0 0" animation__rotate="property: rotation; dur: 1000; easing: linear; loop: true; to: 0 360 0">
+      <a-entity position="0 -5 0" animation__rotate="property: rotation; dur: 11000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="earth" class="planet" radius="2.5" src="textures/earth.jpeg" position="90 0 0" animation__rotate="property: rotation; dur: 1000; easing: linear; loop: true; to: 0 360 0">
         </a-sphere>
       </a-entity>
 
-      <a-entity class="planet" position="0 5 0" animation__rotate="property: rotation; dur: 31000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="jupiter" radius="8" src="textures/jupiter.jpeg" position="120 0 0" animation__rotate="property: rotation; dur: 4000; easing: linear; loop: true; to: 0 360 0">
-          <a-ring color="white" rotation="90 0 0" radius-inner="9" radius-outer="9.5"></a-ring>
+      <a-entity position="0 15 0" animation__rotate="property: rotation; dur: 13000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="mars" class="planet" radius="2" src="textures/mars.jpeg" position="100 0 0" animation__rotate="property: rotation; dur: 1000; easing: linear; loop: true; to: 0 360 0">
         </a-sphere>
       </a-entity>
 
-      <a-entity class="planet" position="0 25 0" animation__rotate="property: rotation; dur: 37000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="saturn" radius="4" src="textures/saturn.png" position="150 0 0">
+      <a-entity position="0 5 0" animation__rotate="property: rotation; dur: 23000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="jupiter" class="planet" radius="10" src="textures/jupiter.jpeg" position="120 0 0" animation__rotate="property: rotation; dur: 2500; easing: linear; loop: true; to: 0 360 0">
+          <a-ring color="white" rotation="90 0 0" radius-inner="10.5" radius-outer="11"></a-ring>
+        </a-sphere>
+      </a-entity>
+
+      <a-entity position="0 25 0" animation__rotate="property: rotation; dur: 29000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="saturn" class="planet" radius="4" src="textures/saturn.png" position="150 0 0">
           <a-ring color="white" rotation="135 0 0" radius-inner="4.2" radius-outer="7"></a-ring>
         </a-sphere>
       </a-entity>
 
-      <a-entity class="planet" position="0 35 0" animation__rotate="property: rotation; dur: 41000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="uranus" radius="6" src="textures/uranus.jpeg" position="170 0 0">
+      <a-entity position="0 35 0" animation__rotate="property: rotation; dur: 33000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="uranus" class="planet" radius="6" src="textures/uranus.jpeg" position="170 0 0">
           <a-ring color="white" rotation="160 0 0" radius-inner="8" radius-outer="9"></a-ring>
         </a-sphere>
       </a-entity>
 
-      <a-entity id="neptune" class="planet" position="0 -15 0" animation__rotate="property: rotation; dur: 63000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere radius="5" src="textures/neptune.jpeg" position="180 0 0" animation__rotate="property: rotation; dur: 2500; easing: linear; loop: true; to: 0 360 0"></a-sphere>
+      <a-entity position="0 -15 0" animation__rotate="property: rotation; dur: 37000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="neptune" class="planet" radius="5" src="textures/neptune.jpeg" position="180 0 0" animation__rotate="property: rotation; dur: 2500; easing: linear; loop: true; to: 0 360 0"></a-sphere>
       </a-entity>
 
-      <a-entity class="planet" position="0 -45 0" animation__rotate="property: rotation; dur: 110000; easing: linear; loop: true; to: 0 360 0">
-        <a-sphere id="pluto" radius="2" src="textures/pluto.jpeg" position="200 0 0" animation__rotate="property: rotation; dur: 500; easing: linear; loop: true; to: 0 360 0"></a-sphere>
+      <a-entity position="0 -45 0" animation__rotate="property: rotation; dur: 61000; easing: linear; loop: true; to: 0 360 0">
+        <a-sphere id="pluto" class="planet" radius="2" src="textures/pluto.jpeg" position="200 0 0" animation__rotate="property: rotation; dur: 500; easing: linear; loop: true; to: 0 360 0"></a-sphere>
       </a-entity>
 
     </a-scene>
 
-    <script>
-    // var text= '<a-text value="Hello, World!" position="0 0 -2"></a-text>'
-
-    document.querySelectorAll('.planet').forEach(function(planet){
-      planet.addEventListener( 'mouseenter', function() {
-        document.querySelector('#camera').appendChild(planet.)
-      })
-    })
-
-
-    </script>
+    <script src="scripts/planets.js"></script>
   </body>
 </html>
