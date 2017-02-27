@@ -16,8 +16,10 @@
           <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
         </a-assets>
 
+
         <!-- ========= Snow ========= -->
         <a-entity position="0 2.25 -15" particle-system="preset: snow"></a-entity>
+
 
         <!-- ========= Objects ========= -->
         <a-obj-model src='#object' mtl='#material' position='-77 20 -140' rotation='0 120 0'></a-obj-model>
@@ -27,8 +29,10 @@
         <a-obj-model src='#object' mtl='#material' position='98.20 20 134.31' rotation='0 270 0'></a-obj-model>
         <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 10 180" position="-2 3.4 -35"></a-obj-model>
 
+
         <!-- ========= Floor ========= -->
         <a-plane color='white' src='models/snow.jpg' height='300' width='400' rotation='-90 0 0' position='54 0 0'></a-plane>
+
 
         <!-- ========= Lion text ========= -->
         <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 -5 0' material="color: white" >
@@ -41,6 +45,7 @@
            begin="text_expand">
          </a-animation>
         </a-entity>
+
 
       <!-- ========= Ice ice baby ========= -->
       <a-box visible='false' height='15' src='models/ice.jpg' width='10' depth='3' position='25 0 -57' rotation='0 0 0'></a-box>
@@ -63,6 +68,7 @@
          begin="text_expand">
        </a-animation>
       </a-entity>
+
 
       <!-- ========= Text for Answers ========= -->
       <a-text class='a_text' visible='false' width='100' value='20' rotation='0 -90 0' color='black' position='83 55 23'>
@@ -96,6 +102,28 @@
         </a-animation>
       </a-text>
 
+
+      <!-- ========= Portal ========= -->
+      <a-sphere id='portal' src='models/portal.png' visible="false" position="50 5 -10" radius="0.5" scale="0.1 0.1 0.1">
+        <a-animation
+            attribute="rotation"
+             dur="500"
+             from="0 0 0"
+             to="0 360 0"
+             repeat="indefinite"
+             easing="linear"></a-animation>
+
+         <a-animation
+          attribute="scale"
+          dur="2000"
+          from="0.1 0.1 0.1"
+          to="1 2 1"
+          easing="linear"
+          begin="expand">
+        </a-animation>
+      </a-sphere>
+
+
       <!-- ========= Answers ========= -->
       <a-entity id="answers" layout="type: line; margin: 12" visible= 'false'  rotation='0 90 0'>
       <!-- Correct answer -->
@@ -120,6 +148,7 @@
           </a-animation>
         </a-sphere>
 
+
         <!-- Incorrect answer -->
         <a-sphere id='answer2' radius=4 color="white">
           <a-animation
@@ -141,6 +170,7 @@
           </a-animation>
         </a-sphere>
 
+
         <!-- Incorrect answer -->
         <a-sphere id='answer3' radius=4 color="white">
           <a-animation
@@ -161,6 +191,7 @@
              begin="deselect">
           </a-animation>
         </a-sphere>
+
 
         <!-- spheres appear animation -->
         <a-animation
@@ -188,7 +219,6 @@
           <a-cursor color='red'></a-cursor>
         </a-camera>
       </a-scene>
-
 
 
       <script>
@@ -239,6 +269,8 @@
               eq.setAttribute('text', 'color', 'white')
               eq.setAttribute('material', 'color', '#7AB800')
               answer1.removeEventListener('mouseenter', correctAnswer);
+              document.querySelector('#portal').setAttribute('visible', true)
+              document.querySelector('#portal').emit('expand')
             }, 2000));
         }
 
