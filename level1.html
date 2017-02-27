@@ -1,20 +1,189 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
+        <script src="js/aframe.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+          <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
     </head>
     <body>
         <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
-          <a-plane position="0 2 3" color="#000000" scale="10 10 10"><a-animation attribute="scale" to="0 0 0" dur="5000"></a-animation></a-plane>
 
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
-           <a-cursor color="white"></a-cursor>
+            <a-cursor color="white"></a-cursor>
+            <a-box id='hold' visible='false' color='#e600e6' height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
           </a-entity>
 
-            <a-sky src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Helvellyn_Striding_Edge_360_Panorama,_Lake_District_-_June_09.jpg"></a-sky>
+          <a-assets>
+            <a-asset-item id='wave-obj' src='models/wave/wave-1.obj'></a-asset-item>
+
+            <a-asset-item id='cactus-obj' src='models/cactus/cactus.obj'></a-asset-item>
+            <a-asset-item id='cactus1-obj' src='models/cactus/cactus1.obj'></a-asset-item>
+
+            <a-asset-item id='rock-obj' src='models/rock/rock.obj'></a-asset-item>
+            <a-asset-item id='rock2-obj' src='models/rock/mountain-rock.obj'></a-asset-item>
+            <a-asset-item id='rock3-obj' src='models/rock/rockbed-1.obj'></a-asset-item>
+
+            <a-asset-item id='tree-obj' src='models/rock/low-poly-dead-tree.obj'></a-asset-item>
+
+            <a-asset-item id='p-obj' src='models/rock/pyramid-simple-design.obj'></a-asset-item>
+            <a-asset-item id='p-mtl' src='models/rock/pyramid-simple-design.mtl'></a-asset-item>
+
+            <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
+            <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
+
+            <a-asset-item id='tiger-obj' src='models/tiger/tiger.obj'></a-asset-item>
+            <a-asset-item id='tiger-mtl' src='models/tiger/tiger.mtl'></a-asset-item>
+
+            <a-asset-item id='board-obj' src='models/board/board.obj'></a-asset-item>
+            <a-asset-item id='board-mtl' src='models/board/board.mtl'></a-asset-item>
+
+          </a-assets>
+          // desert environment
+          <a-sky src="img/desert-sky.png"></a-sky>
+          <a-obj-model src='#wave-obj' color='#F4A460' position="11.4 -25" scale="20 20 20"></a-obj-model>
+          <a-obj-model src='#cactus-obj' color='#009900' position="22 -3 -38.25" rotation="0 -90 0" scale="3 3 3"></a-obj-model>
+          <a-obj-model src='#cactus1-obj' color='#009900' position="36 3 -38.25" rotation="0 -90 0" scale="2 2 2"></a-obj-model>
+          <a-obj-model src='#rock-obj' color='#4d4d33' position="-4.73 .15 18" rotation="0 -90 0" scale="2 2 2"></a-obj-model>
+          <a-obj-model src='#tree-obj' color='#4d4d33' position="-4.73 .1 55" rotation="0 -90 0" scale="1 1 1"></a-obj-model>
+          <a-obj-model src='#rock2-obj' color='#4d4d33' position="-1.44 -3.43 -25.61" rotation="0 -1 0" scale="3 3 3"></a-obj-model>
+          <a-obj-model src='#rock3-obj' color='#663300' position="19.25 0.5 -22.25" rotation="0 -90 0" scale="8 8 8"></a-obj-model>
+          <a-obj-model src='#cactus-obj' color='#009900' position="21.07 -1.05 34.88" rotation="0 -90 0" scale="1 1 1"></a-obj-model>
+          <a-obj-model src='#cactus1-obj' color='#009900' position="16.4 -1.3 34.97" rotation="0 -90 0" scale="1.5 1.5 1.5"></a-obj-model>
+          <a-obj-model src='#rock3-obj' color='#4d4d33' position="16 -1.9 34.97" rotation="0 -90 0" scale="8 8 8"></a-obj-model>
+          <a-obj-model src='#p-obj' color='#000000' position="99 -3 -38.25" rotation="0 -90 0" scale="3 3 3" mtl="#p-mtl"></a-obj-model>
+          <a-obj-model src='#p-obj' color='#000000' position="323 -3 -38.25" rotation="0 -90 0" scale="4 4 4" mtl="#p-mtl"></a-obj-model>
+          <a-obj-model src='#p-obj' color='#000000' position="600 -3 -38.25" rotation="0 -90 0" scale="5 5 5" mtl="#p-mtl"></a-obj-model>
+
+          // animal object models
+          <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 1"></a-obj-model>
+          <a-obj-model id='tiger' src="#tiger-obj" mtl="#tiger-mtl" rotation="180 120 180" scale=".01 .01 .01" position="-.55 5 54.5"></a-obj-model>
+
+          // balls
+          <a-sphere id='ball1' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2 2 2"></a-sphere>
+          <a-sphere id='ball2' src='img/rainbow1.jpg' position="-5.32 1.9 35.88" radius="0.5" scale="1.5 1.5 1.5"></a-sphere>
+          <!-- <a-sphere id='ball3' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 2 2.5"></a-sphere>
+          <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
+
+          // number cubes
+          <a-box class="wrongBox" id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
+          <a-box class="wrongBox" id='seven' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box id='eight' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox" id='nine' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5"></a-box>
+          <a-box class="wrongBox" id='ten' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox" id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox" id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+
+          // instruction boxes
+          <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+          <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+          <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+
+          // right/wrong box text
+          <a-entity id='text' scale="3 3 3" geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 3.76 -5.73" rotation='0 30 0' material="color: white" >
+            <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="text_expand">
+           </a-animation>
+          </a-entity>
+
+          // portal to win/final page
+          <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
+            <a-animation
+                attribute="rotation"
+                 dur="500"
+                 from="0 0 0"
+                 to="0 360 0"
+                 repeat="indefinite"
+                 easing="linear"></a-animation>
+             <a-animation
+              attribute="scale"
+              dur="2000"
+              from="0.1 0.1 0.1"
+              to="1 2 1"
+              easing="linear"
+              begin="expand">
+            </a-animation>
+          </a-sphere>
 
         </a-scene>
+
+        <script>
+        var holding = false
+          // get instructions from lion
+          document.querySelector('#lion').addEventListener('mouseenter', function() {
+              document.querySelector('#text-1').setAttribute("visible", true)
+          })
+          document.querySelector('#text-1').addEventListener('mouseenter', function() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-1').setAttribute("visible", false)
+              document.querySelector('#text-2').setAttribute("visible", true)
+            }, 4000));
+          })
+          document.querySelector('#text-2').addEventListener('mouseenter', function() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-2').setAttribute("visible", false)
+              document.querySelector('#text-3').setAttribute("visible", true)
+              allowPickup();
+            }, 5000));
+          })
+
+          // picking up the wrong boxes
+          function allowPickup() {
+            document.querySelectorAll('.wrongBox').forEach(function(box){
+              box.addEventListener( 'mouseenter', function() {
+                if (holding == false) {
+
+                  document.querySelector('#text').setAttribute("visible", false)
+                  document.querySelector('#hold').setAttribute("visible", true)
+                  box.setAttribute("visible", false)
+                  holding = true
+
+                  document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+                    holding = false
+                    document.querySelector('#hold').setAttribute("visible", false)
+                    document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1... 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
+                    document.querySelector('#text').setAttribute("visible", true)
+                    box.setAttribute("visible", true)
+                  })
+                }
+              })
+            })
+
+            // picking up the correct box
+            document.querySelector('#eight').addEventListener( 'mouseenter', function() {
+
+              if (holding == false) {
+                document.querySelector('#text').setAttribute("visible", false)
+                document.querySelector('#hold').setAttribute("visible", true)
+                document.querySelector('#eight').setAttribute("visible", false)
+                holding = true
+
+                document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+                  holding = false
+                  document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
+                  document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
+                  document.querySelector('#eight').setAttribute("visible", true)
+                  document.querySelector('#hold').setAttribute("visible", false)
+                  document.querySelector('#text').setAttribute("text", "value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333")
+                  document.querySelector('#text').setAttribute("visible", true)
+                  document.querySelector('#portal').setAttribute('visible', true)
+                  document.querySelector('#portal').emit('expand')
+                })
+              }
+            })
+
+          }
+
+
+            document.getElementById('portal').addEventListener('mouseenter', function(event){
+              window.open("win.html", "_self")
+            });
+        </script>
+
     </body>
 </html>
