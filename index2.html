@@ -272,10 +272,11 @@
             answers.setAttribute('visible', true)
             answers.emit('solve1')
             answers.emit('solve2')
-            numbers.forEach(function(number){
-              number.setAttribute('visible', true)
-              number.emit('number')
-            })
+            $(this).data('timeout', setTimeout(function(){
+              numbers.forEach(function(number){
+                number.setAttribute('visible', true)
+              })
+            }, 2000))
             boxes.forEach(function(box){
               box.setAttribute('visible', true)
             })
