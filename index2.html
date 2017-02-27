@@ -28,7 +28,7 @@
         <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 10 180" position="-2 3.4 -35"></a-obj-model>
 
         <!-- ========= Floor ========= -->
-        <a-plane color='white' src='models/grass2.jpeg' height='300' width='400' rotation='-90 0 0' position='54 0 0'></a-plane>
+        <a-plane color='white' src='models/snow.jpg' height='300' width='400' rotation='-90 0 0' position='54 0 0'></a-plane>
 
         <!-- ========= Lion text ========= -->
         <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 -5 0' material="color: white" >
@@ -44,11 +44,11 @@
 
       <!-- ========= Ice ice baby ========= -->
       <a-box visible='false' height='15' src='models/ice.jpg' width='10' depth='3' position='25 0 -57' rotation='0 0 0'></a-box>
-        <a-text visible='false' width='55' value='Height: 15in, Width: 10in' position='12 12 -57'></a-text>
+        <a-text class='ice_text' visible='false' width='70' value='Height: 1ft, Width: 1ft' position='12 12 -57'></a-text>
       <a-box visible='false' height='30' src='models/ice.jpg' width='30' depth='3' position='-15 1 71' rotation='0 0 0'></a-box>
-        <a-text visible='false' width='55' value='Height: 28in, Width: 30in' rotation='0 180 0' position='-3 21 71'></a-text>
+        <a-text class='ice_text' visible='false' width='100' value='Height: 3ft, Width: 4ft' rotation='0 180 0' position='5 21 71'></a-text>
       <a-box visible='false' height='9' src='models/ice.jpg' width='22' depth='3' position='-85 4 -22' rotation='0 95 0'></a-box>
-        <a-text visible='false' width='55' value='Height: 17in, Width: 23in' rotation='0 85 0' position='-85 12 -9'></a-text>
+        <a-text class='ice_text' visible='false' width='130' value='Height: 1ft, Width: 3ft' rotation='0 85 0' position='-85 15 3'></a-text>
 
 
 
@@ -167,7 +167,8 @@
       var answer1 = document.querySelector('#answer1')
       var answer2 = document.querySelector('#answer2')
       var answer3 = document.querySelector('#answer3')
-      var wrongAnswers = [answer2, answer3]
+      var boxes = document.querySelectorAll('a-box')
+      var iceTexts = document.querySelectorAll('.ice_text')
 
         lion.addEventListener( 'mouseenter', function() {
           text.setAttribute("visible", true)
@@ -182,7 +183,9 @@
             answers.setAttribute('visible', true)
             answers.emit('solve1')
             answers.emit('solve2')
-            answers.setAttribute('text', { value: "Correct!"})
+            boxes.forEach(function(box){
+              box.setAttribute('visible', true)
+            })
         })
 
         // Correct answer action
@@ -255,7 +258,18 @@
         answer2.addEventListener('mouseleave', BadAnswerOneLeave);
         answer3.addEventListener('mouseleave', BadAnswerTwoLeave);
 
-      // 
+        boxes.forEach(function(box){
+          box.addEventListener( 'mouseenter', function() {
+            iceTexts.forEach(function(text){
+              text.setAttribute('visible', true)
+            })
+          })
+          box.addEventListener( 'mouseleave', function() {
+            iceTexts.forEach(function(text){
+              text.setAttribute('visible', false)
+            })
+          });
+        })
 
 
       </script>
