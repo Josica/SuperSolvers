@@ -66,18 +66,30 @@
           <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
 
           // number cubes
-          <a-box id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
-          <a-box id='seven' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox" id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
+          <a-box class="wrongBox" id='seven' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1"></a-box>
           <a-box id='eight' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-          <a-box id='nine' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5"></a-box>
-          <a-box id='ten' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-          <a-box id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-          <a-box id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox" id='nine' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5"></a-box>
+          <a-box class="wrongBox" id='ten' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox" id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox" id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
 
           // instruction boxes
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
+
+          // right/wrong box text
+          <a-entity id='text' scale="3 3 3" geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 3.76 -5.73" rotation='0 30 0' material="color: white" >
+            <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="text_expand">
+           </a-animation>
+          </a-entity>
 
           // portal to win/final page
           <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
@@ -101,6 +113,7 @@
         </a-scene>
 
         <script>
+        var holding = false
           // get instructions from lion
           document.querySelector('#lion').addEventListener('mouseenter', function() {
               document.querySelector('#text-1').setAttribute("visible", true)
@@ -118,25 +131,50 @@
             }, 5000));
           })
 
-          // index code starts
-          var correctCube = false
+          // picking up the wrong boxes
+          document.querySelectorAll('.wrongBox').forEach(function(box){
+            box.addEventListener( 'mouseenter', function() {
+              if (holding == false) {
 
-          if (correctCube === false) {
-            document.querySelector('#eight').addEventListener( 'mouseenter', function() {
+                document.querySelector('#text').setAttribute("visible", false)
+                document.querySelector('#hold').setAttribute("visible", true)
+                box.setAttribute("visible", false)
+                holding = true
+
+                document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+                  holding = false
+                  document.querySelector('#hold').setAttribute("visible", false)
+                  document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1... 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
+                  document.querySelector('#text').setAttribute("visible", true)
+                  box.setAttribute("visible", true)
+                })
+              }
+            })
+          })
+
+          // picking up the correct box
+          document.querySelector('#eight').addEventListener( 'mouseenter', function() {
+
+            if (holding == false) {
+              document.querySelector('#text').setAttribute("visible", false)
               document.querySelector('#hold').setAttribute("visible", true)
               document.querySelector('#eight').setAttribute("visible", false)
-              correctCube = true
+              holding = true
+
               document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+                holding = false
                 document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
                 document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
                 document.querySelector('#eight').setAttribute("visible", true)
                 document.querySelector('#hold').setAttribute("visible", false)
+                document.querySelector('#text').setAttribute("text", "value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333")
+                document.querySelector('#text').setAttribute("visible", true)
                 document.querySelector('#portal').setAttribute('visible', true)
                 document.querySelector('#portal').emit('expand')
               })
-            })
-          }
-          // Next level action
+            }
+          })
+
             document.getElementById('portal').addEventListener('mouseenter', function(event){
               window.open("win.html", "_self")
             });
