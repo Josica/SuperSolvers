@@ -91,6 +91,7 @@
         // Squirrel action
       lion.forEach(function(element){
         element.addEventListener( 'mouseenter', function() {
+          debugger
           document.querySelector('#text').setAttribute("visible", true)
           document.querySelector('#text').emit('text_expand')
           document.querySelector('#orange').setAttribute("visible", true)
