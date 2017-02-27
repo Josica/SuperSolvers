@@ -1,0 +1,21 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl BoardBackgroundMat
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.690196 0.690196 0.690196
+Ks 0.012549 0.012549 0.012549
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd text3.png
+
+newmtl BoardWoodMat
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.443137 0.243137
+Ks 0.012549 0.012549 0.012549
+Ni 1.000000
+d 1.000000
+illum 2
