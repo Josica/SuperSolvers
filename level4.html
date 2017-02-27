@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+    </head>
+
+    <body>
+        <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+
+          <a-entity position="0 1.6 0" camera id="camera" look-controls="enabled: true">
+            <a-cursor color="aqua"></a-cursor>
+            <a-box id="hold" visible="false" color="" height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
+          </a-entity>
+
+          <a-assets>
+            <a-asset-item id="cave-obj" src="models/crystalenv/cave.obj"></a-asset-item>
+            <a-asset-item id="cave-mtl" src="models/crystalenv/cave.mtl"></a-asset-item>
+            <a-asset-item id="rockdrag-obj" src="models/crysdragon/rock-dragon.obj"></a-asset-item>
+            <a-asset-item id="rockdrag-mtl" src="models/crysdragon/rock-dragon.mtl"></a-asset-item>
+            <a-asset-item id="river-obj" src="models/river/river.obj"></a-asset-item>
+            <a-asset-item id="river-mtl" src="models/river/river.mtl"></a-asset-item>
+          </a-assets>
+          <!-- // sky, models -->
+          <a-sky src="img/desert-sky.png"></a-sky>
+          <a-obj-model id="cave" src="#cave-obj" mtl="#cave-mtl" position="5 -7 4" scale="1 1 1" rotation="0 225 0"></a-obj-model>
+          <a-obj-model id="dragon" src="#rockdrag-obj" color="#442857" position="-3.5 1 14" scale=".15 .15 .15" rotation="0 210 0"></a-obj-model>
+
+          <!-- <a-sphere id="gas" src="img/rainbow.jpg" position="0 1 -5" radius="0.5" scale="1 1 1">
+            <a-animation
+                attribute="rotation"
+                dur="500"
+                from="0 0 0"
+                to="0 360 0"
+                repeat="indefinite"
+                easing="linear">
+            </a-animation>
+            <a-light
+                type="point"
+                intensity="5"
+                distance="50"
+                position="0 1 -5"
+                rotation="-90 0 0">
+            </a-light>
+          </a-sphere> -->
+          <!-- <a-sphere color="red" radius="0.25" position="7 7 -9"
+          repeat="indefinite" alongpath="path:5,4,-8 8,4,-8 8,4,-11; closed:true; dur:5000; delay:4000; inspector:false;">
+          </a-sphere> -->
+
+        </a-scene>
+
+        <!-- // javascript
+        <script>
+        </script> -->
+
+    </body>
+</html>
