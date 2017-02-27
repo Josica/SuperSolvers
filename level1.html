@@ -128,52 +128,57 @@
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-2').setAttribute("visible", false)
               document.querySelector('#text-3').setAttribute("visible", true)
+              allowPickup();
             }, 5000));
           })
 
           // picking up the wrong boxes
-          document.querySelectorAll('.wrongBox').forEach(function(box){
-            box.addEventListener( 'mouseenter', function() {
-              if (holding == false) {
+          function allowPickup() {
+            document.querySelectorAll('.wrongBox').forEach(function(box){
+              box.addEventListener( 'mouseenter', function() {
+                if (holding == false) {
 
+                  document.querySelector('#text').setAttribute("visible", false)
+                  document.querySelector('#hold').setAttribute("visible", true)
+                  box.setAttribute("visible", false)
+                  holding = true
+
+                  document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+                    holding = false
+                    document.querySelector('#hold').setAttribute("visible", false)
+                    document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1... 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
+                    document.querySelector('#text').setAttribute("visible", true)
+                    box.setAttribute("visible", true)
+                  })
+                }
+              })
+            })
+
+            // picking up the correct box
+            document.querySelector('#eight').addEventListener( 'mouseenter', function() {
+
+              if (holding == false) {
                 document.querySelector('#text').setAttribute("visible", false)
                 document.querySelector('#hold').setAttribute("visible", true)
-                box.setAttribute("visible", false)
+                document.querySelector('#eight').setAttribute("visible", false)
                 holding = true
 
                 document.querySelector('#lion').addEventListener( 'mouseenter', function() {
                   holding = false
+                  document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
+                  document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
+                  document.querySelector('#eight').setAttribute("visible", true)
                   document.querySelector('#hold').setAttribute("visible", false)
-                  document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1... 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
+                  document.querySelector('#text').setAttribute("text", "value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333")
                   document.querySelector('#text').setAttribute("visible", true)
-                  box.setAttribute("visible", true)
+                  document.querySelector('#portal').setAttribute('visible', true)
+                  document.querySelector('#portal').emit('expand')
                 })
               }
             })
-          })
 
-          // picking up the correct box
-          document.querySelector('#eight').addEventListener( 'mouseenter', function() {
+          }
 
-            if (holding == false) {
-              document.querySelector('#text').setAttribute("visible", false)
-              document.querySelector('#hold').setAttribute("visible", true)
-              document.querySelector('#eight').setAttribute("visible", false)
-              holding = true
-
-              document.querySelector('#lion').addEventListener( 'mouseenter', function() {
-                holding = false
-                document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
-                document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
-                document.querySelector('#eight').setAttribute("visible", true)
-                document.querySelector('#hold').setAttribute("visible", false)
-                document.querySelector('#text').setAttribute("text", "value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333")
-                document.querySelector('#text').setAttribute("visible", true)
-                document.querySelector('#portal').setAttribute('visible', true)
-                document.querySelector('#portal').emit('expand')
-              })
-            }
-          })
 
             document.getElementById('portal').addEventListener('mouseenter', function(event){
               window.open("win.html", "_self")
