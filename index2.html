@@ -35,7 +35,7 @@
 
 
         <!-- ========= Lion text ========= -->
-        <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 -5 0' material="color: white" >
+        <a-entity id='text' scale='8 8 8'geometry="primitive: plane; width: 2 auto; height: 1; " visible='false' text="value: I have no idea why we're here, let's do some calculations to get us out of here! ; align: center; width: 1.6; wrap-count: 20; color: #333333" position="0 13 -33" rotation='0 5 0' material="color: white" >
           <a-animation
            attribute="scale"
            dur="500"
@@ -57,7 +57,7 @@
         </a-entity>
 
       <a-box visible='false' height='8' src='models/ice.jpg' width='22' depth='3' position='-30 3 -10' rotation='0 95 0'></a-box>
-        <a-entity class='ice_text' visible='false' geometry='primitive: plane; width: 2.9; height: .7' material='color: black' position='-4 11.3 -1.3' text='value: Height: 1ft, Width: 3ft; width: 6; align: center; color: white' rotation='0 85 0'>
+        <a-entity class='ice_text' visible='false' geometry='primitive: plane; width: 2.9; height: .9' material='color: black' position='-4 11.3 -1.3' text='value: Height: 1ft, Width: 3ft; width: 6; align: center; color: white' rotation='0 85 0'>
         </a-entity>
 
 
@@ -110,7 +110,7 @@
 
 
       <!-- ========= Portal ========= -->
-      <a-sphere id='portal' src='models/portal.png' visible="false" position="50 5 -10" radius="0.5" scale="0.1 0.1 0.1">
+      <a-sphere id='portal' src='models/portal.png' visible="false" position="20 7 24" radius="0.5" scale="0.1 0.1 0.1">
         <a-animation
             attribute="rotation"
              dur="500"
@@ -123,7 +123,27 @@
           attribute="scale"
           dur="2000"
           from="0.1 0.1 0.1"
-          to="1 2 1"
+          to="7 14 7"
+          easing="linear"
+          begin="expand">
+        </a-animation>
+      </a-sphere>
+
+      <!-- Wrong portal -->
+      <a-sphere id='bad_portal' color='black' src='models/portal.png' visible="false" position="20 7 24" radius="0.5" scale="0.1 0.1 0.1">
+        <a-animation
+            attribute="rotation"
+             dur="500"
+             from="0 0 0"
+             to="0 360 0"
+             repeat="indefinite"
+             easing="linear"></a-animation>
+
+         <a-animation
+          attribute="scale"
+          dur="2000"
+          from="0.1 0.1 0.1"
+          to="7 14 7"
           easing="linear"
           begin="expand">
         </a-animation>
@@ -252,10 +272,11 @@
             answers.setAttribute('visible', true)
             answers.emit('solve1')
             answers.emit('solve2')
-            numbers.forEach(function(number){
-              number.setAttribute('visible', true)
-              number.emit('number')
-            })
+            $(this).data('timeout', setTimeout(function(){
+              numbers.forEach(function(number){
+                number.setAttribute('visible', true)
+              })
+            }, 2000))
             boxes.forEach(function(box){
               box.setAttribute('visible', true)
             })
@@ -302,6 +323,8 @@
               answer1.removeEventListener('mouseenter', correctAnswer);
               answer2.removeEventListener('mouseenter', BadAnswerOne);
               answer3.removeEventListener('mouseenter', BadAnswerTwo);
+              document.querySelector('#bad_portal').setAttribute('visible', true)
+              document.querySelector('#bad_portal').emit('expand')
             }, 2000));
         }
 
@@ -322,6 +345,8 @@
               answer1.removeEventListener('mouseenter', correctAnswer);
               answer2.removeEventListener('mouseenter', BadAnswerOne);
               answer3.removeEventListener('mouseenter', BadAnswerTwo);
+              document.querySelector('#bad_portal').setAttribute('visible', true)
+              document.querySelector('#bad_portal').emit('expand')
             }, 2000));
         }
 
