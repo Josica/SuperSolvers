@@ -64,10 +64,43 @@
        </a-animation>
       </a-entity>
 
+      <!-- ========= Text for Answers ========= -->
+      <a-text class='a_text' visible='false' width='100' value='20' rotation='0 -90 0' color='black' position='83 55 23'>
+        <a-animation
+           attribute="width"
+           dur="2000"
+           from="0"
+           to="100"
+           easing="linear"
+           begin="number">
+        </a-animation>
+      </a-text>
+      <a-text class='a_text' visible='false' width='100' value='26' rotation='0 -90 0' color='black' position='83 55 10.3'>
+        <a-animation
+           attribute="width"
+           dur="2000"
+           from="0"
+           to="100"
+           easing="linear"
+           begin="number">
+        </a-animation>
+      </a-text>
+      <a-text class='a_text' visible='false' width='100' value='30' rotation='0 -90 0' color='black' position='83 55 -2'>
+        <a-animation
+           attribute="width"
+           dur="2000"
+           from="0"
+           to="100"
+           easing="linear"
+           begin="number">
+        </a-animation>
+      </a-text>
+
       <!-- ========= Answers ========= -->
       <a-entity id="answers" layout="type: line; margin: 12" visible= 'false'  rotation='0 90 0'>
       <!-- Correct answer -->
-        <a-sphere id='answer1' radius='4' text='value: hi' color="white">
+        <a-sphere id='answer1' radius='4' color="white">
+          <!-- <a-text value="Hello World!" position="0 3 0"> </a-text> -->
           <a-animation
              attribute="radius"
              dur="2000"
@@ -154,7 +187,6 @@
         <a-camera position='0 9 0'>
           <a-cursor color='red'></a-cursor>
         </a-camera>
-
       </a-scene>
 
 
@@ -169,6 +201,7 @@
       var answer3 = document.querySelector('#answer3')
       var boxes = document.querySelectorAll('a-box')
       var iceTexts = document.querySelectorAll('.ice_text')
+      var numbers = document.querySelectorAll('.a_text')
 
         lion.addEventListener( 'mouseenter', function() {
           text.setAttribute("visible", true)
@@ -179,22 +212,29 @@
           text.setAttribute("visible", false)
         });
 
-        eq.addEventListener( 'mouseenter', function(){
+        function answersShow(){
             answers.setAttribute('visible', true)
             answers.emit('solve1')
             answers.emit('solve2')
+            numbers.forEach(function(number){
+              number.setAttribute('visible', true)
+              number.emit('number')
+            })
             boxes.forEach(function(box){
               box.setAttribute('visible', true)
             })
-        })
+          eq.removeEventListener('mouseenter', answersShow);
+        }
+
+        eq.addEventListener('mouseenter', answersShow);
 
         // Correct answer action
         function correctAnswer() {
             answer1.emit('select')
             $(this).data('timeout', setTimeout(function(){
               answer1.setAttribute('color', '#7AB800')
-              answer2.setAttribute('visible', false)
-              answer3.setAttribute('visible', false)
+              answer2.setAttribute('color', 'red')
+              answer3.setAttribute('color', 'red')
               eq.setAttribute('text', 'value', 'Correct!')
               eq.setAttribute('text', 'color', 'white')
               eq.setAttribute('material', 'color', '#7AB800')
