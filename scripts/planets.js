@@ -21,11 +21,11 @@ $(document).ready(function(){
     })
 
     var blackhole = document.querySelector('#black-hole')
+
     blackhole.addEventListener('mouseenter', function(){
       $(this).data('timeout', setTimeout(function(){
-        // add in logic to jump to the next level
-        console.log('hello')
-      }, 2000));
+        blackhole.emit('expand')
+      }, 2500));
     })
     //
     blackhole.addEventListener('mouseleave', function(){
