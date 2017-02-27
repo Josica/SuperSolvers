@@ -1,16 +1,34 @@
-// $(document).ready(function(){
-//   $('#scene').on('mouseenter', '.planet', function(event){
-//       console.log("hello")
-//   })
-// })
-
-
-document.querySelectorAll('.planet').forEach(function(planet){
-  planet.addEventListener( 'mouseenter', function() {
-    document.querySelectorAll('.planet-data').forEach(function(text){
-      text.setAttribute("visible", false)
+$(document).ready(function(){
+  document.querySelectorAll('.planet').forEach(function(planet){
+    planet.addEventListener( 'mouseenter', function() {
+      document.querySelectorAll('.planet-data').forEach(function(text){
+        text.setAttribute("visible", false)
+      })
+      document.querySelector(`#${planet.id}-text`).setAttribute("visible", true)
+      setTimeout(function(){
+        document.querySelector(`#${planet.id}-text`).setAttribute("visible", false)
+      }, 8000);
     })
-    document.querySelector(`#${planet.id}-text`).setAttribute("visible", true)
-    
   })
+
+  document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+      document.querySelector('#lion-text').setAttribute("visible", true)
+      setTimeout(function(){
+        document.querySelector('#lion-text').setAttribute("visible", false)
+        document.querySelector('#lion-text').setAttribute("visible", false)
+        document.querySelector('#lion').emit("test")
+      }, 12000);
+    })
+
+    var blackhole = document.querySelector('#black-hole')
+    blackhole.addEventListener('mouseenter', function(){
+      $(this).data('timeout', setTimeout(function(){
+        // add in logic to jump to the next level
+        console.log('hello')
+      }, 2000));
+    })
+    //
+    blackhole.addEventListener('mouseleave', function(){
+      clearTimeout($(this).data('timeout'));
+    })
 })
