@@ -17,6 +17,11 @@
 
         <a-sky src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Helvellyn_Striding_Edge_360_Panorama,_Lake_District_-_June_09.jpg"></a-sky>
 
+
+        <!-- ========= Screen Blackout ========= -->
+        <div id='overlay' style='background: black; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
+
+
         <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
           <a-animation
               attribute="rotation"
@@ -24,7 +29,8 @@
                from="0 0 0"
                to="0 360 0"
                repeat="indefinite"
-               easing="linear"></a-animation>
+               easing="linear">
+          </a-animation>
 
            <a-animation
             attribute="scale"
@@ -34,6 +40,15 @@
             easing="linear"
             begin="expand">
           </a-animation>
+
+          <a-animation
+           attribute="position"
+           dur="1000"
+           from="2 1.8 -4"
+           to="-.5 1 1"
+           easing="linear"
+           begin="next_page">
+         </a-animation>
         </a-sphere>
             <!-- <a-plane id="test" position='-0.50 1, 1' width="3" height="3" src="models/text.png" visible='false'></a-plane> -->
             <!-- <a-plane id="test" width="3" height="3" src="http://i.imgur.com/KMg1JX4.jpg"
@@ -71,6 +86,7 @@
 
       var lion = document.querySelectorAll('#lion')
       var haveGem = false
+      var portal = document.getElementById('portal')
 
         // Squirrel action
       lion.forEach(function(element){
@@ -80,7 +96,7 @@
           document.querySelector('#orange').setAttribute("visible", true)
         })
       })
-      // debugger
+
       // Grabbing orange action
       if (haveGem === false) {
         document.querySelector('#orange').addEventListener( 'mouseenter', function() {
@@ -102,10 +118,16 @@
           })
         })
       }
+
       // Next level action
       document.getElementById('portal').addEventListener('mouseenter', function(event){
-        // document.querySelector('#portal').addAttribute('scale', 5)
-        window.open("level1.html", "_self")
+        $(this).css('z-index','99999');
+        $('#overlay').fadeIn(1000);
+        portal.emit('next_page')
+        $(this).data('timeout', setTimeout(function(){
+          window.open("level1.html", "_self")
+        }, 1000));
+        $('#overlay').fadeOut(1000);
       });
 
       </script>
