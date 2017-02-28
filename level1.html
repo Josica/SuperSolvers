@@ -83,15 +83,15 @@
           <a-box class="wrongBox box" id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5">
             <a-animation
              attribute="scale"
-             dur="2000"
+             dur="1200"
              from="1.5 1.5 1.5"
-             to="2.5 2.5 2.5"
+             to="2 2 2"
              easing="linear"
              begin="expand">
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="2000"
+            dur="1200"
             from="1.5 1.5 1.5"
             to="1.5 1.5 1.5"
             easing="linear"
@@ -101,17 +101,17 @@
           <a-box class="wrongBox box" id='seven' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
              attribute="scale"
-             dur="2000"
-             from="1.5 1.5 1.5"
-             to="2.5 2.5 2.5"
+             dur="1200"
+             from="1 1 1"
+             to="1.5 1.5 1.5"
              easing="linear"
              begin="expand">
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="2000"
-            from="1.5 1.5 1.5"
-            to="1.5 1.5 1.5"
+            dur="1200"
+            from="1 1 1"
+            to="1 1 1"
             easing="linear"
             begin="unexpand">
           </a-animation>
@@ -119,17 +119,17 @@
           <a-box class="box" id='eight' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
              attribute="scale"
-             dur="2000"
-             from="1.5 1.5 1.5"
-             to="2.5 2.5 2.5"
+             dur="1200"
+             from="1 1 1"
+             to="1.5 1.5 1.5"
              easing="linear"
              begin="expand">
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="2000"
-            from="1.5 1.5 1.5"
-            to="1.5 1.5 1.5"
+            dur="1200"
+            from="1 1 1"
+            to="1 1 1"
             easing="linear"
             begin="unexpand">
           </a-animation>
@@ -137,15 +137,15 @@
           <a-box class="wrongBox box" id='nine' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5">
             <a-animation
              attribute="scale"
-             dur="2000"
+             dur="1200"
              from="1.5 1.5 1.5"
-             to="2.5 2.5 2.5"
+             to="2 2 2"
              easing="linear"
              begin="expand">
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="2000"
+            dur="1200"
             from="1.5 1.5 1.5"
             to="1.5 1.5 1.5"
             easing="linear"
@@ -155,35 +155,17 @@
           <a-box class="wrongBox box" id='ten' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
              attribute="scale"
-             dur="2000"
-             from="1.5 1.5 1.5"
-             to="2.5 2.5 2.5"
+             dur="1200"
+             from="1 1 1"
+             to="1.5 1.5 1.5"
              easing="linear"
              begin="expand">
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="2000"
-            from="1.5 1.5 1.5"
-            to="1.5 1.5 1.5"
-            easing="linear"
-            begin="unexpand">
-          </a-animation>
-          </a-box>
-          <a-box class="wrongBox box" id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1">
-            <a-animation
-             attribute="scale"
-             dur="2000"
-             from="1.5 1.5 1.5"
-             to="2.5 2.5 2.5"
-             easing="linear"
-             begin="expand">
-           </a-animation>
-           <a-animation
-            attribute="scale"
-            dur="2000"
-            from="1.5 1.5 1.5"
-            to="1.5 1.5 1.5"
+            dur="1200"
+            from="1 1 1"
+            to="1 1 1"
             easing="linear"
             begin="unexpand">
           </a-animation>
@@ -191,17 +173,17 @@
           <a-box class="wrongBox box" id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
              attribute="scale"
-             dur="2000"
-             from="1.5 1.5 1.5"
-             to="2.5 2.5 2.5"
+             dur="1200"
+             from="1 1 1"
+             to="1.5 1.5 1.5"
              easing="linear"
              begin="expand">
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="2000"
-            from="1.5 1.5 1.5"
-            to="1.5 1.5 1.5"
+            dur="1200"
+            from="1 1 1"
+            to="1 1 1"
             easing="linear"
             begin="unexpand">
           </a-animation>
@@ -284,61 +266,49 @@
             }, 5000));
           })
 
-          // Expanding the box on hover
-          // document.querySelectorAll('.box').forEach(function(box){
-          //   box.addEventListener( 'mouseenter', function() {
-          //     box.emit('expand')
-          //     $(this).data('timeout', setTimeout(function(){
-          //       // allowPickup()
-          //     }, 2000));
-          //     box.emit('unexpand')
-          //   })
-          // })
-          //
-          // document.querySelectorAll('.box').forEach(function(box){
-          //   box.addEventListener( 'mouseleave', function() {
-          //     box.emit('unexpand')
-          //     clearTimeout($(this).data('timeout'));
-          //   })
-          // })
-          allowPickup()
 
           // picking up the wrong boxes
-          function allowPickup() {
-            document.querySelectorAll('.box').forEach(function(box){
-              box.addEventListener( 'mouseenter', function() {
-                box.emit('expand')
+          function allowPickup(e) {
+            e.target.emit('expand')
                 $(this).data('timeout', setTimeout(function(){
+                  console.log(holding)
                   if (holding == false) {
                     document.querySelector('#text').setAttribute("visible", false)
                     document.querySelector('#hold').setAttribute("visible", true)
-                    box.setAttribute("visible", false)
-                    heldBox = box.id
+                    e.target.setAttribute("visible", false)
+                    heldBox = e.target.id
+                    console.log('hi')
                     holding = true
                     document.querySelector('#lion').addEventListener( 'mouseenter', submitBox);
                   }
-                }, 2000));
-
-              })
-            })
+                }, 1200));
+                e.target.show()
           }
 
-          document.querySelectorAll('.box').forEach(function(box){
-            box.addEventListener( 'mouseleave', function() {
-              box.emit('unexpand')
+          // When mouse leaves box
+          function leaveBox(e) {
+              e.target.emit('unexpand')
               clearTimeout($(this).data('timeout'));
-            })
+            }
+
+          document.querySelectorAll('.box').forEach(function(box){
+              box.addEventListener('mouseenter', allowPickup)
+              box.addEventListener('mouseleave', leaveBox)
           })
+
 
           function submitBox(){
             holding = false
             if (heldBox == "eight"){
               correctBox();
+              document.querySelectorAll('.box').forEach(function(box){
+                  box.removeEventListener('mouseenter', allowPickup)
+                  box.removeEventListener('mouseleave', leaveBox)
+              })
             }
             else {
               wrongBox();
             }
-            document.querySelector('#lion').removeEventListener('mouseenter', submitBox);
           }
 
           function wrongBox(){
