@@ -26,7 +26,7 @@
 
         <a-sphere id='lion' opacity="0.1" color="white" radius="1" position="-3 1 -4" rotation="0 30 0" animation="property: scale; dur: 1000; easing: linear; to: 0 1 0; startEvents: test;">
           <a-obj-model  src="#lion-obj" mtl="#lion-mtl" scale=".1 .1 .1" position="-0.4 0.1 0.3 "rotation="0 180 0"></a-obj-model>
-          <a-entity id='text' scale=.1 geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: You did it!!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 2.76 -5.73" rotation='0 30 0' material="color: white" >
+          <a-entity id='text' scale=.1 visible='false' text="value: You Won!!; align: center; width: 9; wrap-count: 20; color: white" position="-1 2.76 -5.73" rotation='0 -10 0' material="color: white" >
             <a-animation
               attribute="scale"
               dur="500"
@@ -39,14 +39,14 @@
         </a-sphere>
 
         <a-image src="models/kane.jpeg" position="80 30 -120"  opacity="0" height="80" width="80" rotation="0 -50 0" visible="true">
-          <a-entity id="kane-text" text="value: I knew you could do it." position="0 -40 20" rotation="0 30 0" geometry="primitive: plane; width: 60; height: auto" material="color: black" visible="false">
+          <a-entity id="kane-text" text="value: I knew you could do it, my son.; align: center; width: 13" position="35.89 -30 122" rotation="0 10 0" geometry="primitive: plane; width: 9.2; height: 2" material="color: black" visible="true">
           </a-entity>
           <a-animation
             attribute="opacity"
             dur="10000"
             from="0"
             to="0.1"
-            delay="20000"
+            delay="1000"
             easing="linear"></a-animation>
         </a-image>
       </a-scene>
