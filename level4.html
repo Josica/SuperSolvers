@@ -141,17 +141,22 @@
               document.querySelector('#text-1').setAttribute("visible", false)
               document.querySelector('#text-2a').setAttribute("visible", true)
             }, 3000));
-          })
-          // hover over gems to see 2b textbox
-          document.querySelectorAll('.gem').forEach(function(gem){
-            gem.addEventListener( 'mouseenter', function() {
-              $(this).data('timeout', setTimeout(function(){
-                document.querySelector('#text-2a').setAttribute("visible", false)
-                document.querySelector('#text-2b').setAttribute("visible", true)
-                document.querySelector('#drop').setAttribute("visible", true)
-              }, 2000));
+            // hover over gems to see 2b textbox
+            document.querySelectorAll('.gem').forEach(function(gem){
+              gem.addEventListener( 'mouseenter', hoverGem)
             })
           })
+
+          function hoverGem() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-2a').setAttribute("visible", false)
+              document.querySelector('#text-2b').setAttribute("visible", true)
+              document.querySelector('#drop').setAttribute("visible", true)
+            }, 2000));
+            document.querySelectorAll('.gem').forEach(function(gem){
+              gem.removeEventListener( 'mouseenter', hoverGem)
+            })
+          }
           // hover over droplet to see 2c textbox, show ruby & 3 textbox
           document.querySelector('#drop').addEventListener('mouseenter', function() {
             document.querySelector('#drop').setAttribute("visible", false)
@@ -161,7 +166,6 @@
                 document.querySelector('#text-2c').setAttribute("visible", false)
                 document.querySelector('#text-3').setAttribute("visible", true)
                 document.querySelector('#ruby').setAttribute("visible", true)
-              allowPickup();
             }, 5000));
           })
           // pick up the ruby
@@ -193,16 +197,21 @@
           })
           // give the ruby to the gas objects - open portal
           document.querySelectorAll('.gas').forEach(function(gas){
-            gas.addEventListener( 'mouseenter', function() {
-              if (holding == true) {
-                document.querySelector('#hold').setAttribute("visible", false)
-                document.querySelector('#hint-l').setAttribute("visible", true)
-                // ??? move/animate lion position to next to portal ???
-                document.querySelector('#portal').setAttribute('visible', true)
-                document.querySelector('#portal').emit('expand')
-              }
-            })
+            gas.addEventListener( 'mouseenter', completeLevel)
           })
+
+          function completeLevel(){
+            if (holding == true) {
+              document.querySelector('#hold').setAttribute("visible", false)
+              document.querySelector('#hint-l').setAttribute("visible", true)
+              // ??? move/animate lion position to next to portal ???
+              document.querySelector('#portal').setAttribute('visible', true)
+              document.querySelector('#portal').emit('expand')
+              document.querySelectorAll('.gas').forEach(function(gas){
+                gas.removeEventListener( 'mouseenter', completeLevel)
+              })
+            }
+          }
           // go to level5 when you enter the portal
           document.getElementById('portal').addEventListener('mouseenter', function(event){
             window.open("level5.html", "_self")
