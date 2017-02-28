@@ -92,7 +92,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1.5 1.5 1.5"
             to="1.5 1.5 1.5"
             easing="linear"
@@ -112,7 +111,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
@@ -132,7 +130,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
@@ -152,7 +149,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1.5 1.5 1.5"
             to="1.5 1.5 1.5"
             easing="linear"
@@ -172,7 +168,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
@@ -192,7 +187,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
@@ -212,7 +206,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
@@ -323,7 +316,10 @@
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-2').setAttribute("visible", false)
               document.querySelector('#text-3').setAttribute("visible", true)
-              // allowPickup();
+              document.querySelectorAll('.box').forEach(function(box){
+                  box.addEventListener('mouseenter', allowPickup)
+                  box.addEventListener('mouseleave', leaveBox)
+              })
             }, 5000));
           })
 
@@ -348,14 +344,9 @@
           // When mouse leaves box
           function leaveBox(e) {
               e.target.emit('unexpand')
+              // e.target.setAttribute('scale', '1 1 1')
               clearTimeout($(this).data('timeout'));
             }
-
-          document.querySelectorAll('.box').forEach(function(box){
-              box.addEventListener('mouseenter', allowPickup)
-              box.addEventListener('mouseleave', leaveBox)
-          })
-
 
           function submitBox(){
             holding = false
@@ -385,7 +376,7 @@
 
 
           function wrongBox(){
-            document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1... 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
+            document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1...\n 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
             document.querySelector('#text').setAttribute("visible", true)
             var box = document.getElementById(heldBox);
             box.setAttribute("visible", true)
@@ -395,12 +386,9 @@
             if (strikes == 3) {
               document.querySelector('#bad_portal').setAttribute('visible', true)
               document.querySelector('#bad_portal').emit('expand')
-              debugger
               document.querySelector('#bad_portal').addEventListener('mouseenter', lose)
             }
           }
-
-
 
           // handing in the correct box
           function correctBox(){
