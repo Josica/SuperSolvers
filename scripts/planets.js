@@ -23,6 +23,7 @@ $(document).ready(function(){
     var blackhole = document.querySelector('#black-hole')
     var portal = document.querySelector('#portal')
 
+
     blackhole.addEventListener('mouseenter', function(){
 
       blackhole.emit('expand')
