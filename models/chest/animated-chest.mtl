@@ -9,7 +9,7 @@ Ks 0.037054 0.037054 0.037054
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd chest_dif.tga
+map_Kd chest_dif.png
 
 newmtl chest_MAT_NONE
 Ns 96.078431
@@ -19,7 +19,7 @@ Ks 0.037054 0.037054 0.037054
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd chest_dif.tga
+map_Kd chest_dif.png
 
 newmtl scharniere
 Ns 96.078431
@@ -29,4 +29,4 @@ Ks 0.050000 0.050000 0.050000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd chest_dif.tga
+map_Kd chest_dif.png
