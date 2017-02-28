@@ -71,8 +71,14 @@
           <!-- // states of matter text -->
           <a-text id="text-1" class="matter-data" font="exo2bold" align="center" width="2" value="Hey!\n Isn't this world strange?\n There are so many states of matter here!" color="white"
           position="-20 2 0" scale="7 7 7" wrap-count="20" rotation="0 130 3.2" visible="false"> </a-text>
-          <a-text id="text-2" class="matter-data" font="exo2bold" align="center" width="2" value="Look down...\n those blue gems are SOLID, their particles stay very still.\n Look up...\n those fluffy clouds are GAS, their particles move very fast!\n Look behind you...\n that river is LIQUID, its particles move, only much slower than a gas.\n" color="white"
+
+          <a-text id="text-2a" class="matter-data" font="exo2bold" align="center" width="2" value="Look down...\n those blue gems are SOLID, their particles stay very still." color="white"
           position="-20 3.5 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
+          <a-text id="text-2b" class="matter-data" font="exo2bold" align="center" width="2" value="Look up...\n those fluffy clouds are GAS, their particles move very fast!" color="white"
+          position="-1.85 -.12 .1" scale="1 1 1" wrap-count="25" rotation="-80 60 15" visible="false"> </a-text>
+          <a-text id="text-2c" class="matter-data" font="exo2bold" align="center" width="2" value="Look behind you...\n that river is LIQUID, its particles move, only much slower than a gas." color="white"
+          position="-20 3.5 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
+
           <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of weird objects to my right:\n Can you tell which acts like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
           position="-20 2 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
 
@@ -100,50 +106,37 @@
         <script>
 
         var holding = false
-          // get matter data/text from lion
+          // hover over lion to see 1 textbox
           document.querySelector('#lion').addEventListener('mouseenter', function() {
             document.querySelector('#text-3').setAttribute("visible", false)
             document.querySelector('#text-1').setAttribute("visible", true)
           })
+          // hover over 1 textbox to see 2a textbox
           document.querySelector('#text-1').addEventListener('mouseenter', function() {
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-1').setAttribute("visible", false)
-              document.querySelector('#text-2').setAttribute("visible", true)
+              document.querySelector('#text-2a').setAttribute("visible", true)
             }, 3000));
           })
-          document.querySelector('#text-2').addEventListener('mouseenter', function() {
-            $(this).data('timeout', setTimeout(function(){
-              document.querySelector('#text-2').setAttribute("visible", false)
-              document.querySelector('#text-3').setAttribute("visible", true)
-              document.querySelector('#ruby').setAttribute("visible", true)
-              allowPickup();
-            }, 15000));
+          // hover over gems to see 2b textbox
+          document.querySelectorAll('.gem').forEach(function(gem){
+            gem.addEventListener( 'mouseenter', function() {
+              $(this).data('timeout', setTimeout(function(){
+                document.querySelector('#text-2a').setAttribute("visible", false)
+                document.querySelector('#text-2b').setAttribute("visible", true)
+              }, 3000));
+            })
           })
+          // hover over textbox 2a to see 2c textbox
 
-            // giving the ruby to the gas
-          //   document.querySelector('#ruby').addEventListener( 'mouseenter', function() {
-          //
-          //     if (holding == false) {
-          //       document.querySelector('#text-1').setAttribute("visible", false)
-          //       document.querySelector('#hold').setAttribute("visible", true)
-          //       document.querySelector('#ruby').setAttribute("visible", false)
-          //       holding = true
-          //
-          //       document.querySelector('#lion').addEventListener( 'mouseenter', function() {
-          //         holding = false
-          //         document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
-          //         document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
-          //         document.querySelector('#eight').setAttribute("visible", true)
-          //         document.querySelector('#hold').setAttribute("visible", false)
-          //         document.querySelector('#text').setAttribute("text", "value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333")
-          //         document.querySelector('#text').setAttribute("visible", true)
-          //         document.querySelector('#portal').setAttribute('visible', true)
-          //         document.querySelector('#portal').emit('expand')
-          //       })
-          //     }
-          //   })
-          //
-          // }
+          // document.querySelector('#text-2a').addEventListener('mouseenter', function() {
+          //   $(this).data('timeout', setTimeout(function(){
+          //     document.querySelector('#text-2b').setAttribute("visible", false)
+          //     document.querySelector('#text-2c').setAttribute("visible", true)
+          //     document.querySelector('#ruby').setAttribute("visible", true)
+          //     allowPickup();
+          //   }, 15000));
+          // })
 
 
             document.getElementById('portal').addEventListener('mouseenter', function(event){
