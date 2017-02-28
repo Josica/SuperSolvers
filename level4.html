@@ -26,6 +26,8 @@
             <a-asset-item id='gem-mtl' src='models/gem/gem.mtl'></a-asset-item>
             <a-asset-item id='quartz-obj' src='models/quartz/quartz.obj'></a-asset-item>
             <a-asset-item id='quartz-mtl' src='models/quartz/quartz.mtl'></a-asset-item>
+            <a-asset-item id='drop-obj' src='models/droplet/drop.obj'></a-asset-item>
+            <a-asset-item id='drop-mtl' src='models/droplet/drop.mtl'></a-asset-item>
           </a-assets>
 
           <!-- // sky, models -->
@@ -37,6 +39,7 @@
           <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="20 10 0" scale="2.2 2.2 2.2" position="-1.8 .25 -.75"></a-obj-model>
           <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="-20 -10 0" scale="2.2 2.2 2.2" position="-.75 .25 -.60"></a-obj-model>
           <a-obj-model id="ruby" src="#quartz-obj" mtl="#quartz-mtl" rotation="-20 -10 0" scale=".2 .2 .2" position="-14 -1 5.5" visible="false"></a-obj-model>
+          <a-obj-model id="drop" src="#drop-obj" mtl="#drop-mtl" rotation="0 0 0" scale="1 1 1" position="-18.5 6.5 -.1" visible="false"></a-obj-model>
 
           <!-- // liquid examples -->
           <a-sphere class="liquid" color="#33ff96" radius="0.25" position="7 1.5 -11"
@@ -48,6 +51,7 @@
           <a-sphere class="liquid" color="#4dffa3" radius=".15" position="7 2 -9"
           alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite">
           </a-sphere>
+
           <!-- // solid examples -->
           <a-torus-knot class="solid" src="img/rainbow.jpg" position="-30 .75 -36" arc="180" p="2" q="7" radius="5" radius-tubular="0.1">
           </a-torus-knot>
@@ -104,13 +108,15 @@
 
         <!-- // javascript -->
         <script>
-
         var holding = false
           // hover over lion to see 1 textbox
-          document.querySelector('#lion').addEventListener('mouseenter', function() {
+          document.querySelector('#lion').addEventListener('mouseenter', introText)
+
+          function introText() {
             document.querySelector('#text-3').setAttribute("visible", false)
             document.querySelector('#text-1').setAttribute("visible", true)
-          })
+            document.querySelector('#lion').removeEventListener('mouseenter', introText)
+          }
           // hover over 1 textbox to see 2a textbox
           document.querySelector('#text-1').addEventListener('mouseenter', function() {
             $(this).data('timeout', setTimeout(function(){
@@ -124,24 +130,39 @@
               $(this).data('timeout', setTimeout(function(){
                 document.querySelector('#text-2a').setAttribute("visible", false)
                 document.querySelector('#text-2b').setAttribute("visible", true)
-              }, 3000));
+                document.querySelector('#drop').setAttribute("visible", true)
+              }, 2000));
             })
           })
-          // hover over textbox 2a to see 2c textbox
+          // hover over droplet to see 2c textbox
+          document.querySelector('#drop').addEventListener('mouseenter', function() {
+            document.querySelector('#drop').setAttribute("visible", false)
+            document.querySelector('#text-2b').setAttribute("visible", false)
+            document.querySelector('#text-2c').setAttribute("visible", true)
+            $(this).data('timeout', setTimeout(function(){
+              allowPickup();
+            }, 3000));
+          })
+          // hover over 2c textbox to see ruby and 3 textbox
+          document.querySelector('#text-2c').addEventListener('mouseenter', function() {
+            document.querySelector('#text-2c').setAttribute("visible", false)
+            document.querySelector('#text-3').setAttribute("visible", true)
+            document.querySelector('#ruby').setAttribute("visible", true)
+          })
 
-          // document.querySelector('#text-2a').addEventListener('mouseenter', function() {
-          //   $(this).data('timeout', setTimeout(function(){
-          //     document.querySelector('#text-2b').setAttribute("visible", false)
-          //     document.querySelector('#text-2c').setAttribute("visible", true)
-          //     document.querySelector('#ruby').setAttribute("visible", true)
-          //     allowPickup();
-          //   }, 15000));
-          // })
+          // hover over ruby to pick up
+          //   (#hold -> vis=true / holding=true / #ruby -> vis=true)
+          //   if holding = true
+          //   hover over solid or liquid
+          //     (#hold -> vis=false / #ruby -> vis=true)
+          //     show text value="This object is solid - is is not moving. Which one moves at the speed of a gas? Pick up the red crystal and try again!"
+          //   hover over gas
+          //     (#hold -> vis=false / #portal -> vis=true)
+          //     ??? move/animate lion position to next to portal ???
 
-
-            document.getElementById('portal').addEventListener('mouseenter', function(event){
-              window.open("level5.html", "_self")
-            });
+          document.getElementById('portal').addEventListener('mouseenter', function(event){
+            window.open("level5.html", "_self")
+          });
 
         </script>
 
