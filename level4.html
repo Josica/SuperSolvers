@@ -12,7 +12,7 @@
 
           <a-entity position="0 1.6 0" camera id="camera" look-controls="enabled: true">
             <a-cursor color="aqua"></a-cursor>
-            <a-box id="hold" visible="false" color="" height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
+            <a-box id="hold" visible="false" color="#990000" height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
           </a-entity>
 
           <a-assets>
@@ -24,16 +24,19 @@
             <a-asset-item id='river-mtl' src='models/river/river.mtl'></a-asset-item>
             <a-asset-item id='gem-obj' src='models/gem/gem.obj'></a-asset-item>
             <a-asset-item id='gem-mtl' src='models/gem/gem.mtl'></a-asset-item>
+            <a-asset-item id='quartz-obj' src='models/quartz/quartz.obj'></a-asset-item>
+            <a-asset-item id='quartz-mtl' src='models/quartz/quartz.mtl'></a-asset-item>
           </a-assets>
 
           <!-- // sky, models -->
           <a-sky id='clouds' autoplay loop='true' rotation='0 280 0' src="models/clouds.mp4"></a-sky>
           <a-obj-model id="cave" src="#cave-obj" mtl="#cave-mtl" position="5 -7 4" scale="1 1 1" rotation="0 225 0"></a-obj-model>
-          <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 75 180" scale=".08 .08 .08" position="-2 1.2 -1.1"></a-obj-model>
+          <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 20 180" scale=".08 .08 .08" position="-3 1.3 -1.3"></a-obj-model>
           <a-obj-model id="river-obj" src="#river-obj" color="#33ccff" position="10.82 -4.5 11.53" scale=".1 .1 .1" rotation="0 130 0" alongpath="path:10,-4.5,11.45 10.4,-4.5,11.49; closed:true; dur:2500; inspector:false; loop:true" repeat="indefinite"></a-obj-model>
           <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="0 0 0" scale="2 2 2" position="-1 .25 -1"></a-obj-model>
           <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="20 10 0" scale="2.2 2.2 2.2" position="-1.8 .25 -.75"></a-obj-model>
           <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="-20 -10 0" scale="2.2 2.2 2.2" position="-.75 .25 -.60"></a-obj-model>
+          <a-obj-model id="ruby" src="#quartz-obj" mtl="#quartz-mtl" rotation="-20 -10 0" scale=".2 .2 .2" position="-14 -1 5.5" visible="false"></a-obj-model>
 
           <!-- // liquid examples -->
           <a-sphere class="liquid" color="#33ff96" radius="0.25" position="7 1.5 -11"
@@ -66,14 +69,90 @@
               repeat="indefinite"></a-animation>
           </a-ring>
           <!-- // states of matter text -->
-          <a-text id="text-1" class="matter-data" width="2" value="Hey!\n Isn't this world strange?\n There are so many states of matter here" color="white"
-          position="-12.5 0 2.25" scale="8 8 8" rotation="0 130 0" visible="true"> </a-text>
+          <a-text id="text-1" class="matter-data" font="exo2bold" align="center" width="2" value="Hey!\n Isn't this world strange?\n There are so many states of matter here!" color="white"
+          position="-20 2 0" scale="7 7 7" wrap-count="20" rotation="0 130 3.2" visible="false"> </a-text>
+          <a-text id="text-2" class="matter-data" font="exo2bold" align="center" width="2" value="Look down...\n those blue gems are SOLID, their particles stay very still.\n Look up...\n those fluffy clouds are GAS, their particles move very fast!\n Look behind you...\n that river is LIQUID, its particles move, only much slower than a gas.\n" color="white"
+          position="-20 3.5 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
+          <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of weird objects to my right:\n Can you tell which acts like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
+          position="-20 2 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
 
+          <!-- // portal to next level -->
+          <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
+            <a-animation
+                attribute="rotation"
+                 dur="500"
+                 from="0 0 0"
+                 to="0 360 0"
+                 repeat="indefinite"
+                 easing="linear"></a-animation>
+             <a-animation
+              attribute="scale"
+              dur="2000"
+              from="0.1 0.1 0.1"
+              to="1 2 1"
+              easing="linear"
+              begin="expand">
+            </a-animation>
+          </a-sphere>
         </a-scene>
 
-        <!-- // javascript
+        <!-- // javascript -->
         <script>
-        </script> -->
+
+        var holding = false
+          // get matter data from lion
+          document.querySelector('#lion').addEventListener('mouseenter', function() {
+            document.querySelector('#text-3').setAttribute("visible", false)
+            document.querySelector('#text-1').setAttribute("visible", true)
+          })
+
+          document.querySelector('#text-1').addEventListener('mouseenter', function() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-1').setAttribute("visible", false)
+              document.querySelector('#text-2').setAttribute("visible", true)
+            }, 3000));
+          })
+
+          document.querySelector('#text-2').addEventListener('mouseenter', function() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-2').setAttribute("visible", false)
+              document.querySelector('#text-3').setAttribute("visible", true)
+              document.querySelector('#ruby').setAttribute("visible", true)
+              allowPickup();
+            }, 15000));
+          })
+
+            // giving the ruby to the gas
+          //   document.querySelector('#ruby').addEventListener( 'mouseenter', function() {
+          //
+          //     if (holding == false) {
+          //       document.querySelector('#text-1').setAttribute("visible", false)
+          //       document.querySelector('#hold').setAttribute("visible", true)
+          //       document.querySelector('#ruby').setAttribute("visible", false)
+          //       holding = true
+          //
+          //       document.querySelector('#lion').addEventListener( 'mouseenter', function() {
+          //         holding = false
+          //         document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
+          //         document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
+          //         document.querySelector('#eight').setAttribute("visible", true)
+          //         document.querySelector('#hold').setAttribute("visible", false)
+          //         document.querySelector('#text').setAttribute("text", "value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333")
+          //         document.querySelector('#text').setAttribute("visible", true)
+          //         document.querySelector('#portal').setAttribute('visible', true)
+          //         document.querySelector('#portal').emit('expand')
+          //       })
+          //     }
+          //   })
+          //
+          // }
+
+
+            document.getElementById('portal').addEventListener('mouseenter', function(event){
+              window.open("level5.html", "_self")
+            });
+
+        </script>
 
     </body>
 </html>
