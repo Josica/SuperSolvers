@@ -1,3 +1,10 @@
+// Start loading screen
+       $(window).load(function() {
+         $(this).data('timeout', setTimeout(function(){
+           $("#loader").fadeOut("slow");
+         }, 2000))
+       })
+
 $(document).ready(function(){
   document.querySelectorAll('.planet').forEach(function(planet){
     planet.addEventListener( 'mouseenter', function() {
