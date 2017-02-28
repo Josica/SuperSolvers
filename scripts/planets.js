@@ -21,14 +21,24 @@ $(document).ready(function(){
     })
 
     var blackhole = document.querySelector('#black-hole')
+    var portal = document.querySelector('#portal')
 
     blackhole.addEventListener('mouseenter', function(){
+
+      blackhole.emit('expand')
+      portal.emit('grow')
+      portal.emit('next_page')
       $(this).data('timeout', setTimeout(function(){
-        blackhole.emit('expand')
-      }, 2500));
+        $(this).css('z-index','99999');
+        $('#overlay').fadeIn(2000);
+      }, 3000));
+      $(this).data('timeout', setTimeout(function(){
+        window.open("index.html", "_self")
+      }, 5000));
+      $('#overlay').fadeOut(1000);
     })
     //
-    blackhole.addEventListener('mouseleave', function(){
-      clearTimeout($(this).data('timeout'));
-    })
+    // blackhole.addEventListener('mouseleave', function(){
+    //   clearTimeout($(this).data('timeout'));
+    // })
 })
