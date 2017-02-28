@@ -5,8 +5,16 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Denk+One" rel="stylesheet">
   </head>
   <body>
+
+    <!-- ========= Screen load ========= -->
+       <div id='loader' style='position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background-color: black; text-align: center;'>
+         <img id='img'src='img/logo-supersolvers.png' style="height: 200px; margin-top: 10%"></img>
+         <p style="font-size: 20px; font-family: 'Denk One', sans-serif; color: white;">Loading...</p>
+       </div>
+
       <a-assets>
         <a-asset-item id="dragon-obj" src="models/dragon/dragon.obj"></a-asset-item>
         <a-asset-item id="dragon-mtl" src="models/dragon/dragon.mtl"></a-asset-item>
@@ -23,7 +31,7 @@
         <a-plane src="#ground" height="20" width="20" rotation="-90 0 0"></a-plane>
 
         <!-- ========= Screen Blackout ========= -->
-        <div id='overlay' style='background: black; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
+        <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
 
 
         <a-sphere id="blackhole" src="#blackhole-texture" radius="2" position="7.5 5.5 -12" rotation="-17 -115 -30" visible="false">
@@ -64,6 +72,15 @@
       </a-scene>
 
       <script>
+
+      // Start loading screen
+       $(window).load(function() {
+         $("#img").fadeIn("slow");
+         $(this).data('timeout', setTimeout(function(){
+           $("#loader").fadeOut("slow");
+         }, 2000))
+       })
+
       var blackhole = document.getElementById('blackhole')
 
         document.querySelector('#dragon').addEventListener('click', function() {
