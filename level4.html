@@ -18,36 +18,56 @@
           <a-assets>
             <a-asset-item id="cave-obj" src="models/crystalenv/cave.obj"></a-asset-item>
             <a-asset-item id="cave-mtl" src="models/crystalenv/cave.mtl"></a-asset-item>
-            <a-asset-item id="rockdrag-obj" src="models/crysdragon/rock-dragon.obj"></a-asset-item>
-            <a-asset-item id="rockdrag-mtl" src="models/crysdragon/rock-dragon.mtl"></a-asset-item>
-            <a-asset-item id="river-obj" src="models/river/river.obj"></a-asset-item>
-            <a-asset-item id="river-mtl" src="models/river/river.mtl"></a-asset-item>
+            <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
+            <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
+            <a-asset-item id='river-obj' src='models/river/river.obj'></a-asset-item>
+            <a-asset-item id='river-mtl' src='models/river/river.mtl'></a-asset-item>
+            <a-asset-item id='gem-obj' src='models/gem/gem.obj'></a-asset-item>
+            <a-asset-item id='gem-mtl' src='models/gem/gem.mtl'></a-asset-item>
           </a-assets>
-          <!-- // sky, models -->
-          <a-sky src="img/desert-sky.png"></a-sky>
-          <a-obj-model id="cave" src="#cave-obj" mtl="#cave-mtl" position="5 -7 4" scale="1 1 1" rotation="0 225 0"></a-obj-model>
-          <a-obj-model id="dragon" src="#rockdrag-obj" color="#442857" position="-3.5 1 14" scale=".15 .15 .15" rotation="0 210 0"></a-obj-model>
 
-          <!-- <a-sphere id="gas" src="img/rainbow.jpg" position="0 1 -5" radius="0.5" scale="1 1 1">
-            <a-animation
-                attribute="rotation"
-                dur="500"
-                from="0 0 0"
-                to="0 360 0"
-                repeat="indefinite"
-                easing="linear">
-            </a-animation>
-            <a-light
-                type="point"
-                intensity="5"
-                distance="50"
-                position="0 1 -5"
-                rotation="-90 0 0">
-            </a-light>
-          </a-sphere> -->
-          <!-- <a-sphere color="red" radius="0.25" position="7 7 -9"
-          repeat="indefinite" alongpath="path:5,4,-8 8,4,-8 8,4,-11; closed:true; dur:5000; delay:4000; inspector:false;">
-          </a-sphere> -->
+          <!-- // sky, models -->
+          <a-sky id='clouds' autoplay loop='true' rotation='0 280 0' src="models/clouds.mp4"></a-sky>
+          <a-obj-model id="cave" src="#cave-obj" mtl="#cave-mtl" position="5 -7 4" scale="1 1 1" rotation="0 225 0"></a-obj-model>
+          <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 75 180" scale=".08 .08 .08" position="-2 1.2 -1.1"></a-obj-model>
+          <a-obj-model id="river-obj" src="#river-obj" color="#33ccff" position="10.82 -4.5 11.53" scale=".1 .1 .1" rotation="0 130 0" alongpath="path:10,-4.5,11.45 10.4,-4.5,11.49; closed:true; dur:2500; inspector:false; loop:true" repeat="indefinite"></a-obj-model>
+          <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="0 0 0" scale="2 2 2" position="-1 .25 -1"></a-obj-model>
+          <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="20 10 0" scale="2.2 2.2 2.2" position="-1.8 .25 -.75"></a-obj-model>
+          <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="-20 -10 0" scale="2.2 2.2 2.2" position="-.75 .25 -.60"></a-obj-model>
+
+          <!-- // liquid examples -->
+          <a-sphere class="liquid" color="#33ff96" radius="0.25" position="7 1.5 -11"
+          alongpath="path:5,1.5,-5 3,1.5,-2 6,1.5,-7; closed:true; dur:6500; delay:1000; inspector:false; loop:true" repeat="indefinite">
+          </a-sphere>
+          <a-sphere class="liquid" color="#80ffbd" radius=".15" position="7 1 -10"
+          alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:5500; delay:1000; inspector:false; loop:true" repeat="indefinite">
+          </a-sphere>
+          <a-sphere class="liquid" color="#4dffa3" radius=".15" position="7 2 -9"
+          alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite">
+          </a-sphere>
+          <!-- // solid examples -->
+          <a-torus-knot class="solid" src="img/rainbow.jpg" position="-30 .75 -36" arc="180" p="2" q="7" radius="5" radius-tubular="0.1">
+          </a-torus-knot>
+          <a-torus-knot class="solid" src="img/rainbow.jpg" position="-20 3 -27" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 45 0">
+          </a-torus-knot>
+          <a-torus-knot class="solid" src="img/rainbow.jpg" position="-21 6 -30" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 0 90">
+          </a-torus-knot>
+          <!-- // gas examples -->
+          <a-ring class="gas" src="img/gold.jpg" position="0 .5 -20" rotation="0 45 45" scale=".5 .5 .5">
+            <a-animation attribute="position" to="0 7 -20" direction="alternate" dur="250"
+              repeat="indefinite"></a-animation>
+          </a-ring>
+          <a-ring class="gas" src="img/gold.jpg" position="2 2 -20" rotation="0 45 45" scale=".5 .5 .5">
+            <a-animation attribute="position" to="-2 2 -20" direction="alternate" dur="250"
+              repeat="indefinite"></a-animation>
+          </a-ring>
+          <a-ring class="gas" src="img/gold.jpg" position="-2 2 -20" rotation="0 45 45" scale=".5 .5 .5">
+            <a-animation attribute="position" to="2 .5 -20" direction="alternate" dur="250"
+              repeat="indefinite"></a-animation>
+          </a-ring>
+          <!-- // states of matter text -->
+          <a-text id="text-1" class="matter-data" width="2" value="Hey!\n Isn't this world strange?\n There are so many states of matter here" color="white"
+          position="-12.5 0 2.25" scale="8 8 8" rotation="0 130 0" visible="true"> </a-text>
 
         </a-scene>
 
