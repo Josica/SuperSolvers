@@ -100,19 +100,17 @@
         <script>
 
         var holding = false
-          // get matter data from lion
+          // get matter data/text from lion
           document.querySelector('#lion').addEventListener('mouseenter', function() {
             document.querySelector('#text-3').setAttribute("visible", false)
             document.querySelector('#text-1').setAttribute("visible", true)
           })
-
           document.querySelector('#text-1').addEventListener('mouseenter', function() {
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-1').setAttribute("visible", false)
               document.querySelector('#text-2').setAttribute("visible", true)
             }, 3000));
           })
-
           document.querySelector('#text-2').addEventListener('mouseenter', function() {
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-2').setAttribute("visible", false)
