@@ -12,6 +12,7 @@
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
             <a-cursor color="white"></a-cursor>
             <a-box id='hold' visible='false' color='#e600e6' height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
+            <!-- <a-box id='holdpurple' class="hold" visible='false' color='#4f0a8f' height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box> -->
           </a-entity>
 
           <a-assets>
@@ -70,13 +71,13 @@
           <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
 
           <!--  number cubes -->
-          <a-box class="wrongBox box" id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
-          <a-box class="wrongBox box" id='seven' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-          <a-box class="box" id='eight' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-          <a-box class="wrongBox box" id='nine' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5"></a-box>
-          <a-box class="wrongBox box" id='ten' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-          <a-box class="wrongBox box" id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
-          <a-box class="wrongBox box" id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox box even" id='6' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
+          <a-box class="wrongBox box odd" id='7' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="box even" id='8' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox box odd" id='9' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5"></a-box>
+          <a-box class="wrongBox box even" id='10' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox box odd" id='11' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
+          <a-box class="wrongBox box even" id='12' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
 
           <!-- instruction boxes -->
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
@@ -128,6 +129,8 @@
         var holding = false;
         var heldBox;
         var strikes = 0;
+        var eightBox = document.getElementById('8')
+        var portal = document.querySelector('#portal')
           // get instructions from lion
           document.querySelector('#lion').addEventListener('mouseenter', function() {
               document.querySelector('#text-1').setAttribute("visible", true)
@@ -151,12 +154,18 @@
             document.querySelectorAll('.box').forEach(function(box){
               box.addEventListener( 'mouseenter', function() {
                 if (holding == false) {
-
-                  document.querySelector('#text').setAttribute("visible", false)
-                  document.querySelector('#hold').setAttribute("visible", true)
-                  box.setAttribute("visible", false)
                   heldBox = box.id
                   holding = true
+                  document.querySelector('#text').setAttribute("visible", false)
+
+                  if (heldBox % 2 == 0) {
+                    document.querySelector('#hold').setAttribute("color", "#e600e6")
+                  } else {
+                    document.querySelector('#hold').setAttribute("color", "#4f0a8f")
+                  }
+
+                  document.querySelector('#hold').setAttribute("visible", true)
+                  box.setAttribute("visible", false)
 
                   document.querySelector('#lion').addEventListener( 'mouseenter', submitBox);
                 }
@@ -166,7 +175,9 @@
 
           function submitBox(){
             holding = false
-            if (heldBox == "eight"){
+            document.querySelector('#hold').setAttribute("visible", false)
+            if (heldBox == "8"){
+              console.log("hello")
               correctBox();
             }
             else {
@@ -176,7 +187,6 @@
           }
 
           function wrongBox(){
-            document.querySelector('#hold').setAttribute("visible", false)
             document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1... 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
             document.querySelector('#text').setAttribute("visible", true)
             var box = document.getElementById(heldBox);
@@ -188,26 +198,26 @@
             }
           }
           // handing in the correct box
+
           function correctBox(){
-            document.querySelector('#eight').setAttribute("position", "-2 1.2 1")
-            document.querySelector('#eight').setAttribute("scale", ".2 .2 .2")
-            document.querySelector('#eight').setAttribute("visible", true)
-            document.querySelector('#hold').setAttribute("visible", false)
+            eightBox.setAttribute("position", "-2 1.2 1")
+            eightBox.setAttribute("scale", ".2 .2 .2")
+            eightBox.setAttribute("visible", true)
             document.querySelector('#text').setAttribute("text", "value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333")
             document.querySelector('#text').setAttribute("visible", true)
-            document.querySelector('#portal').setAttribute('visible', true)
-            document.querySelector('#portal').emit('expand')
+            portal.setAttribute('visible', true)
+            portal.emit('expand')
           }
 
-            document.getElementById('portal').addEventListener('mouseenter', function(event){
-              $(this).css('z-index','99999');
-              $('#overlay').fadeIn(1000);
-              portal.emit('next_page')
-              $(this).data('timeout', setTimeout(function(){
-                window.open("index.html", "_self")
-              }, 1000));
-              $('#overlay').fadeOut(1000);
-            });
+          portal.addEventListener('mouseenter', function(event){
+            $(this).css('z-index','99999');
+            $('#overlay').fadeIn(1000);
+            portal.emit('next_page')
+            $(this).data('timeout', setTimeout(function(){
+              window.open("index.html", "_self")
+            }, 1000));
+            $('#overlay').fadeOut(1000);
+          });
         </script>
 
     </body>
