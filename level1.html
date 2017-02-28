@@ -12,7 +12,6 @@
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
             <a-cursor color="white"></a-cursor>
             <a-box id='hold' visible='false' color='#e600e6' height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
-            <!-- <a-box id='holdpurple' class="hold" visible='false' color='#4f0a8f' height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box> -->
           </a-entity>
 
           <a-assets>
@@ -177,7 +176,6 @@
             holding = false
             document.querySelector('#hold').setAttribute("visible", false)
             if (heldBox == "8"){
-              console.log("hello")
               correctBox();
             }
             else {
