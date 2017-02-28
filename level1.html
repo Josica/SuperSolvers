@@ -59,13 +59,13 @@
           <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 1"></a-obj-model>
           <a-obj-model id='tiger' src="#tiger-obj" mtl="#tiger-mtl" rotation="180 120 180" scale=".01 .01 .01" position="-.55 5 54.5"></a-obj-model>
 
-          // balls
+          <!-- // balls -->
           <a-sphere id='ball1' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2 2 2"></a-sphere>
           <a-sphere id='ball2' src='img/rainbow1.jpg' position="-5.32 1.9 35.88" radius="0.5" scale="1.5 1.5 1.5"></a-sphere>
           <!-- <a-sphere id='ball3' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 2 2.5"></a-sphere>
           <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
 
-          // number cubes
+          <!-- // number cubes -->
           <a-box class="wrongBox" id='six' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5"></a-box>
           <a-box class="wrongBox" id='seven' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1"></a-box>
           <a-box id='eight' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1"></a-box>
@@ -74,12 +74,12 @@
           <a-box class="wrongBox" id='eleven' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1"></a-box>
           <a-box class="wrongBox" id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1"></a-box>
 
-          // instruction boxes
+          <!-- // instruction boxes -->
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
 
-          // right/wrong box text
+          <!-- // right/wrong box text -->
           <a-entity id='text' scale="3 3 3" geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 3.76 -5.73" rotation='0 30 0' material="color: white" >
             <a-animation
              attribute="scale"
@@ -91,7 +91,7 @@
            </a-animation>
           </a-entity>
 
-          // portal to win/final page
+          <!-- // portal to win/final page -->
           <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
             <a-animation
                 attribute="rotation"
@@ -176,9 +176,7 @@
                 })
               }
             })
-
           }
-
 
             document.getElementById('portal').addEventListener('mouseenter', function(event){
               window.open("win.html", "_self")

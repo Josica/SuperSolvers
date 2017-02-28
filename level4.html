@@ -42,16 +42,12 @@
           <a-obj-model id="drop" src="#drop-obj" mtl="#drop-mtl" rotation="0 0 0" scale="1 1 1" position="-18.5 6.5 -.1" visible="false"></a-obj-model>
 
           <!-- // liquid examples -->
-          <a-sphere class="liquid" color="#33ff96" radius="0.25" position="7 1.5 -11"
-          alongpath="path:5,1.5,-5 3,1.5,-2 6,1.5,-7; closed:true; dur:6500; delay:1000; inspector:false; loop:true" repeat="indefinite">
-          </a-sphere>
-          <a-sphere class="liquid" color="#80ffbd" radius=".15" position="7 1 -10"
-          alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:5500; delay:1000; inspector:false; loop:true" repeat="indefinite">
-          </a-sphere>
-          <a-sphere class="liquid" color="#4dffa3" radius=".15" position="7 2 -9"
-          alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite">
-          </a-sphere>
-
+          <a-cylinder class="liquid" color="yellow" radius=".2" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1.5 -11"
+          alongpath="path:5,1.5,-5 3,1.5,-2 6,1.5,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+          <a-cylinder class="liquid" color="yellow" radius=".3" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1 -10"
+          alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+          <a-cylinder class="liquid" color="yellow" radius=".5" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 2 -9"
+          alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
           <!-- // solid examples -->
           <a-torus-knot class="solid" src="img/rainbow.jpg" position="-30 .75 -36" arc="180" p="2" q="7" radius="5" radius-tubular="0.1">
           </a-torus-knot>
@@ -60,18 +56,18 @@
           <a-torus-knot class="solid" src="img/rainbow.jpg" position="-21 6 -30" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 0 90">
           </a-torus-knot>
           <!-- // gas examples -->
-          <a-ring class="gas" src="img/gold.jpg" position="0 .5 -20" rotation="0 45 45" scale=".5 .5 .5">
+          <a-ring class="gas" src="img/pink.jpg" position="0 .5 -20" rotation="0 45 45" scale=".5 .5 .5">
             <a-animation attribute="position" to="0 7 -20" direction="alternate" dur="250"
               repeat="indefinite"></a-animation>
           </a-ring>
-          <a-ring class="gas" src="img/gold.jpg" position="2 2 -20" rotation="0 45 45" scale=".5 .5 .5">
-            <a-animation attribute="position" to="-2 2 -20" direction="alternate" dur="250"
+          <a-cone class="gas" src="img/emerald.png" position="2 2 -20" rotation="0 45 45" scale=".5 .5 .5" radius-bottom="1" radius-top="0">
+            <a-animation attribute="position" to="-2 2 -20" direction="alternate" dur="220"
               repeat="indefinite"></a-animation>
-          </a-ring>
-          <a-ring class="gas" src="img/gold.jpg" position="-2 2 -20" rotation="0 45 45" scale=".5 .5 .5">
-            <a-animation attribute="position" to="2 .5 -20" direction="alternate" dur="250"
+          </a-cone>
+          <a-cone class="gas" src="img/emerald.png" position="-2 2 -20" rotation="0 45 45" scale=".5 .5 .5" radius-bottom="1" radius-top="0">
+            <a-animation attribute="position" to="2 .5 -20" direction="alternate" dur="220"
               repeat="indefinite"></a-animation>
-          </a-ring>
+          </a-cone>
           <!-- // states of matter text -->
           <a-text id="text-1" class="matter-data" font="exo2bold" align="center" width="2" value="Hey!\n Isn't this world strange?\n There are so many states of matter here!" color="white"
           position="-20 2 0" scale="7 7 7" wrap-count="20" rotation="0 130 3.2" visible="false"> </a-text>
@@ -85,6 +81,28 @@
 
           <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of weird objects to my right:\n Can you tell which acts like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
           position="-20 2 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
+
+          <!-- wrong answer messages/hints -->
+          <a-entity id='hint-s' scale="5 5 5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is solid - it isn't moving.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="-19 6 -22.7" rotation='0 0 0' material="color: #f2e6ff" >
+            <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="text_expand">
+           </a-animation>
+          </a-entity>
+          <a-entity id='hint-l' scale="2.5 2.5 2.5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is liquid - it is moving, but slowly.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="7 1.5 -10.75" rotation='0 -70 0' material="color: #f2e6ff" >
+            <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="text_expand">
+           </a-animation>
+          </a-entity>
 
           <!-- // portal to next level -->
           <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
@@ -134,32 +152,58 @@
               }, 2000));
             })
           })
-          // hover over droplet to see 2c textbox
+          // hover over droplet to see 2c textbox, show ruby & 3 textbox
           document.querySelector('#drop').addEventListener('mouseenter', function() {
             document.querySelector('#drop').setAttribute("visible", false)
             document.querySelector('#text-2b').setAttribute("visible", false)
             document.querySelector('#text-2c').setAttribute("visible", true)
             $(this).data('timeout', setTimeout(function(){
+                document.querySelector('#text-2c').setAttribute("visible", false)
+                document.querySelector('#text-3').setAttribute("visible", true)
+                document.querySelector('#ruby').setAttribute("visible", true)
               allowPickup();
-            }, 3000));
+            }, 5000));
           })
-          // hover over 2c textbox to see ruby and 3 textbox
-          document.querySelector('#text-2c').addEventListener('mouseenter', function() {
-            document.querySelector('#text-2c').setAttribute("visible", false)
-            document.querySelector('#text-3').setAttribute("visible", true)
-            document.querySelector('#ruby').setAttribute("visible", true)
+          // pick up the ruby
+          document.querySelector('#ruby').addEventListener('mouseenter',
+          function() {
+            document.querySelector('#hold').setAttribute("visible", true)
+            document.querySelector('#ruby').setAttribute("visible", false)
+            holding = true
           })
-
-          // hover over ruby to pick up
-          //   (#hold -> vis=true / holding=true / #ruby -> vis=true)
-          //   if holding = true
-          //   hover over solid or liquid
-          //     (#hold -> vis=false / #ruby -> vis=true)
-          //     show text value="This object is solid - is is not moving. Which one moves at the speed of a gas? Pick up the red crystal and try again!"
-          //   hover over gas
-          //     (#hold -> vis=false / #portal -> vis=true)
-          //     ??? move/animate lion position to next to portal ???
-
+          // give the ruby to the solid objects - receive hint
+          document.querySelectorAll('.solid').forEach(function(solid){
+            solid.addEventListener( 'mouseenter', function() {
+              if (holding == true) {
+                document.querySelector('#hold').setAttribute("visible", false)
+                document.querySelector('#ruby').setAttribute("visible", true)
+                document.querySelector('#hint-s').setAttribute("visible", true)
+              }
+            })
+          })
+          // give the ruby to the liquid objects - receive hint
+          document.querySelectorAll('.liquid').forEach(function(liquid){
+            liquid.addEventListener( 'mouseenter', function() {
+              if (holding == true) {
+                document.querySelector('#hold').setAttribute("visible", false)
+                document.querySelector('#ruby').setAttribute("visible", true)
+                document.querySelector('#hint-l').setAttribute("visible", true)
+              }
+            })
+          })
+          // give the ruby to the gas objects - open portal
+          document.querySelectorAll('.gas').forEach(function(gas){
+            gas.addEventListener( 'mouseenter', function() {
+              if (holding == true) {
+                document.querySelector('#hold').setAttribute("visible", false)
+                document.querySelector('#hint-l').setAttribute("visible", true)
+                // ??? move/animate lion position to next to portal ???
+                document.querySelector('#portal').setAttribute('visible', true)
+                document.querySelector('#portal').emit('expand')
+              }
+            })
+          })
+          // go to level5 when you enter the portal
           document.getElementById('portal').addEventListener('mouseenter', function(event){
             window.open("level5.html", "_self")
           });
