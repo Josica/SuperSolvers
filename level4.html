@@ -182,6 +182,7 @@
                 document.querySelector('#hold').setAttribute("visible", false)
                 document.querySelector('#ruby').setAttribute("visible", true)
                 document.querySelector('#hint-s').setAttribute("visible", true)
+                holding = false
               }
             })
           })
@@ -192,6 +193,7 @@
                 document.querySelector('#hold').setAttribute("visible", false)
                 document.querySelector('#ruby').setAttribute("visible", true)
                 document.querySelector('#hint-l').setAttribute("visible", true)
+                holding = false
               }
             })
           })
@@ -203,13 +205,14 @@
           function completeLevel(){
             if (holding == true) {
               document.querySelector('#hold').setAttribute("visible", false)
-              document.querySelector('#hint-l').setAttribute("visible", true)
+              // document.querySelector('#hint-l').setAttribute("visible", true)
               // ??? move/animate lion position to next to portal ???
               document.querySelector('#portal').setAttribute('visible', true)
               document.querySelector('#portal').emit('expand')
               document.querySelectorAll('.gas').forEach(function(gas){
                 gas.removeEventListener( 'mouseenter', completeLevel)
               })
+              holding = false
             }
           }
           // go to level5 when you enter the portal
