@@ -22,6 +22,8 @@
         <!-- ========= Screen Blackout ========= -->
         <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
 
+        <div id='wrong_overlay' style='background: black; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
+
 
         <!-- ========= Screen load ========= -->
         <div id='loader' style='position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background-color: white; text-align: center;'>
@@ -446,13 +448,13 @@
 
         badPortal.addEventListener('mouseenter', function(event){
           $(this).css('z-index','99999');
-          $('#overlay').fadeIn(1000);
+          $('#wrong_overlay').fadeIn(1000);
           badPortal.emit('next_page')
 
           $(this).data('timeout', setTimeout(function(){
-            window.open("win.html", "_self")
+            window.open("final.html", "_self")
           }, 1000));
-          $('#overlay').fadeOut(1000);
+          $('#wrong_overlay').fadeOut(1000);
         });
 
       </script>
