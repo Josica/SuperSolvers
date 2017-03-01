@@ -327,18 +327,24 @@
           // picking up the wrong boxes
 
           function allowPickup(e) {
-            e.target.emit('expand')
-                $(this).data('timeout', setTimeout(function(){
-                  if (holding == false) {
-                    document.querySelector('#text').setAttribute("visible", false)
-                    document.querySelector('#hold').setAttribute("visible", true)
-                    e.target.setAttribute("visible", false)
-                    heldBox = e.target.id
-                    holding = true
-                    document.querySelector('#lion').addEventListener( 'mouseenter', submitBox);
+            if (holding == false) {
+              e.target.emit('expand')
+              $(this).data('timeout', setTimeout(function(){
+                  holding = true
+                  heldBox = e.target.id
+                  document.querySelector('#text').setAttribute("visible", false)
+
+                  if (heldBox % 2 == 0) {
+                    document.querySelector('#hold').setAttribute("color", "#e600e6")
+                  } else {
+                    document.querySelector('#hold').setAttribute("color", "#4f0a8f")
                   }
-                }, 1200));
-                e.target.show()
+
+                  document.querySelector('#hold').setAttribute("visible", true)
+                  e.target.setAttribute("visible", false)
+                  document.querySelector('#lion').addEventListener( 'mouseenter', submitBox);
+              }, 1200));
+            }
           }
 
           // When mouse leaves box
@@ -353,14 +359,11 @@
             document.querySelector('#hold').setAttribute("visible", false)
             if (heldBox == "8"){
               correctBox();
-              document.querySelectorAll('.box').forEach(function(box){
-                  box.removeEventListener('mouseenter', allowPickup)
-                  box.removeEventListener('mouseleave', leaveBox)
-              })
             }
             else {
               wrongBox();
             }
+            document.querySelector('#lion').removeEventListener( 'mouseenter', submitBox);
           }
 
           // Sending to bad level after 3 tries
@@ -379,7 +382,7 @@
             document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1...\n 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
             document.querySelector('#text').setAttribute("visible", true)
             var box = document.getElementById(heldBox);
-            box.setAttribute("visible", true)
+            // box.setAttribute("visible", true)
             strikes ++;
 
             // logic to go to loss level
@@ -387,6 +390,10 @@
               document.querySelector('#bad_portal').setAttribute('visible', true)
               document.querySelector('#bad_portal').emit('expand')
               document.querySelector('#bad_portal').addEventListener('mouseenter', lose)
+              document.querySelectorAll('.box').forEach(function(box){
+                  box.removeEventListener('mouseenter', allowPickup)
+                  box.removeEventListener('mouseleave', leaveBox)
+              })
             }
           }
 
@@ -399,6 +406,10 @@
             document.querySelector('#text').setAttribute("visible", true)
             portal.setAttribute('visible', true)
             portal.emit('expand')
+            document.querySelectorAll('.box').forEach(function(box){
+                box.removeEventListener('mouseenter', allowPickup)
+                box.removeEventListener('mouseleave', leaveBox)
+            })
           }
 
 
