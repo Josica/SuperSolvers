@@ -19,7 +19,7 @@
       <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
 
 
-      <!-- //scene starts -->
+      <!-- ========= Scene Begins ========= -->
       <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
 
         <a-entity position="0 1.6 0" camera id="camera" look-controls="enabled: true">
@@ -33,35 +33,33 @@
           <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
           <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
           <a-asset-item id='river-obj' src='models/river/river.obj'></a-asset-item>
-          <a-asset-item id='river-mtl' src='models/river/river.mtl'></a-asset-item>
           <a-asset-item id='gem-obj' src='models/gem/gem.obj'></a-asset-item>
           <a-asset-item id='gem-mtl' src='models/gem/gem.mtl'></a-asset-item>
           <a-asset-item id='quartz-obj' src='models/quartz/quartz.obj'></a-asset-item>
           <a-asset-item id='quartz-mtl' src='models/quartz/quartz.mtl'></a-asset-item>
           <a-asset-item id='drop-obj' src='models/droplet/drop.obj'></a-asset-item>
-          <a-asset-item id='drop-mtl' src='models/droplet/drop.mtl'></a-asset-item>
         </a-assets>
 
-        <!-- // sky, models -->
+        <!-- ========= Sky & Models ========= -->
         <a-sky id='clouds' autoplay loop='true' rotation='0 280 0' src="models/clouds.mp4"></a-sky>
         <a-obj-model id="cave" src="#cave-obj" mtl="#cave-mtl" position="5 -7 4" scale="1 1 1" rotation="0 225 0"></a-obj-model>
         <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 20 180" scale=".08 .08 .08" position="-3 1.3 -1.3"></a-obj-model>
-        <a-obj-model id="river-obj" src="#river-obj" color="#33ccff" position="10.82 -4.5 11.53" scale=".1 .1 .1" rotation="0 130 0" alongpath="path:10,-4.5,11.45 10.4,-4.5,11.49; closed:true; dur:2500; inspector:false; loop:true" repeat="indefinite"></a-obj-model>
+        <a-obj-model id="river" src="#river-obj" color="#33ccff" position="10.82 -4.5 11.53" scale=".1 .1 .1" rotation="0 130 0" alongpath="path:10,-4.5,11.45 10.4,-4.5,11.49; closed:true; dur:2500; inspector:false; loop:true" repeat="indefinite"></a-obj-model>
         <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="0 0 0" scale="2 2 2" position="-1 .25 -1"></a-obj-model>
         <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="20 10 0" scale="2.2 2.2 2.2" position="-1.8 .25 -.75"></a-obj-model>
         <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="-20 -10 0" scale="2.2 2.2 2.2" position="-.75 .25 -.60"></a-obj-model>
         <a-obj-model id="ruby" src="#quartz-obj" mtl="#quartz-mtl" rotation="-20 -10 0" scale=".2 .2 .2" position="-14 -1 5.5" visible="false"></a-obj-model>
-        <a-obj-model id="drop" src="#drop-obj" mtl="#drop-mtl" rotation="0 0 0" scale="1 1 1" position="-18.5 6.5 -.1" visible="false"></a-obj-model>
+        <a-obj-model id="drop" src="#drop-obj" color="#1E90FF" rotation="0 0 0" scale="1 1 1" position="-18.5 6.5 -.1" visible="false"></a-obj-model>
 
-        <!-- // liquid examples -->
-        <a-cylinder class="liquid" color="yellow" radius=".2" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1.5 -11" alongpath="path:5,1.5,-5 3,1.5,-2 6,1.5,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
-        <a-cylinder class="liquid" color="yellow" radius=".3" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1 -10" alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
-        <a-cylinder class="liquid" color="yellow" radius=".5" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 2 -9" alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
-        <!-- // solid examples -->
+        <!-- ========= Liquid, Solid & Gas Models ========= -->
+        <!-- // Liquids -->
+        <a-cylinder class="liquid" color="yellow" radius=".3" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1 -10" alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:6000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+        <a-cylinder class="liquid" color="yellow" radius=".5" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 2 -9" alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+        <!-- // Solids -->
         <a-torus-knot class="solid" src="img/rainbow.jpg" position="-30 .75 -36" arc="180" p="2" q="7" radius="5" radius-tubular="0.1"></a-torus-knot>
         <a-torus-knot class="solid" src="img/rainbow.jpg" position="-20 3 -27" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 45 0"></a-torus-knot>
         <a-torus-knot class="solid" src="img/rainbow.jpg" position="-21 6 -30" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 0 90"></a-torus-knot>
-        <!-- // gas examples -->
+        <!-- // Gases -->
         <a-ring class="gas" src="img/pink.jpg" position="0 .5 -20" rotation="0 45 45" scale=".5 .5 .5">
           <a-animation attribute="position" to="0 7 -20" direction="alternate" dur="250" repeat="indefinite"></a-animation>
         </a-ring>
@@ -71,8 +69,9 @@
         <a-cone class="gas" src="img/emerald.png" position="-2 2 -20" rotation="0 45 45" scale=".5 .5 .5" radius-bottom="1" radius-top="0">
             <a-animation attribute="position" to="2 .5 -20" direction="alternate" dur="220" repeat="indefinite"></a-animation>
         </a-cone>
-        <!-- // states of matter text -->
-          <a-text id="text-1" class="matter-data" font="exo2bold" align="center" width="2" value="Hey!\n Isn't this world strange?\n There are so many states of matter here!" color="white"
+
+          <!-- ========= States of Matter Data ========= -->
+          <a-text id="text-1" class="matter-data" font="exo2bold" align="center" width="2" value="Hey!\n Isn't this place strange?\n There are many states of matter here..." color="white"
           position="-20 2 0" scale="7 7 7" wrap-count="20" rotation="0 130 3.2" visible="false"> </a-text>
 
           <a-text id="text-2a" class="matter-data" font="exo2bold" align="center" width="2" value="Look down...\n those blue gems are SOLID, their particles stay very still." color="white"
@@ -82,11 +81,11 @@
           <a-text id="text-2c" class="matter-data" font="exo2bold" align="center" width="2" value="Look behind you...\n that river is LIQUID, its particles move, only much slower than a gas." color="white"
           position="-20 3.5 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
 
-          <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of weird objects to my right:\n Can you tell which acts like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
+          <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of strange objects to my right:\n Which one moves like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
           position="-20 2 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
 
-          <!-- wrong answer messages/hints -->
-          <a-entity id='hint-s' scale="5 5 5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is solid - it isn't moving.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="-19 6 -22.7" rotation='0 0 0' material="color: #f2e6ff" >
+          <!-- ========= Incorrect Answer Hint Messages ========= -->
+          <a-entity id='hint-s' scale="5 5 5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is SOLID - it isn't moving.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="-19 6 -22.7" rotation='0 0 0' material="color: #f2e6ff" >
             <a-animation
              attribute="scale"
              dur="500"
@@ -96,7 +95,7 @@
              begin="text_expand">
            </a-animation>
           </a-entity>
-          <a-entity id='hint-l' scale="2.5 2.5 2.5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is liquid - it is moving, but slowly.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="7 1.5 -10.75" rotation='0 -70 0' material="color: #f2e6ff" >
+          <a-entity id='hint-l' scale="2.5 2.5 2.5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is LIQUID - it's moving, but slowly.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="7 1.5 -10.75" rotation='0 -70 0' material="color: #f2e6ff" >
             <a-animation
              attribute="scale"
              dur="500"
@@ -107,7 +106,7 @@
            </a-animation>
           </a-entity>
 
-          <!-- // portal to next level -->
+          <!-- ========= Portal Animation ========= -->
           <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
             <a-animation
                 attribute="rotation"
@@ -135,7 +134,7 @@
           </a-sphere>
         </a-scene>
 
-        <!-- // javascript -->
+        <!-- ========= Javascript ========= -->
         <script>
         var holding = false
           // hover over lion to see 1 textbox
