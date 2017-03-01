@@ -1,9 +1,4 @@
 $(document).ready(function(){
-  // Start loading screen
-   $("#img").fadeIn("slow");
-   $(this).data('timeout', setTimeout(function(){
-     $("#loader").fadeOut("slow");
-   }, 2000))
 
   var blackhole = document.getElementById('blackhole')
 
