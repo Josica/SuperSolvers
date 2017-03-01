@@ -53,8 +53,7 @@
 
           </a-assets>
 
-          <!-- desert environment -->
-
+          <!-- ========= Desert Environment ========= -->
           <a-sky src="img/desert-sky.png"></a-sky>
           <a-obj-model src='#wave-obj' color='#F4A460' position="11.4 -25" scale="20 20 20"></a-obj-model>
           <a-obj-model src='#cactus-obj' color='#009900' position="22 -3 -38.25" rotation="0 -90 0" scale="3 3 3"></a-obj-model>
@@ -70,17 +69,16 @@
           <a-obj-model src='#p-obj' color='#000000' position="323 -3 -38.25" rotation="0 -90 0" scale="4 4 4" mtl="#p-mtl"></a-obj-model>
           <a-obj-model src='#p-obj' color='#000000' position="600 -3 -38.25" rotation="0 -90 0" scale="5 5 5" mtl="#p-mtl"></a-obj-model>
 
-          <!-- animal object models -->
+          <!-- ========= Animal Models ========= -->
           <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 1"></a-obj-model>
           <a-obj-model id='tiger' src="#tiger-obj" mtl="#tiger-mtl" rotation="180 120 180" scale=".01 .01 .01" position="-.55 5 54.5"></a-obj-model>
 
-          <!--  balls -->
+          <!-- ========= Sphere Models========= -->
           <a-sphere id='ball1' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2 2 2"></a-sphere>
           <a-sphere id='ball2' src='img/rainbow1.jpg' position="-5.32 1.9 35.88" radius="0.5" scale="1.5 1.5 1.5"></a-sphere>
-          <!-- <a-sphere id='ball3' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 2 2.5"></a-sphere>
-          <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
 
-          <!--  number cubes -->
+          <!-- ========= Number Cube Models w/animations ========= -->
+          <!--  cube 6 -->
           <a-box class="wrongBox box" id='6' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5">
             <a-animation
              attribute="scale"
@@ -213,13 +211,13 @@
           </a-animation>
           </a-box>
 
-          <!-- instruction boxes -->
+          <!-- ========= Instructions: Stone Tablet Images ========= -->
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
 
-          <!--  right/wrong box text -->
-          <a-entity id='text' scale="3 3 3" geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 3.76 -5.73" rotation='0 30 0' material="color: white" >
+          <!-- ========= Correct Box Message ========= -->
+          <a-entity id='text' scale="3 3 3" geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: Great job finishing the pattern! The next portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 3.76 -5.73" rotation='0 30 0' material="color: white" >
             <a-animation
              attribute="scale"
              dur="500"
@@ -230,7 +228,7 @@
            </a-animation>
           </a-entity>
 
-          <!-- portal to win/final page -->
+          <!-- ========= Portal Animation ========= -->
           <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.5 -2" radius="0.5" scale="0.1 0.1 0.1">
             <a-animation
                 attribute="rotation"
@@ -257,7 +255,7 @@
            </a-animation>
           </a-sphere>
 
-          <!-- bad portal to win/final page -->
+          <!-- ========= "Bad" Portal Animation ========= -->
           <a-sphere id='bad_portal' src='models/portal.png' color= 'black' visible="false" position="2 1.5 -2" radius="0.5" scale="0.1 0.1 0.1">
             <a-animation
                 attribute="rotation"
@@ -287,9 +285,8 @@
 
         <script>
 
-        // Start loading screen
+        // Screen Loading Image
          $(window).load(function() {
-          //  $("#img").fadeIn("slow");
            $(this).data('timeout', setTimeout(function(){
              $("#loader").fadeOut("slow");
            }, 2000))
@@ -300,7 +297,8 @@
         var strikes = 0;
         var eightBox = document.getElementById('8')
         var portal = document.querySelector('#portal')
-          // get instructions from lion
+
+          // Pattern Instructions from Lion
           document.querySelector('#lion').addEventListener('mouseenter', function() {
               document.querySelector('#text-1').setAttribute("visible", true)
           })
@@ -321,8 +319,7 @@
             }, 5000));
           })
 
-          // picking up the wrong boxes
-
+          // Allow Cubes to be Picked Up
           function allowPickup(e) {
             if (holding == false) {
               e.target.emit('expand')
@@ -344,10 +341,9 @@
             }
           }
 
-          // When mouse leaves box
+          // Animation for Mouseleave on Cubes
           function leaveBox(e) {
               e.target.emit('unexpand')
-              // e.target.setAttribute('scale', '1 1 1')
               clearTimeout($(this).data('timeout'));
             }
 
@@ -363,24 +359,25 @@
             document.querySelector('#lion').removeEventListener( 'mouseenter', submitBox);
           }
 
-          // Sending to bad level after 3 tries
+          // 3 Failed Tries Action
           function lose(e) {
             $(this).css('z-index','99999');
             e.target.emit('next_page')
             $('#bad_overlay').fadeIn(1000);
             $(this).data('timeout', setTimeout(function(){
-              window.open("final.html", "_self")
+              window.open("tryagain.html", "_self")
             }, 1000));
             $('#bad_overlay').fadeOut(1000);
           }
 
+          // >> Hint Message in Incorrect Cubes
           function wrongBox(){
             document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1...\n 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
             document.querySelector('#text').setAttribute("visible", true)
             var box = document.getElementById(heldBox);
             strikes ++;
 
-            // logic to go to loss level
+            // >> Redirect to TryAgain Page
             if (strikes == 3) {
               document.querySelector('#bad_portal').setAttribute('visible', true)
               document.querySelector('#bad_portal').emit('expand')
@@ -392,7 +389,7 @@
             }
           }
 
-          // handing in the correct box
+          // Submit Correct Cube Action
           function correctBox(){
             eightBox.setAttribute("position", "-2 1.2 1")
             eightBox.setAttribute("scale", ".2 .2 .2")
@@ -407,6 +404,7 @@
             })
           }
 
+          // >> Redirect to Next Level
           portal.addEventListener('mouseenter', function(event){
             $(this).css('z-index','99999');
             $('#overlay').fadeIn(1000);
