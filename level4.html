@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link href="https://fonts.googleapis.com/css?family=Denk+One" rel="stylesheet">
+      <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+      <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+    </head>
+
+    <body>
+      <!-- ========= Screen load ========= -->
+      <div id='loader' style='position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background-color: white; text-align: center;'>
+        <img id='img'src='img/logo-supersolvers.png' style="height: 200px; margin-top: 10%"></img>
+        <p style="font-size: 20px; font-family: 'Denk One', sans-serif;">Loading...</p>
+      </div>
+      <!-- //scene starts -->
+      <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
+
+        <a-entity position="0 1.6 0" camera id="camera" look-controls="enabled: true">
+          <a-cursor color="aqua"></a-cursor>
+          <a-box id="hold" visible="false" color="#990000" height="2" width="2" depth="2" position="2 -1.5 -0.3" scale="1 1 1"></a-box>
+        </a-entity>
+
+        <a-assets>
+          <a-asset-item id="cave-obj" src="models/crystalenv/cave.obj"></a-asset-item>
+          <a-asset-item id="cave-mtl" src="models/crystalenv/cave.mtl"></a-asset-item>
+          <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
+          <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
+          <a-asset-item id='river-obj' src='models/river/river.obj'></a-asset-item>
+          <a-asset-item id='river-mtl' src='models/river/river.mtl'></a-asset-item>
+          <a-asset-item id='gem-obj' src='models/gem/gem.obj'></a-asset-item>
+          <a-asset-item id='gem-mtl' src='models/gem/gem.mtl'></a-asset-item>
+          <a-asset-item id='quartz-obj' src='models/quartz/quartz.obj'></a-asset-item>
+          <a-asset-item id='quartz-mtl' src='models/quartz/quartz.mtl'></a-asset-item>
+          <a-asset-item id='drop-obj' src='models/droplet/drop.obj'></a-asset-item>
+          <a-asset-item id='drop-mtl' src='models/droplet/drop.mtl'></a-asset-item>
+        </a-assets>
+
+        <!-- // sky, models -->
+        <a-sky id='clouds' autoplay loop='true' rotation='0 280 0' src="models/clouds.mp4"></a-sky>
+        <a-obj-model id="cave" src="#cave-obj" mtl="#cave-mtl" position="5 -7 4" scale="1 1 1" rotation="0 225 0"></a-obj-model>
+        <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 20 180" scale=".08 .08 .08" position="-3 1.3 -1.3"></a-obj-model>
+        <a-obj-model id="river-obj" src="#river-obj" color="#33ccff" position="10.82 -4.5 11.53" scale=".1 .1 .1" rotation="0 130 0" alongpath="path:10,-4.5,11.45 10.4,-4.5,11.49; closed:true; dur:2500; inspector:false; loop:true" repeat="indefinite"></a-obj-model>
+        <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="0 0 0" scale="2 2 2" position="-1 .25 -1"></a-obj-model>
+        <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="20 10 0" scale="2.2 2.2 2.2" position="-1.8 .25 -.75"></a-obj-model>
+        <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="-20 -10 0" scale="2.2 2.2 2.2" position="-.75 .25 -.60"></a-obj-model>
+        <a-obj-model id="ruby" src="#quartz-obj" mtl="#quartz-mtl" rotation="-20 -10 0" scale=".2 .2 .2" position="-14 -1 5.5" visible="false"></a-obj-model>
+        <a-obj-model id="drop" src="#drop-obj" mtl="#drop-mtl" rotation="0 0 0" scale="1 1 1" position="-18.5 6.5 -.1" visible="false"></a-obj-model>
+
+        <!-- // liquid examples -->
+        <a-cylinder class="liquid" color="yellow" radius=".2" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1.5 -11" alongpath="path:5,1.5,-5 3,1.5,-2 6,1.5,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+        <a-cylinder class="liquid" color="yellow" radius=".3" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1 -10" alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+        <a-cylinder class="liquid" color="yellow" radius=".5" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 2 -9" alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+        <!-- // solid examples -->
+        <a-torus-knot class="solid" src="img/rainbow.jpg" position="-30 .75 -36" arc="180" p="2" q="7" radius="5" radius-tubular="0.1"></a-torus-knot>
+        <a-torus-knot class="solid" src="img/rainbow.jpg" position="-20 3 -27" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 45 0"></a-torus-knot>
+        <a-torus-knot class="solid" src="img/rainbow.jpg" position="-21 6 -30" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 0 90"></a-torus-knot>
+        <!-- // gas examples -->
+        <a-ring class="gas" src="img/pink.jpg" position="0 .5 -20" rotation="0 45 45" scale=".5 .5 .5">
+          <a-animation attribute="position" to="0 7 -20" direction="alternate" dur="250" repeat="indefinite"></a-animation>
+        </a-ring>
+        <a-cone class="gas" src="img/emerald.png" position="2 2 -20" rotation="0 45 45" scale=".5 .5 .5" radius-bottom="1" radius-top="0">
+          <a-animation attribute="position" to="-2 2 -20" direction="alternate" dur="220" repeat="indefinite"></a-animation>
+        </a-cone>
+        <a-cone class="gas" src="img/emerald.png" position="-2 2 -20" rotation="0 45 45" scale=".5 .5 .5" radius-bottom="1" radius-top="0">
+            <a-animation attribute="position" to="2 .5 -20" direction="alternate" dur="220" repeat="indefinite"></a-animation>
+        </a-cone>
+        <!-- // states of matter text -->
+          <a-text id="text-1" class="matter-data" font="exo2bold" align="center" width="2" value="Hey!\n Isn't this world strange?\n There are so many states of matter here!" color="white"
+          position="-20 2 0" scale="7 7 7" wrap-count="20" rotation="0 130 3.2" visible="false"> </a-text>
+
+          <a-text id="text-2a" class="matter-data" font="exo2bold" align="center" width="2" value="Look down...\n those blue gems are SOLID, their particles stay very still." color="white"
+          position="-20 3.5 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
+          <a-text id="text-2b" class="matter-data" font="exo2bold" align="center" width="2" value="Look up...\n those fluffy clouds are GAS, their particles move very fast!" color="white"
+          position="-1.85 -.12 .1" scale="1 1 1" wrap-count="25" rotation="-80 60 15" visible="false"> </a-text>
+          <a-text id="text-2c" class="matter-data" font="exo2bold" align="center" width="2" value="Look behind you...\n that river is LIQUID, its particles move, only much slower than a gas." color="white"
+          position="-20 3.5 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
+
+          <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of weird objects to my right:\n Can you tell which acts like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
+          position="-20 2 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
+
+          <!-- wrong answer messages/hints -->
+          <a-entity id='hint-s' scale="5 5 5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is solid - it isn't moving.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="-19 6 -22.7" rotation='0 0 0' material="color: #f2e6ff" >
+            <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="text_expand">
+           </a-animation>
+          </a-entity>
+          <a-entity id='hint-l' scale="2.5 2.5 2.5" geometry="primitive: plane; radius: 2; align: center; width: auto; height: 1.3; depth: 2" visible='false' text="value: This object is liquid - it is moving, but slowly.\n Which one moves at the speed of a gas?\n Find the red crystal and try again!; align: center; width: 2; wrap-count: 20; font: mozillavr; color: #310066" position="7 1.5 -10.75" rotation='0 -70 0' material="color: #f2e6ff" >
+            <a-animation
+             attribute="scale"
+             dur="500"
+             from="0.1 0.1 0.1"
+             to="1 1 1"
+             easing="linear"
+             begin="text_expand">
+           </a-animation>
+          </a-entity>
+
+          <!-- // portal to next level -->
+          <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
+            <a-animation
+                attribute="rotation"
+                 dur="500"
+                 from="0 0 0"
+                 to="0 360 0"
+                 repeat="indefinite"
+                 easing="linear"></a-animation>
+             <a-animation
+              attribute="scale"
+              dur="2000"
+              from="0.1 0.1 0.1"
+              to="1 2 1"
+              easing="linear"
+              begin="expand">
+            </a-animation>
+          </a-sphere>
+        </a-scene>
+
+        <!-- // javascript -->
+        <script>
+        var holding = false
+          // hover over lion to see 1 textbox
+          document.querySelector('#lion').addEventListener('mouseenter', introText)
+
+          function introText() {
+            document.querySelector('#text-3').setAttribute("visible", false)
+            document.querySelector('#text-1').setAttribute("visible", true)
+            document.querySelector('#lion').removeEventListener('mouseenter', introText)
+          }
+          // hover over 1 textbox to see 2a textbox
+          document.querySelector('#text-1').addEventListener('mouseenter', function() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-1').setAttribute("visible", false)
+              document.querySelector('#text-2a').setAttribute("visible", true)
+            }, 3000));
+            // hover over gems to see 2b textbox
+            document.querySelectorAll('.gem').forEach(function(gem){
+              gem.addEventListener( 'mouseenter', hoverGem)
+            })
+          })
+
+          function hoverGem() {
+            $(this).data('timeout', setTimeout(function(){
+              document.querySelector('#text-2a').setAttribute("visible", false)
+              document.querySelector('#text-2b').setAttribute("visible", true)
+              document.querySelector('#drop').setAttribute("visible", true)
+            }, 2000));
+            document.querySelectorAll('.gem').forEach(function(gem){
+              gem.removeEventListener( 'mouseenter', hoverGem)
+            })
+          }
+          // hover over droplet to see 2c textbox, show ruby & 3 textbox
+          document.querySelector('#drop').addEventListener('mouseenter', function() {
+            document.querySelector('#drop').setAttribute("visible", false)
+            document.querySelector('#text-2b').setAttribute("visible", false)
+            document.querySelector('#text-2c').setAttribute("visible", true)
+            $(this).data('timeout', setTimeout(function(){
+                document.querySelector('#text-2c').setAttribute("visible", false)
+                document.querySelector('#text-3').setAttribute("visible", true)
+                document.querySelector('#ruby').setAttribute("visible", true)
+            }, 5000));
+          })
+          // pick up the ruby
+          document.querySelector('#ruby').addEventListener('mouseenter',
+          function() {
+            document.querySelector('#hold').setAttribute("visible", true)
+            document.querySelector('#ruby').setAttribute("visible", false)
+            holding = true
+          })
+          // give the ruby to the solid objects - receive hint
+          document.querySelectorAll('.solid').forEach(function(solid){
+            solid.addEventListener( 'mouseenter', function() {
+              if (holding == true) {
+                document.querySelector('#hold').setAttribute("visible", false)
+                document.querySelector('#ruby').setAttribute("visible", true)
+                document.querySelector('#hint-s').setAttribute("visible", true)
+                holding = false
+              }
+            })
+          })
+          // give the ruby to the liquid objects - receive hint
+          document.querySelectorAll('.liquid').forEach(function(liquid){
+            liquid.addEventListener( 'mouseenter', function() {
+              if (holding == true) {
+                document.querySelector('#hold').setAttribute("visible", false)
+                document.querySelector('#ruby').setAttribute("visible", true)
+                document.querySelector('#hint-l').setAttribute("visible", true)
+                holding = false
+              }
+            })
+          })
+          // give the ruby to the gas objects - open portal
+          document.querySelectorAll('.gas').forEach(function(gas){
+            gas.addEventListener( 'mouseenter', completeLevel)
+          })
+
+          function completeLevel(){
+            if (holding == true) {
+              document.querySelector('#hold').setAttribute("visible", false)
+              // ??? move/animate lion position to next to portal ???
+              document.querySelector('#portal').setAttribute('visible', true)
+              document.querySelector('#portal').emit('expand')
+              document.querySelectorAll('.gas').forEach(function(gas){
+                gas.removeEventListener( 'mouseenter', completeLevel)
+              })
+              holding = false
+            }
+          }
+          // go to level5 when you enter the portal
+          document.getElementById('portal').addEventListener('mouseenter', function(event){
+            window.open("level5.html", "_self")
+          });
+
+        // Start loading screen
+       $(window).load(function() {
+         $("#img").fadeIn("slow");
+         $(this).data('timeout', setTimeout(function(){
+           $("#loader").fadeOut("slow");
+         }, 2000))
+       })
+
+        </script>
+
+    </body>
+</html>
