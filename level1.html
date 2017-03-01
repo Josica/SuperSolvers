@@ -18,7 +18,7 @@
        <!-- ========= Screen Blackout ========= -->
        <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
        <div id='bad_overlay' style='background: black; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
-  
+
         <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
 
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
@@ -412,7 +412,7 @@
             $('#overlay').fadeIn(1000);
             portal.emit('next_page')
             $(this).data('timeout', setTimeout(function(){
-              window.open("index.html", "_self")
+              window.open("level2.html", "_self")
             }, 1000));
             $('#overlay').fadeOut(1000);
           });

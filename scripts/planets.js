@@ -41,7 +41,7 @@ $(document).ready(function(){
         $('#overlay').fadeIn(2000);
       }, 3000));
       $(this).data('timeout', setTimeout(function(){
-        window.open("index.html", "_self")
+        window.open("level5.html", "_self")
       }, 5000));
       $('#overlay').fadeOut(1000);
     })
