@@ -5,7 +5,7 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://rawgit.com/ngokevin/aframe-animation-component/master/dist/aframe-animation-component.min.js"></script>
-    <script src="scripts/planets.js"></script>
+    <script src="js/level4.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Denk+One" rel="stylesheet">
   </head>
   <body>
@@ -131,36 +131,26 @@
            to="2 2 2"
            easing="linear"
            begin="expand">
-        ></a-animation>
-      </a-sphere>
-
-      <a-sphere id='portal' src='models/portal.png' visible="true" position="60 60 60" radius="0.5" scale="0.1 0.1 0.1">
-        <a-animation
-            attribute="rotation"
-             dur="500"
-             from="0 0 0"
-             to="0 360 0"
-             repeat="indefinite"
-             easing="linear">
         </a-animation>
 
-         <a-animation
+        <a-animation
           attribute="scale"
-          dur="5000"
-          from="0.1 0.1 0.1"
-          to="4 8 4"
-          easing="linear"
-          begin="grow">
+           dur="300"
+           from="2 2 2"
+           to="1 1 1"
+           easing="linear"
+           begin="revert">
         </a-animation>
 
         <a-animation
          attribute="position"
-         dur="5000"
+         dur="3000"
          from="60 60 60"
          to="0 2 0"
          easing="linear"
          begin="next_page">
        </a-animation>
+
       </a-sphere>
 
     </a-scene>
