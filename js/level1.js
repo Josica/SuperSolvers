@@ -1,7 +1,4 @@
 $(document).ready(function(){
-  $(this).data('timeout', setTimeout(function(){
-    $("#loader").fadeOut("slow");
-  }, 2000))
 
   var holding = false;
   var heldBox;

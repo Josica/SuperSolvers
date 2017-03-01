@@ -1,10 +1,5 @@
 $(document).ready(function(){
-  // Start loading screen
-  $("#img").fadeIn("slow");
-  $(this).data('timeout', setTimeout(function(){
-    $("#loader").fadeOut("slow");
-  }, 3000))
-
+  
   var lion = document.querySelector('#lion')
   var coin1 = document.querySelector('#coin1')
 

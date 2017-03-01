@@ -1,8 +1,4 @@
 $(document).ready(function(){
-  // Start loading screen
-  $(this).data('timeout', setTimeout(function(){
-    $("#loader").fadeOut("slow");
-  }, 2000))
 
   var lion = document.querySelectorAll('#lion')
   var haveGem = false

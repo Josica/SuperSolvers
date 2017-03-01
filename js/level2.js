@@ -99,11 +99,4 @@ $(document).ready(function(){
     $('#overlay').fadeOut(1000);
   });
 
-  // Start loading screen
-  $(window).load(function() {
-    $("#img").fadeIn("slow");
-    $(this).data('timeout', setTimeout(function(){
-      $("#loader").fadeOut("slow");
-    }, 2000))
-  })
 })
