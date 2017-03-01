@@ -4,8 +4,16 @@
         <script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Denk+One" rel="stylesheet">
     </head>
     <body>
+
+      <!-- ========= Screen load ========= -->
+       <div id='loader' style='position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background-color: white; text-align: center;'>
+         <img id='img'src='img/logo-supersolvers.png' style="height: 200px; margin-top: 10%"></img>
+         <p style="font-size: 20px; font-family: 'Denk One', sans-serif;">Loading...</p>
+       </div>
+
       <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
         <a-assets>
           <a-asset-item id='object' src='models/aztec-temple.obj'></a-asset-item>
@@ -17,6 +25,11 @@
 
         <a-sky src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Helvellyn_Striding_Edge_360_Panorama,_Lake_District_-_June_09.jpg"></a-sky>
 
+
+        <!-- ========= Screen Blackout ========= -->
+        <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
+
+
         <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.8 -4" radius="0.5" scale="0.1 0.1 0.1">
           <a-animation
               attribute="rotation"
@@ -24,7 +37,8 @@
                from="0 0 0"
                to="0 360 0"
                repeat="indefinite"
-               easing="linear"></a-animation>
+               easing="linear">
+          </a-animation>
 
            <a-animation
             attribute="scale"
@@ -34,6 +48,15 @@
             easing="linear"
             begin="expand">
           </a-animation>
+
+          <a-animation
+           attribute="position"
+           dur="1000"
+           from="2 1.8 -4"
+           to="-.5 1 1"
+           easing="linear"
+           begin="next_page">
+         </a-animation>
         </a-sphere>
             <!-- <a-plane id="test" position='-0.50 1, 1' width="3" height="3" src="models/text.png" visible='false'></a-plane> -->
             <!-- <a-plane id="test" width="3" height="3" src="http://i.imgur.com/KMg1JX4.jpg"
@@ -69,8 +92,17 @@
       <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
       <script>
 
+      // Start loading screen
+       $(window).load(function() {
+        //  $("#img").fadeIn("slow");
+         $(this).data('timeout', setTimeout(function(){
+           $("#loader").fadeOut("slow");
+         }, 2000))
+       })
+
       var lion = document.querySelectorAll('#lion')
       var haveGem = false
+      var portal = document.getElementById('portal')
 
         // Squirrel action
       lion.forEach(function(element){
@@ -81,6 +113,7 @@
           document.querySelector('#orange').setAttribute("visible", true)
         })
       })
+
       // Grabbing orange action
       if (haveGem === false) {
         document.querySelector('#orange').addEventListener( 'mouseenter', function() {
@@ -102,10 +135,16 @@
           })
         })
       }
+
       // Next level action
       document.getElementById('portal').addEventListener('mouseenter', function(event){
-        // document.querySelector('#portal').addAttribute('scale', 5)
-        window.open("level1.html", "_self")
+        $(this).css('z-index','99999');
+        $('#overlay').fadeIn(1000);
+        portal.emit('next_page')
+        $(this).data('timeout', setTimeout(function(){
+          window.open("level1.html", "_self")
+        }, 1000));
+        $('#overlay').fadeOut(1000);
       });
 
       </script>

@@ -1,3 +1,10 @@
+// Start loading screen
+       $(window).load(function() {
+         $(this).data('timeout', setTimeout(function(){
+           $("#loader").fadeOut("slow");
+         }, 2000))
+       })
+
 $(document).ready(function(){
   document.querySelectorAll('.planet').forEach(function(planet){
     planet.addEventListener( 'mouseenter', function() {
@@ -21,14 +28,25 @@ $(document).ready(function(){
     })
 
     var blackhole = document.querySelector('#black-hole')
+    var portal = document.querySelector('#portal')
+
+
     blackhole.addEventListener('mouseenter', function(){
+
+      blackhole.emit('expand')
+      portal.emit('grow')
+      portal.emit('next_page')
       $(this).data('timeout', setTimeout(function(){
-        // add in logic to jump to the next level
-        console.log('hello')
-      }, 2000));
+        $(this).css('z-index','99999');
+        $('#overlay').fadeIn(2000);
+      }, 3000));
+      $(this).data('timeout', setTimeout(function(){
+        window.open("index.html", "_self")
+      }, 5000));
+      $('#overlay').fadeOut(1000);
     })
     //
-    blackhole.addEventListener('mouseleave', function(){
-      clearTimeout($(this).data('timeout'));
-    })
+    // blackhole.addEventListener('mouseleave', function(){
+    //   clearTimeout($(this).data('timeout'));
+    // })
 })
