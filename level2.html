@@ -33,30 +33,27 @@
           <a-asset-item id='lion-obj' src='models/lion/lion-cub.obj'></a-asset-item>
           <a-asset-item id='lion-mtl' src='models/lion/lion-cub.mtl'></a-asset-item>
           <a-asset-item id='river-obj' src='models/river/river.obj'></a-asset-item>
-          <a-asset-item id='river-mtl' src='models/river/river.mtl'></a-asset-item>
           <a-asset-item id='gem-obj' src='models/gem/gem.obj'></a-asset-item>
           <a-asset-item id='gem-mtl' src='models/gem/gem.mtl'></a-asset-item>
           <a-asset-item id='quartz-obj' src='models/quartz/quartz.obj'></a-asset-item>
           <a-asset-item id='quartz-mtl' src='models/quartz/quartz.mtl'></a-asset-item>
           <a-asset-item id='drop-obj' src='models/droplet/drop.obj'></a-asset-item>
-          <a-asset-item id='drop-mtl' src='models/droplet/drop.mtl'></a-asset-item>
         </a-assets>
 
         <!-- // sky, models -->
         <a-sky id='clouds' autoplay loop='true' rotation='0 280 0' src="models/clouds.mp4"></a-sky>
         <a-obj-model id="cave" src="#cave-obj" mtl="#cave-mtl" position="5 -7 4" scale="1 1 1" rotation="0 225 0"></a-obj-model>
         <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 20 180" scale=".08 .08 .08" position="-3 1.3 -1.3"></a-obj-model>
-        <a-obj-model id="river-obj" src="#river-obj" color="#33ccff" position="10.82 -4.5 11.53" scale=".1 .1 .1" rotation="0 130 0" alongpath="path:10,-4.5,11.45 10.4,-4.5,11.49; closed:true; dur:2500; inspector:false; loop:true" repeat="indefinite"></a-obj-model>
+        <a-obj-model id="river" src="#river-obj" color="#33ccff" position="10.82 -4.5 11.53" scale=".1 .1 .1" rotation="0 130 0" alongpath="path:10,-4.5,11.45 10.4,-4.5,11.49; closed:true; dur:2500; inspector:false; loop:true" repeat="indefinite"></a-obj-model>
         <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="0 0 0" scale="2 2 2" position="-1 .25 -1"></a-obj-model>
         <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="20 10 0" scale="2.2 2.2 2.2" position="-1.8 .25 -.75"></a-obj-model>
         <a-obj-model class='gem' src="#gem-obj" mtl="#gem-mtl" rotation="-20 -10 0" scale="2.2 2.2 2.2" position="-.75 .25 -.60"></a-obj-model>
         <a-obj-model id="ruby" src="#quartz-obj" mtl="#quartz-mtl" rotation="-20 -10 0" scale=".2 .2 .2" position="-14 -1 5.5" visible="false"></a-obj-model>
-        <a-obj-model id="drop" src="#drop-obj" mtl="#drop-mtl" rotation="0 0 0" scale="1 1 1" position="-18.5 6.5 -.1" visible="false"></a-obj-model>
+        <a-obj-model id="drop" src="#drop-obj" color="#1E90FF" rotation="0 0 0" scale="1 1 1" position="-18.5 6.5 -.1" visible="false"></a-obj-model>
 
         <!-- // liquid examples -->
-        <a-cylinder class="liquid" color="yellow" radius=".2" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1.5 -11" alongpath="path:5,1.5,-5 3,1.5,-2 6,1.5,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
-        <a-cylinder class="liquid" color="yellow" radius=".3" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1 -10" alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
-        <a-cylinder class="liquid" color="yellow" radius=".5" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 2 -9" alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; delay:1000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+        <a-cylinder class="liquid" color="yellow" radius=".3" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 1 -10" alongpath="path:5,1,-5 3,1,-1 6,1,-7; closed:true; dur:6000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
+        <a-cylinder class="liquid" color="yellow" radius=".5" theta-start="50" theta-length="280" side="double" height=".3" scale="1 1 1" rotation="0 5 90" position="7 2 -9" alongpath="path:5,2,-5 3,2,0 6,2,-7; closed:true; dur:6000; inspector:false; loop:true" repeat="indefinite"></a-cylinder>
         <!-- // solid examples -->
         <a-torus-knot class="solid" src="img/rainbow.jpg" position="-30 .75 -36" arc="180" p="2" q="7" radius="5" radius-tubular="0.1"></a-torus-knot>
         <a-torus-knot class="solid" src="img/rainbow.jpg" position="-20 3 -27" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" rotation="0 45 0"></a-torus-knot>
@@ -82,7 +79,7 @@
           <a-text id="text-2c" class="matter-data" font="exo2bold" align="center" width="2" value="Look behind you...\n that river is LIQUID, its particles move, only much slower than a gas." color="white"
           position="-20 3.5 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
 
-          <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of weird objects to my right:\n Can you tell which acts like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
+          <a-text id="text-3" class="matter-data" font="exo2bold" align="center" width="2" value="There are 3 sets of weird objects to my right:\n Which one moves like a GAS?\n Give the red crystal to the gas object to show us the portal outta here!" color="white"
           position="-20 2 0" scale="7 7 7" wrap-count="25" rotation="0 130 3.2" visible="false"> </a-text>
 
           <!-- wrong answer messages/hints -->
