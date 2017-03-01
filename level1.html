@@ -18,7 +18,7 @@
        <!-- ========= Screen Blackout ========= -->
        <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
        <div id='bad_overlay' style='background: black; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
-
+  
         <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
 
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
@@ -53,8 +53,8 @@
 
           </a-assets>
 
-
           <!-- desert environment -->
+
           <a-sky src="img/desert-sky.png"></a-sky>
           <a-obj-model src='#wave-obj' color='#F4A460' position="11.4 -25" scale="20 20 20"></a-obj-model>
           <a-obj-model src='#cactus-obj' color='#009900' position="22 -3 -38.25" rotation="0 -90 0" scale="3 3 3"></a-obj-model>
@@ -213,7 +213,6 @@
           </a-animation>
           </a-box>
 
-
           <!-- instruction boxes -->
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
@@ -230,6 +229,7 @@
              begin="text_expand">
            </a-animation>
           </a-entity>
+
 
           <!-- portal to win/final page -->
           <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.5 -2" radius="0.5" scale="0.1 0.1 0.1">
@@ -284,7 +284,6 @@
              begin="next_page">
            </a-animation>
           </a-sphere>
-
         </a-scene>
 
         <script>
@@ -322,7 +321,6 @@
               })
             }, 5000));
           })
-
 
           // picking up the wrong boxes
 
@@ -377,7 +375,6 @@
             $('#bad_overlay').fadeOut(1000);
           }
 
-
           function wrongBox(){
             document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1...\n 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
             document.querySelector('#text').setAttribute("visible", true)
@@ -411,7 +408,6 @@
                 box.removeEventListener('mouseleave', leaveBox)
             })
           }
-
 
           portal.addEventListener('mouseenter', function(event){
             $(this).css('z-index','99999');
