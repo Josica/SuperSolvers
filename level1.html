@@ -14,6 +14,11 @@
          <img id='img'src='img/logo-supersolvers.png' style="height: 200px; margin-top: 10%"></img>
          <p style="font-size: 20px; font-family: 'Denk One', sans-serif;">Loading...</p>
        </div>
+
+       <!-- ========= Screen Blackout ========= -->
+       <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
+       <div id='bad_overlay' style='background: black; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
+  
         <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
 
           <a-entity position="0 1.8 4" camera id="camera" look-controls="enabled: true">
@@ -48,10 +53,6 @@
 
           </a-assets>
 
-
-          <!-- ========= Screen Blackout ========= -->
-          <div id='overlay' style='background: white; display: none; width: 100%; height: 100%; position:absolute; top:0; left:0; z-index:99998;'></div>
-
           <!-- desert environment -->
 
           <a-sky src="img/desert-sky.png"></a-sky>
@@ -69,19 +70,15 @@
           <a-obj-model src='#p-obj' color='#000000' position="323 -3 -38.25" rotation="0 -90 0" scale="4 4 4" mtl="#p-mtl"></a-obj-model>
           <a-obj-model src='#p-obj' color='#000000' position="600 -3 -38.25" rotation="0 -90 0" scale="5 5 5" mtl="#p-mtl"></a-obj-model>
 
-
-
           <!-- animal object models -->
           <a-obj-model id='lion' src="#lion-obj" mtl="#lion-mtl" rotation="180 30 180" scale=".2 .2 .2" position="-2 1.2 1"></a-obj-model>
           <a-obj-model id='tiger' src="#tiger-obj" mtl="#tiger-mtl" rotation="180 120 180" scale=".01 .01 .01" position="-.55 5 54.5"></a-obj-model>
 
           <!--  balls -->
-
           <a-sphere id='ball1' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2 2 2"></a-sphere>
           <a-sphere id='ball2' src='img/rainbow1.jpg' position="-5.32 1.9 35.88" radius="0.5" scale="1.5 1.5 1.5"></a-sphere>
           <!-- <a-sphere id='ball3' src='img/rainbow.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 2 2.5"></a-sphere>
           <a-sphere id='ball4' src='img/rainbow1.jpg' position="-4.43 -0.72 -17.88" radius="0.5" scale="2.5 3 2.5"></a-sphere> -->
-
 
           <!--  number cubes -->
           <a-box class="wrongBox box" id='6' src='img/numbers/6.png' position="20.23 -0.55 -2.81" height="2" width="2" depth="2" scale="1.5 1.5 1.5">
@@ -95,12 +92,13 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1.5 1.5 1.5"
             to="1.5 1.5 1.5"
             easing="linear"
             begin="unexpand">
           </a-animation>
+
+          <!--  cube 7 -->
           </a-box>
           <a-box class="wrongBox box" id='7' src='img/numbers/7.png' position="4 -2.42 6.60" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
@@ -113,12 +111,13 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
             begin="unexpand">
           </a-animation>
+
+          <!--  cube 8 -->
           </a-box>
           <a-box class="box" id='8' src='img/numbers/8.png' position="23.84 -.01 19.82" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
@@ -131,12 +130,13 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
             begin="unexpand">
           </a-animation>
+
+          <!--  cube 9 -->
           </a-box>
           <a-box class="wrongBox box" id='9' src='img/numbers/9.png' position="2.59 1.86 24.30" height="1" width="1" depth="1" scale="1.5 1.5 1.5">
             <a-animation
@@ -149,12 +149,13 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1.5 1.5 1.5"
             to="1.5 1.5 1.5"
             easing="linear"
             begin="unexpand">
           </a-animation>
+
+          <!--  cube 10 -->
           </a-box>
           <a-box class="wrongBox box" id='10' src='img/numbers/10.png' position="-9 -.5 10" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
@@ -167,14 +168,15 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
             begin="unexpand">
           </a-animation>
           </a-box>
-          <a-box class="wrongBox box" id='twelve' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1">
+
+          <!--  cube 11 -->
+          <a-box class="wrongBox box" id='11' src='img/numbers/11.png' position="37.85 3.2 5.07" height="2" width="2" depth="2" scale="1 1 1">
             <a-animation
              attribute="scale"
              dur="1200"
@@ -185,7 +187,6 @@
            </a-animation>
            <a-animation
             attribute="scale"
-            dur="1200"
             from="1 1 1"
             to="1 1 1"
             easing="linear"
@@ -193,16 +194,31 @@
           </a-animation>
           </a-box>
 
+          <!--  cube 12 -->
+          <a-box class="wrongBox box" id='12' src='img/numbers/12.png' position="21 3.54 -21.25" height="2" width="2" depth="2" scale="1 1 1">
+            <a-animation
+             attribute="scale"
+             dur="1200"
+             from="1 1 1"
+             to="1.5 1.5 1.5"
+             easing="linear"
+             begin="expand">
+           </a-animation>
+           <a-animation
+            attribute="scale"
+            from="1 1 1"
+            to="1 1 1"
+            easing="linear"
+            begin="unexpand">
+          </a-animation>
+          </a-box>
 
           <!-- instruction boxes -->
-
           <a-box id='text-1' src='img/textboxes/text1.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-2' src='img/textboxes/text2.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
           <a-box id='text-3' src='img/textboxes/text3.png' position="-4.55 1.44 2.30" rotation="0 45 0" height="2" width="2" depth=".1" scale="-2 2 1.8" visible="false"></a-box>
 
-
           <!--  right/wrong box text -->
-
           <a-entity id='text' scale="3 3 3" geometry="primitive: plane; radius: 2; width: auto; height: 1; depth: 2" visible='false' text="value: Great job finishing the pattern! A new portal just opened up, let's go!; align: center; width: 2; wrap-count: 20; color: #333333" position="-1.64 3.76 -5.73" rotation='0 30 0' material="color: white" >
             <a-animation
              attribute="scale"
@@ -217,7 +233,6 @@
 
           <!-- portal to win/final page -->
           <a-sphere id='portal' src='models/portal.png' visible="false" position="2 1.5 -2" radius="0.5" scale="0.1 0.1 0.1">
-
             <a-animation
                 attribute="rotation"
                  dur="500"
@@ -243,6 +258,32 @@
            </a-animation>
           </a-sphere>
 
+          <!-- bad portal to win/final page -->
+          <a-sphere id='bad_portal' src='models/portal.png' color= 'black' visible="false" position="2 1.5 -2" radius="0.5" scale="0.1 0.1 0.1">
+            <a-animation
+                attribute="rotation"
+                 dur="500"
+                 from="0 0 0"
+                 to="0 360 0"
+                 repeat="indefinite"
+                 easing="linear"></a-animation>
+             <a-animation
+              attribute="scale"
+              dur="2000"
+              from="0.1 0.1 0.1"
+              to="1 2 1"
+              easing="linear"
+              begin="expand">
+            </a-animation>
+            <a-animation
+             attribute="position"
+             dur="1000"
+             from="2 1.5 -2"
+             to=".9 1.4 2"
+             easing="linear"
+             begin="next_page">
+           </a-animation>
+          </a-sphere>
         </a-scene>
 
         <script>
@@ -274,70 +315,86 @@
             $(this).data('timeout', setTimeout(function(){
               document.querySelector('#text-2').setAttribute("visible", false)
               document.querySelector('#text-3').setAttribute("visible", true)
-              // allowPickup();
+              document.querySelectorAll('.box').forEach(function(box){
+                  box.addEventListener('mouseenter', allowPickup)
+                  box.addEventListener('mouseleave', leaveBox)
+              })
             }, 5000));
           })
-
 
           // picking up the wrong boxes
 
           function allowPickup(e) {
-            e.target.emit('expand')
-                $(this).data('timeout', setTimeout(function(){
-                  console.log(holding)
-                  if (holding == false) {
-                    document.querySelector('#text').setAttribute("visible", false)
-                    document.querySelector('#hold').setAttribute("visible", true)
-                    e.target.setAttribute("visible", false)
-                    heldBox = e.target.id
-                    console.log('hi')
-                    holding = true
-                    document.querySelector('#lion').addEventListener( 'mouseenter', submitBox);
+            if (holding == false) {
+              e.target.emit('expand')
+              $(this).data('timeout', setTimeout(function(){
+                  holding = true
+                  heldBox = e.target.id
+                  document.querySelector('#text').setAttribute("visible", false)
+
+                  if (heldBox % 2 == 0) {
+                    document.querySelector('#hold').setAttribute("color", "#e600e6")
+                  } else {
+                    document.querySelector('#hold').setAttribute("color", "#4f0a8f")
                   }
-                }, 1200));
-                e.target.show()
+
+                  document.querySelector('#hold').setAttribute("visible", true)
+                  e.target.setAttribute("visible", false)
+                  document.querySelector('#lion').addEventListener( 'mouseenter', submitBox);
+              }, 1200));
+            }
           }
 
           // When mouse leaves box
           function leaveBox(e) {
               e.target.emit('unexpand')
+              // e.target.setAttribute('scale', '1 1 1')
               clearTimeout($(this).data('timeout'));
             }
-
-          document.querySelectorAll('.box').forEach(function(box){
-              box.addEventListener('mouseenter', allowPickup)
-              box.addEventListener('mouseleave', leaveBox)
-          })
-
 
           function submitBox(){
             holding = false
             document.querySelector('#hold').setAttribute("visible", false)
             if (heldBox == "8"){
               correctBox();
+            }
+            else {
+              wrongBox();
+            }
+            document.querySelector('#lion').removeEventListener( 'mouseenter', submitBox);
+          }
+
+          // Sending to bad level after 3 tries
+          function lose(e) {
+            $(this).css('z-index','99999');
+            e.target.emit('next_page')
+            $('#bad_overlay').fadeIn(1000);
+            $(this).data('timeout', setTimeout(function(){
+              window.open("final.html", "_self")
+            }, 1000));
+            $('#bad_overlay').fadeOut(1000);
+          }
+
+          function wrongBox(){
+            document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1...\n 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
+            document.querySelector('#text').setAttribute("visible", true)
+            var box = document.getElementById(heldBox);
+            // box.setAttribute("visible", true)
+            strikes ++;
+
+            // logic to go to loss level
+            if (strikes == 3) {
+              document.querySelector('#bad_portal').setAttribute('visible', true)
+              document.querySelector('#bad_portal').emit('expand')
+              document.querySelector('#bad_portal').addEventListener('mouseenter', lose)
               document.querySelectorAll('.box').forEach(function(box){
                   box.removeEventListener('mouseenter', allowPickup)
                   box.removeEventListener('mouseleave', leaveBox)
               })
             }
-            else {
-              wrongBox();
-            }
           }
 
-          function wrongBox(){
-            document.querySelector('#text').setAttribute("text", "value: Oh no, this isn't the right cube! Try again. Here's a hint: 0 + 1 = 1... 0, 1, 1... hmm...; align: center; width: 2; wrap-count: 20; color: #333333")
-            document.querySelector('#text').setAttribute("visible", true)
-            var box = document.getElementById(heldBox);
-            box.setAttribute("visible", true)
-            strikes ++;
-            // logic to go to loss level
-            if (strikes == 3) {
-              window.open("final.html", "_self")
-            }
-          }
           // handing in the correct box
-
           function correctBox(){
             eightBox.setAttribute("position", "-2 1.2 1")
             eightBox.setAttribute("scale", ".2 .2 .2")
@@ -346,6 +403,10 @@
             document.querySelector('#text').setAttribute("visible", true)
             portal.setAttribute('visible', true)
             portal.emit('expand')
+            document.querySelectorAll('.box').forEach(function(box){
+                box.removeEventListener('mouseenter', allowPickup)
+                box.removeEventListener('mouseleave', leaveBox)
+            })
           }
 
           portal.addEventListener('mouseenter', function(event){
