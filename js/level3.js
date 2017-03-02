@@ -14,16 +14,22 @@ $(document).ready(function(){
   var badPortal = document.getElementById('bad_portal')
   var ice = document.getElementById('ice')
 
-    lion.addEventListener( 'mouseenter', function() {
+    lion.addEventListener( 'mouseenter', introText)
+
+    function introText(){
       text.setAttribute("visible", true)
       text.emit('text_expand')
       eq.setAttribute("visible", true)
       ice.emit('grow_ice')
+      setTimeout(function(){
+        text.setAttribute("visible", false)
+      }, 8000)
+      lion.removeEventListener( 'mouseenter', introText)
+    }
 
-    })
-    lion.addEventListener( 'mouseleave', function() {
-      text.setAttribute("visible", false)
-    });
+    // lion.addEventListener( 'mouseleave', function() {
+    //   text.setAttribute("visible", false)
+    // });
 
     function answersShow(){
         answers.setAttribute('visible', true)
