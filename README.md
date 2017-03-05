@@ -1,3 +1,3 @@
 # SuperSolvers
 
-A VR educational game for ages 6-8 built with A-Frame.
+A VR STEM educational game for third graders built with A-Frame.
